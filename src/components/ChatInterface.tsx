@@ -9,40 +9,6 @@ import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 
-// --- KOMPONEN TYPEWRITER ---
-const Typewriter = ({ text, speed = 10 }: { text: string; speed?: number }) => {
-    const [displayedText, setDisplayedText] = useState("");
-
-    useEffect(() => {
-        let i = 0;
-        setDisplayedText(""); // Reset setiap ada teks baru
-        const typingInterval = setInterval(() => {
-            if (i < text.length) {
-                setDisplayedText(text.slice(0, i + 1));
-                i++;
-            } else {
-                clearInterval(typingInterval);
-            }
-        }, speed);
-
-        return () => clearInterval(typingInterval);
-    }, [text, speed]);
-
-    return (
-        <div className="prose prose-sm max-w-none break-words prose-p:leading-relaxed prose-li:my-1 prose-strong:text-emerald-600 [&&]:text-inherit">
-            <ReactMarkdown>{displayedText}</ReactMarkdown>
-        </div>
-    );
-};
-
-const STARTER_QUESTIONS = [
-    "Bagaimana cara meningkatkan imun tubuh setelah operasi?",
-    "Tips pola makan untuk penderita hipertensi",
-    "Rekomendasi menjaga kesehatan mental pasca operasi",
-    "Cara booking konsultasi dengan dokter spesialis?",
-    "Apa tanda komplikasi pasca operasi yang diwaspadai?"
-];
-
 export default function ChatInterface() {
     const { messages, input, setInput, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
         api: "/api/chat",
@@ -50,7 +16,7 @@ export default function ChatInterface() {
 
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // --- LOGIKA AUTO-SCROLL (MUTATION OBSERVER) ---
+    // --- LOGIKA AUTO-SCROLL YANG SANGAT STABIL ---
     useEffect(() => {
         const scrollToBottom = () => {
             if (scrollRef.current) {
@@ -134,20 +100,24 @@ export default function ChatInterface() {
                                             <span className="font-medium whitespace-pre-wrap">{m.content}</span>
                                         ) : (
                                             <div className="relative group">
-                                                <Typewriter text={m.content} />
+                                                {/* PERBAIKAN: Render Markdown Langsung dari m.content agar tidak looping */}
+                                                <div className="prose prose-sm max-w-none break-words prose-p:leading-relaxed prose-li:my-1 prose-strong:text-emerald-600 [&&]:text-inherit">
+                                                    <ReactMarkdown>{m.content}</ReactMarkdown>
+                                                </div>
 
-                                                {/* Ikon Animasi di Akhir Teks AI */}
-                                                <motion.div
-                                                    initial={{ opacity: 0, scale: 0.5 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    transition={{ delay: 0.5 }}
-                                                    className="flex justify-end items-center mt-3 pt-2 border-t border-emerald-50"
-                                                >
-                                                    <div className="flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 rounded-full">
-                                                        <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">Verified Response</span>
-                                                        <Sparkles size={10} className="text-emerald-500 animate-pulse" />
-                                                    </div>
-                                                </motion.div>
+                                                {/* Ikon Animasi di Akhir Teks AI - Muncul jika tidak sedang loading atau bukan pesan terakhir */}
+                                                {(!isLoading || idx < messages.length - 1) && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, scale: 0.5 }}
+                                                        animate={{ opacity: 1, scale: 1 }}
+                                                        className="flex justify-end items-center mt-3 pt-2 border-t border-emerald-50"
+                                                    >
+                                                        <div className="flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 rounded-full">
+                                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">Verified Response</span>
+                                                            <Sparkles size={10} className="text-emerald-500 animate-pulse" />
+                                                        </div>
+                                                    </motion.div>
+                                                )}
                                             </div>
                                         )}
                                     </div>
@@ -188,3 +158,11 @@ export default function ChatInterface() {
         </div>
     );
 }
+
+const STARTER_QUESTIONS = [
+    "Bagaimana cara meningkatkan imun tubuh setelah operasi?",
+    "Tips pola makan untuk penderita hipertensi",
+    "Rekomendasi menjaga kesehatan mental pasca operasi",
+    "Cara booking konsultasi dengan dokter spesialis?",
+    "Apa tanda komplikasi pasca operasi yang diwaspadai?"
+];
