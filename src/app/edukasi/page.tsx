@@ -16,42 +16,62 @@ import {
     FileText, Download, Search, Filter, Eye, ThumbsUp, Share2,
     Bookmark, Play, Headphones, Printer, User,
 
-    // Ikon kesehatan - HAPUS Lungs, GANTI DENGAN ALTERNATIF
+    // Ikon kesehatan
     HeartPulse, Bone, Wind, Apple, Pill, AlertCircle,
     Stethoscope, Syringe, Weight, Cloud,
     Ear, EyeOff, EyeIcon, Microscope,
 
-    // Ikon tambahan untuk kesehatan umum dan pasca operasi
-    Bandage,                // Untuk luka/perawatan
-    Hospital,               // Untuk rumah sakit
-    Ambulance,              // Untuk darurat
-    ThermometerSnowflake,   // Untuk demam/dingin
-    FlaskConical,           // Untuk laboratorium
-    PillBottle,             // Untuk obat-obatan
-    Salad,                  // Untuk makanan sehat
-    Wheat,                  // Untuk nutrisi
-    Citrus,                 // Untuk vitamin C
-    Milk,                   // Untuk kalsium
-    Fish,                   // Untuk omega-3
-    Egg,                    // Untuk protein
-    Dumbbell,               // Untuk olahraga
-    Footprints,             // Untuk jalan kaki
-    HeartHandshake,         // Untuk dukungan
-    Trees,                  // Untuk relaksasi/alam
-    Moon,                   // Untuk tidur/istirahat
-    Sun,                    // Untuk vitamin D/aktivitas luar
-    Waves,                  // Untuk terapi air
-    Leaf,                   // Untuk herbal/alami
-    Bone as BoneIcon        // Untuk tulang (jika konflik)
+    // Ikon tambahan
+    Bandage, Hospital, Ambulance, FlaskConical,
+    Salad, Wheat, Citrus, Milk, Fish, Egg,
+    Dumbbell, Footprints, HeartHandshake, Trees,
+    Moon, Sun, Waves, Leaf, Bone as BoneIcon
 } from "lucide-react";
 
 export default function EdukasiPage() {
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("semua");
-    const [selectedSubCategory, setSelectedSubCategory] = useState("umum");
+    const [selectedSubCategory, setSelectedSubCategory] = useState("semua");
     const [visibleArticles, setVisibleArticles] = useState(6);
     const [isVisible, setIsVisible] = useState({});
     const sectionRefs = useRef([]);
+
+    // Data untuk background slider (akan diganti dengan gambar Anda)
+    const heroSlides = [
+        {
+            id: 1,
+            image: "/images/hero/hero-edukasi-1.jpg", // Ganti dengan file gambar Anda
+            title: "Edukasi Kesehatan untuk Semua",
+            subtitle: "Pelajari cara hidup sehat dan pemulihan pasca operasi"
+        },
+        {
+            id: 2,
+            image: "/images/hero/hero-edukasi-2.jpg", // Ganti dengan file gambar Anda
+            title: "Panduan Perawatan Pasca Operasi",
+            subtitle: "Informasi lengkap untuk pemulihan yang cepat dan aman"
+        },
+        {
+            id: 3,
+            image: "/images/hero/hero-edukasi-3.jpg", // Ganti dengan file gambar Anda
+            title: "Konsultasi dengan Ahli Kesehatan",
+            subtitle: "Dapatkan jawaban dari dokter spesialis terpercaya"
+        },
+        {
+            id: 4,
+            image: "/images/hero/hero-edukasi-4.jpg", // Ganti dengan file gambar Anda
+            title: "Komunitas Peduli Kesehatan",
+            subtitle: "Bergabung dengan ribuan orang yang peduli kesehatan"
+        }
+    ];
+
+    // Auto slide setiap 5 detik
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroSlides.length]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -78,19 +98,19 @@ export default function EdukasiPage() {
 
     // Kategori edukasi
     const categories = [
-        { id: "semua", name: "Semua", icon: <BookOpen className="w-4 h-4" /> },
-        { id: "umum", name: "Kesehatan Umum", icon: <Heart className="w-4 h-4" /> },
-        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" /> },
-        { id: "nutrisi", name: "Nutrisi & Gizi", icon: <Apple className="w-4 h-4" /> },
-        { id: "penyakit", name: "Penyakit Umum", icon: <AlertCircle className="w-4 h-4" /> },
-        { id: "obat", name: "Penggunaan Obat", icon: <Pill className="w-4 h-4" /> },
-        { id: "aktivitas", name: "Aktivitas Fisik", icon: <Activity className="w-4 h-4" /> },
-        { id: "mental", name: "Kesehatan Mental", icon: <Brain className="w-4 h-4" /> }
+        { id: "semua", name: "Semua", icon: <BookOpen className="w-4 h-4" />, color: "from-gray-500 to-gray-600" },
+        { id: "umum", name: "Kesehatan Umum", icon: <Heart className="w-4 h-4" />, color: "from-emerald-500 to-emerald-600" },
+        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" />, color: "from-blue-500 to-blue-600" },
+        { id: "nutrisi", name: "Nutrisi & Gizi", icon: <Apple className="w-4 h-4" />, color: "from-green-500 to-green-600" },
+        { id: "penyakit", name: "Penyakit Umum", icon: <AlertCircle className="w-4 h-4" />, color: "from-orange-500 to-orange-600" },
+        { id: "obat", name: "Penggunaan Obat", icon: <Pill className="w-4 h-4" />, color: "from-purple-500 to-purple-600" },
+        { id: "aktivitas", name: "Aktivitas Fisik", icon: <Activity className="w-4 h-4" />, color: "from-teal-500 to-teal-600" },
+        { id: "mental", name: "Kesehatan Mental", icon: <Brain className="w-4 h-4" />, color: "from-pink-500 to-pink-600" }
     ];
 
     // Sub-kategori untuk Pasca Operasi
     const postOpCategories = [
-        { id: "semua", name: "Semua" },
+        { id: "semua", name: "Semua Operasi" },
         { id: "jantung", name: "Operasi Jantung" },
         { id: "ortopedi", name: "Operasi Tulang" },
         { id: "abdomen", name: "Operasi Perut" },
@@ -99,7 +119,7 @@ export default function EdukasiPage() {
         { id: "umum", name: "Operasi Umum" }
     ];
 
-    // Data artikel edukasi - DIPERBAIKI DENGAN KONTEN KESEHATAN UMUM DAN PASCA OPERASI
+    // Data artikel edukasi dengan path gambar yang siap diisi
     const articles = [
         // KESEHATAN UMUM
         {
@@ -108,7 +128,7 @@ export default function EdukasiPage() {
             excerpt: "Makanan sehat dan pola gizi seimbang untuk menjaga vitalitas di usia lanjut.",
             category: "nutrisi",
             subCategory: "umum",
-            image: "/images/edukasi/nutrisi.jpg",
+            image: "/images/edukasi/nutrisi.jpg", // Ganti dengan file gambar Anda
             author: "dr. Sarah Wijaya, Sp.GK",
             date: "2 Mar 2026",
             readTime: "8 menit",
@@ -123,7 +143,7 @@ export default function EdukasiPage() {
             excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia lanjut.",
             category: "penyakit",
             subCategory: "umum",
-            image: "/images/edukasi/hipertensi.jpg",
+            image: "/images/edukasi/hipertensi.jpg", // Ganti dengan file gambar Anda
             author: "dr. Ahmad Hasan, Sp.PD",
             date: "1 Mar 2026",
             readTime: "6 menit",
@@ -134,11 +154,11 @@ export default function EdukasiPage() {
         },
         {
             id: 3,
-            title: "Panduan Minum Obat yang Aman untuk Lansia",
+            title: "Panduan Minum Obat yang Aman",
             excerpt: "Cara tepat mengonsumsi obat-obatan untuk menghindari efek samping berbahaya.",
             category: "obat",
             subCategory: "umum",
-            image: "/images/edukasi/obat.jpg",
+            image: "/images/edukasi/obat.jpg", // Ganti dengan file gambar Anda
             author: "apt. Maria Santoso, M.Farm",
             date: "28 Feb 2026",
             readTime: "5 menit",
@@ -153,7 +173,7 @@ export default function EdukasiPage() {
             excerpt: "Gerakan sederhana yang aman dilakukan untuk menjaga kebugaran tubuh.",
             category: "aktivitas",
             subCategory: "umum",
-            image: "/images/edukasi/olahraga.jpg",
+            image: "/images/edukasi/olahraga.jpg", // Ganti dengan file gambar Anda
             author: "dr. Budi Santoso, Sp.KFR",
             date: "27 Feb 2026",
             readTime: "7 menit",
@@ -168,7 +188,7 @@ export default function EdukasiPage() {
             excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami lansia.",
             category: "mental",
             subCategory: "umum",
-            image: "/images/edukasi/depresi.jpg",
+            image: "/images/edukasi/depresi.jpg", // Ganti dengan file gambar Anda
             author: "dr. Rina Putri, Sp.KJ",
             date: "26 Feb 2026",
             readTime: "9 menit",
@@ -179,11 +199,11 @@ export default function EdukasiPage() {
         },
         {
             id: 6,
-            title: "Diabetes Mellitus pada Usia Lanjut",
+            title: "Diabetes Mellitus pada Lansia",
             excerpt: "Panduan lengkap mengelola diabetes agar tetap produktif dan sehat.",
             category: "penyakit",
             subCategory: "umum",
-            image: "/images/edukasi/diabetes.jpg",
+            image: "/images/edukasi/diabetes.jpg", // Ganti dengan file gambar Anda
             author: "dr. Andi Firmansyah, Sp.PD",
             date: "25 Feb 2026",
             readTime: "10 menit",
@@ -194,11 +214,11 @@ export default function EdukasiPage() {
         },
         {
             id: 7,
-            title: "Suplemen yang Dibutuhkan Lansia",
+            title: "Suplemen untuk Kesehatan Lansia",
             excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia senja.",
             category: "nutrisi",
             subCategory: "umum",
-            image: "/images/edukasi/suplemen.jpg",
+            image: "/images/edukasi/suplemen.jpg", // Ganti dengan file gambar Anda
             author: "apt. Dewi Lestari, M.Farm",
             date: "24 Feb 2026",
             readTime: "6 menit",
@@ -213,7 +233,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah menjaga kepadatan tulang di usia lanjut.",
             category: "aktivitas",
             subCategory: "umum",
-            image: "/images/edukasi/osteoporosis.jpg",
+            image: "/images/edukasi/osteoporosis.jpg", // Ganti dengan file gambar Anda
             author: "dr. Sari Indah, Sp.OT",
             date: "23 Feb 2026",
             readTime: "7 menit",
@@ -228,7 +248,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan bagi keluarga dalam merawat lansia dengan gangguan daya ingat.",
             category: "mental",
             subCategory: "umum",
-            image: "/images/edukasi/demensia.jpg",
+            image: "/images/edukasi/demensia.jpg", // Ganti dengan file gambar Anda
             author: "dr. Maya Angelina, Sp.S",
             date: "22 Feb 2026",
             readTime: "12 menit",
@@ -238,14 +258,14 @@ export default function EdukasiPage() {
             tags: ["Demensia", "Alzheimer", "Perawatan", "Lansia"]
         },
 
-        // PASCA OPERASI - KONTEN BARU
+        // PASCA OPERASI
         {
             id: 10,
             title: "Panduan Perawatan Luka Pasca Operasi",
             excerpt: "Cara merawat luka operasi agar cepat kering dan mencegah infeksi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/luka.jpg",
+            image: "/images/edukasi/pasca-operasi/luka.jpg", // Ganti dengan file gambar Anda
             author: "dr. Budi Santoso, Sp.B",
             date: "5 Mar 2026",
             readTime: "10 menit",
@@ -260,7 +280,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah penting untuk pemulihan optimal setelah operasi jantung.",
             category: "pasca-operasi",
             subCategory: "jantung",
-            image: "/images/edukasi/pasca-operasi/jantung.jpg",
+            image: "/images/edukasi/pasca-operasi/jantung.jpg", // Ganti dengan file gambar Anda
             author: "dr. Ahmad Hasan, Sp.BTKV",
             date: "4 Mar 2026",
             readTime: "15 menit",
@@ -275,7 +295,7 @@ export default function EdukasiPage() {
             excerpt: "Latihan dan perawatan yang tepat setelah operasi ortopedi.",
             category: "pasca-operasi",
             subCategory: "ortopedi",
-            image: "/images/edukasi/pasca-operasi/tulang.jpg",
+            image: "/images/edukasi/pasca-operasi/tulang.jpg", // Ganti dengan file gambar Anda
             author: "dr. Sari Indah, Sp.OT",
             date: "3 Mar 2026",
             readTime: "12 menit",
@@ -290,7 +310,7 @@ export default function EdukasiPage() {
             excerpt: "Makanan yang mempercepat penyembuhan dan memulihkan energi setelah operasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/nutrisi.jpg",
+            image: "/images/edukasi/pasca-operasi/nutrisi.jpg", // Ganti dengan file gambar Anda
             author: "dr. Sarah Wijaya, Sp.GK",
             date: "2 Mar 2026",
             readTime: "8 menit",
@@ -305,7 +325,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan lengkap merawat mata setelah operasi katarak agar cepat sembuh.",
             category: "pasca-operasi",
             subCategory: "mata",
-            image: "/images/edukasi/pasca-operasi/katarak.jpg",
+            image: "/images/edukasi/pasca-operasi/katarak.jpg", // Ganti dengan file gambar Anda
             author: "dr. Rina Putri, Sp.M",
             date: "1 Mar 2026",
             readTime: "7 menit",
@@ -320,7 +340,7 @@ export default function EdukasiPage() {
             excerpt: "Tips dan latihan untuk kembali beraktivitas setelah operasi hernia.",
             category: "pasca-operasi",
             subCategory: "abdomen",
-            image: "/images/edukasi/pasca-operasi/hernia.jpg",
+            image: "/images/edukasi/pasca-operasi/hernia.jpg", // Ganti dengan file gambar Anda
             author: "dr. Budi Santoso, Sp.B",
             date: "28 Feb 2026",
             readTime: "9 menit",
@@ -335,7 +355,7 @@ export default function EdukasiPage() {
             excerpt: "Cara mengatasi dan mengurangi rasa sakit setelah menjalani operasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/nyeri.jpg",
+            image: "/images/edukasi/pasca-operasi/nyeri.jpg", // Ganti dengan file gambar Anda
             author: "dr. Maya Angelina, Sp.An",
             date: "27 Feb 2026",
             readTime: "11 menit",
@@ -350,7 +370,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah penting untuk mencegah infeksi pada luka operasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/infeksi.jpg",
+            image: "/images/edukasi/pasca-operasi/infeksi.jpg", // Ganti dengan file gambar Anda
             author: "dr. Andi Firmansyah, Sp.PD",
             date: "26 Feb 2026",
             readTime: "8 menit",
@@ -365,7 +385,7 @@ export default function EdukasiPage() {
             excerpt: "Teknik pernapasan untuk mempercepat pemulihan dan mencegah komplikasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/pernapasan.jpg",
+            image: "/images/edukasi/pasca-operasi/pernapasan.jpg", // Ganti dengan file gambar Anda
             author: "dr. Dewi Lestari, Sp.P",
             date: "25 Feb 2026",
             readTime: "6 menit",
@@ -380,7 +400,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
             category: "pasca-operasi",
             subCategory: "gigi",
-            image: "/images/edukasi/pasca-operasi/gigi.jpg",
+            image: "/images/edukasi/pasca-operasi/gigi.jpg", // Ganti dengan file gambar Anda
             author: "drg. Maria Santoso",
             date: "24 Feb 2026",
             readTime: "5 menit",
@@ -395,7 +415,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan kapan dan bagaimana kembali bekerja dengan aman pasca operasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/bekerja.jpg",
+            image: "/images/edukasi/pasca-operasi/bekerja.jpg", // Ganti dengan file gambar Anda
             author: "dr. Andi Firmansyah, Sp.PD",
             date: "23 Feb 2026",
             readTime: "7 menit",
@@ -403,10 +423,40 @@ export default function EdukasiPage() {
             likes: 256,
             featured: false,
             tags: ["Pekerjaan", "Aktivitas", "Produktivitas", "Pasca Operasi"]
+        },
+        {
+            id: 21,
+            title: "Perawatan Jangka Panjang Pasca Operasi",
+            excerpt: "Panduan menjaga kesehatan untuk mencegah komplikasi di masa depan.",
+            category: "pasca-operasi",
+            subCategory: "umum",
+            image: "/images/edukasi/pasca-operasi/jangka-panjang.jpg", // Ganti dengan file gambar Anda
+            author: "dr. Andi Firmansyah, Sp.PD",
+            date: "22 Feb 2026",
+            readTime: "9 menit",
+            views: "2.7K",
+            likes: 334,
+            featured: true,
+            tags: ["Perawatan", "Jangka Panjang", "Pemulihan", "Pasca Operasi"]
+        },
+        {
+            id: 22,
+            title: "Dukungan Keluarga Pasca Operasi",
+            excerpt: "Cara keluarga membantu proses pemulihan pasien pasca operasi.",
+            category: "pasca-operasi",
+            subCategory: "umum",
+            image: "/images/edukasi/pasca-operasi/keluarga.jpg", // Ganti dengan file gambar Anda
+            author: "dr. Maya Angelina, Sp.An",
+            date: "21 Feb 2026",
+            readTime: "8 menit",
+            views: "3.1K",
+            likes: 412,
+            featured: true,
+            tags: ["Keluarga", "Dukungan", "Pemulihan", "Pasca Operasi"]
         }
     ];
 
-    // Data video edukasi - DIPERBAIKI DENGAN VIDEO PASCA OPERASI
+    // Data video edukasi
     const videos = [
         {
             id: 1,
@@ -414,7 +464,7 @@ export default function EdukasiPage() {
             duration: "15:30",
             views: "12K",
             category: "umum",
-            thumbnail: "/images/edukasi/video1.jpg"
+            thumbnail: "/images/edukasi/video/video1.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 2,
@@ -422,7 +472,7 @@ export default function EdukasiPage() {
             duration: "8:45",
             views: "8.5K",
             category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video2.jpg"
+            thumbnail: "/images/edukasi/video/video2.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 3,
@@ -430,7 +480,7 @@ export default function EdukasiPage() {
             duration: "12:20",
             views: "6.2K",
             category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video3.jpg"
+            thumbnail: "/images/edukasi/video/video3.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 4,
@@ -438,7 +488,7 @@ export default function EdukasiPage() {
             duration: "10:15",
             views: "5.8K",
             category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video4.jpg"
+            thumbnail: "/images/edukasi/video/video4.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 5,
@@ -446,11 +496,11 @@ export default function EdukasiPage() {
             duration: "7:30",
             views: "4.2K",
             category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video5.jpg"
+            thumbnail: "/images/edukasi/video/video5.jpg" // Ganti dengan file gambar Anda
         }
     ];
 
-    // Data panduan PDF - DIPERBAIKI DENGAN PANDUAN PASCA OPERASI
+    // Data panduan PDF
     const guides = [
         {
             id: 1,
@@ -458,7 +508,8 @@ export default function EdukasiPage() {
             pages: 45,
             downloads: "5.2K",
             size: "2.4 MB",
-            category: "umum"
+            category: "umum",
+            cover: "/images/edukasi/guides/guide1.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 2,
@@ -466,7 +517,8 @@ export default function EdukasiPage() {
             pages: 52,
             downloads: "4.8K",
             size: "3.1 MB",
-            category: "pasca-operasi"
+            category: "pasca-operasi",
+            cover: "/images/edukasi/guides/guide2.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 3,
@@ -474,7 +526,8 @@ export default function EdukasiPage() {
             pages: 28,
             downloads: "3.9K",
             size: "1.8 MB",
-            category: "pasca-operasi"
+            category: "pasca-operasi",
+            cover: "/images/edukasi/guides/guide3.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 4,
@@ -482,7 +535,8 @@ export default function EdukasiPage() {
             pages: 36,
             downloads: "4.1K",
             size: "2.2 MB",
-            category: "pasca-operasi"
+            category: "pasca-operasi",
+            cover: "/images/edukasi/guides/guide4.jpg" // Ganti dengan file gambar Anda
         },
         {
             id: 5,
@@ -490,125 +544,175 @@ export default function EdukasiPage() {
             pages: 42,
             downloads: "3.5K",
             size: "2.5 MB",
-            category: "pasca-operasi"
+            category: "pasca-operasi",
+            cover: "/images/edukasi/guides/guide5.jpg" // Ganti dengan file gambar Anda
         }
     ];
 
     // Filter artikel berdasarkan kategori dan pencarian
     const filteredArticles = articles.filter(article => {
-        // Filter berdasarkan kategori utama
         const matchesCategory = selectedCategory === "semua" || article.category === selectedCategory;
-
-        // Filter berdasarkan sub-kategori (untuk pasca operasi)
-        const matchesSubCategory = selectedSubCategory === "semua" ||
-            (article.subCategory && article.subCategory === selectedSubCategory);
-
-        // Filter berdasarkan pencarian
+        const matchesSubCategory = selectedSubCategory === "semua" || article.subCategory === selectedSubCategory;
         const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
 
-        // Jika kategori pasca operasi, terapkan kedua filter
         if (selectedCategory === "pasca-operasi") {
             return matchesCategory && matchesSubCategory && matchesSearch;
         }
-
         return matchesCategory && matchesSearch;
     });
 
     const featuredArticles = articles.filter(a => a.featured);
-
-    // Filter featured articles berdasarkan kategori yang dipilih
     const filteredFeaturedArticles = selectedCategory === "semua"
         ? featuredArticles
         : featuredArticles.filter(a => a.category === selectedCategory);
 
     const displayedArticles = filteredArticles.slice(0, visibleArticles);
 
+    // Hitung total artikel per kategori
+    const getCategoryCount = (categoryId) => {
+        return articles.filter(a => a.category === categoryId).length;
+    };
+
     return (
         <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative pt-24 pb-12 px-4 sm:px-6 overflow-hidden">
-                {/* Background Pattern */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            {/* Hero Section dengan Background Slider */}
+            <section className="relative h-[600px] sm:h-[650px] lg:h-[700px] flex items-center overflow-hidden">
+                {/* Background Slider */}
+                <div className="absolute inset-0">
+                    {heroSlides.map((slide, index) => (
+                        <div
+                            key={slide.id}
+                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                                }`}
+                        >
+                            {/* Background Image */}
+                            <div className="absolute inset-0 bg-cover bg-center"
+                                style={{ backgroundImage: `url(${slide.image})` }}>
+                                {/* Overlay Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            </div>
+
+                            {/* Pattern Overlay */}
+                            <div className="absolute inset-0 opacity-20"
+                                style={{
+                                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                                    backgroundSize: '40px 40px'
+                                }}>
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* Floating Elements */}
+                    <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                    <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
                 </div>
 
-                <div className="relative max-w-7xl mx-auto">
-                    <div className="text-center max-w-3xl mx-auto" data-aos="fade-up">
-                        <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                {/* Slide Indicators */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+                    {heroSlides.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentSlide(index)}
+                            className={`transition-all duration-500 ${index === currentSlide
+                                ? 'w-10 h-2 bg-white'
+                                : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                                } rounded-full`}
+                        />
+                    ))}
+                </div>
+
+                {/* Hero Content */}
+                <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                    <div className="max-w-3xl text-white">
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
                             <Sparkles className="w-4 h-4" />
                             Pusat Edukasi Kesehatan & Pemulihan
+                            <Sparkles className="w-4 h-4" />
                         </div>
-                        <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                            Informasi Kesehatan{' '}
-                            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                Umum & Pasca Operasi
-                            </span>
+
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up delay-100">
+                            {heroSlides[currentSlide].title}
                         </h1>
-                        <p className="text-lg text-slate-600 mb-8">
-                            Akses artikel, video, dan panduan terpercaya seputar kesehatan umum
-                            dan pemulihan pasca operasi. Dapatkan informasi dari para ahli.
+
+                        <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up delay-200">
+                            {heroSlides[currentSlide].subtitle}
                         </p>
 
                         {/* Search Bar */}
-                        <div className="max-w-2xl mx-auto relative">
+                        <div className="max-w-2xl relative animate-slide-up delay-300">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                             <input
                                 type="text"
                                 placeholder="Cari artikel, video, atau panduan..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all shadow-lg"
+                                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur border border-white/50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all shadow-lg text-slate-900"
                             />
                         </div>
 
                         {/* Stats */}
-                        <div className="flex flex-wrap justify-center gap-8 mt-12">
+                        <div className="flex flex-wrap gap-8 mt-12 animate-slide-up delay-500">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-emerald-600">{articles.length}+</div>
-                                <div className="text-sm text-slate-500">Artikel</div>
+                                <div className="text-3xl font-bold text-white">{articles.length}+</div>
+                                <div className="text-sm text-white/70">Artikel</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-emerald-600">{videos.length}+</div>
-                                <div className="text-sm text-slate-500">Video Edukasi</div>
+                                <div className="text-3xl font-bold text-white">{videos.length}+</div>
+                                <div className="text-sm text-white/70">Video Edukasi</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-emerald-600">{guides.length}+</div>
-                                <div className="text-sm text-slate-500">Panduan PDF</div>
+                                <div className="text-3xl font-bold text-white">{guides.length}+</div>
+                                <div className="text-sm text-white/70">Panduan PDF</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-emerald-600">15K+</div>
-                                <div className="text-sm text-slate-500">Pembaca</div>
+                                <div className="text-3xl font-bold text-white">15K+</div>
+                                <div className="text-sm text-white/70">Pembaca</div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
+                        <div className="w-0.5 h-12 bg-white/30 relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Quick Access Categories */}
-            <section className="py-8 px-4 sm:px-6">
+            <section className="py-8 px-4 sm:px-6 -mt-8 relative z-30">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {categories.map((category) => (
-                            <button
-                                key={category.id}
-                                onClick={() => {
-                                    setSelectedCategory(category.id);
-                                    setSelectedSubCategory("semua");
-                                }}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${selectedCategory === category.id
-                                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg scale-105'
+                    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/20">
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => {
+                                        setSelectedCategory(category.id);
+                                        setSelectedSubCategory("semua");
+                                    }}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${selectedCategory === category.id
+                                        ? `bg-gradient-to-r ${category.color} text-white shadow-lg scale-105`
                                         : 'bg-white text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 border border-slate-200'
-                                    }`}
-                            >
-                                {category.icon}
-                                {category.name}
-                            </button>
-                        ))}
+                                        }`}
+                                >
+                                    {category.icon}
+                                    <span className="hidden sm:inline">{category.name}</span>
+                                    <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded-full">
+                                        {getCategoryCount(category.id)}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -622,9 +726,9 @@ export default function EdukasiPage() {
                                 <button
                                     key={subCat.id}
                                     onClick={() => setSelectedSubCategory(subCat.id)}
-                                    className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 ${selectedSubCategory === subCat.id
-                                            ? 'bg-emerald-600 text-white'
-                                            : 'bg-slate-100 text-slate-600 hover:bg-emerald-100'
+                                    className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${selectedSubCategory === subCat.id
+                                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
+                                        : 'bg-white text-slate-600 hover:bg-blue-50 border border-slate-200'
                                         }`}
                                 >
                                     {subCat.name}
@@ -658,9 +762,10 @@ export default function EdukasiPage() {
                             <Link href={`/edukasi/artikel/${article.id}`} key={article.id}>
                                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                                     <div className="relative h-48 overflow-hidden">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-                                        <div className="w-full h-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                                            <FileText className="w-16 h-16 text-white/30" />
+                                        {/* Gambar Artikel */}
+                                        <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                                            style={{ backgroundImage: `url(${article.image})` }}>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                         </div>
                                         <div className="absolute top-4 right-4 z-20">
                                             <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-semibold text-emerald-600">
@@ -736,8 +841,8 @@ export default function EdukasiPage() {
                                     <Link href={`/edukasi/artikel/${article.id}`} key={article.id}>
                                         <div className="group bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-500 border border-slate-100">
                                             <div className="flex gap-4">
-                                                <div className="w-24 h-24 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex-shrink-0 flex items-center justify-center">
-                                                    <FileText className="w-8 h-8 text-white/50" />
+                                                <div className="w-24 h-24 rounded-xl bg-cover bg-center flex-shrink-0"
+                                                    style={{ backgroundImage: `url(${article.image})` }}>
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="flex items-center gap-2 mb-2">
@@ -802,9 +907,10 @@ export default function EdukasiPage() {
                                         .map((video) => (
                                             <Link href={`/edukasi/video/${video.id}`} key={video.id}>
                                                 <div className="group flex gap-3">
-                                                    <div className="relative w-24 h-16 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex-shrink-0 overflow-hidden">
-                                                        <div className="absolute inset-0 flex items-center justify-center">
-                                                            <Play className="w-6 h-6 text-white/70 group-hover:scale-110 transition-transform" />
+                                                    <div className="relative w-24 h-16 rounded-lg bg-cover bg-center flex-shrink-0 overflow-hidden"
+                                                        style={{ backgroundImage: `url(${video.thumbnail})` }}>
+                                                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                            <Play className="w-6 h-6 text-white" />
                                                         </div>
                                                     </div>
                                                     <div>
@@ -840,12 +946,17 @@ export default function EdukasiPage() {
                                         .slice(0, 3)
                                         .map((guide) => (
                                             <div key={guide.id} className="flex items-center justify-between group">
-                                                <div>
-                                                    <h4 className="font-medium text-sm mb-1">{guide.title}</h4>
-                                                    <div className="flex items-center gap-2 text-xs text-slate-400">
-                                                        <span>{guide.pages} halaman</span>
-                                                        <span>•</span>
-                                                        <span>{guide.size}</span>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-12 h-12 rounded-lg bg-cover bg-center"
+                                                        style={{ backgroundImage: `url(${guide.cover})` }}>
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-medium text-sm mb-1">{guide.title}</h4>
+                                                        <div className="flex items-center gap-2 text-xs text-slate-400">
+                                                            <span>{guide.pages} halaman</span>
+                                                            <span>•</span>
+                                                            <span>{guide.size}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <button className="p-2 hover:bg-emerald-50 rounded-lg transition-colors">
@@ -936,24 +1047,24 @@ export default function EdukasiPage() {
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                         {[
-                            { icon: <HeartPulse className="w-6 h-6" />, name: "Jantung", count: 12, category: "penyakit" },
-                            { icon: <Brain className="w-6 h-6" />, name: "Saraf", count: 8, category: "penyakit" },
-                            { icon: <Bone className="w-6 h-6" />, name: "Tulang", count: 10, category: "penyakit" },
-                            { icon: <EyeIcon className="w-6 h-6" />, name: "Mata", count: 6, category: "penyakit" },
-                            { icon: <Ear className="w-6 h-6" />, name: "Telinga", count: 5, category: "penyakit" },
-                            { icon: <Wind className="w-6 h-6" />, name: "Paru-paru", count: 9, category: "penyakit" },
-                            { icon: <Bandage className="w-6 h-6" />, name: "Perawatan Luka", count: 15, category: "pasca-operasi" },
-                            { icon: <Hospital className="w-6 h-6" />, name: "Pasca Operasi", count: 20, category: "pasca-operasi" },
-                            { icon: <Droplets className="w-6 h-6" />, name: "Ginjal", count: 7, category: "penyakit" },
-                            { icon: <Thermometer className="w-6 h-6" />, name: "Demam", count: 4, category: "umum" },
-                            { icon: <Apple className="w-6 h-6" />, name: "Nutrisi", count: 18, category: "nutrisi" },
-                            { icon: <Pill className="w-6 h-6" />, name: "Obat", count: 14, category: "obat" },
-                            { icon: <Activity className="w-6 h-6" />, name: "Olahraga", count: 11, category: "aktivitas" },
-                            { icon: <Smile className="w-6 h-6" />, name: "Mental", count: 9, category: "mental" },
-                            { icon: <HeartHandshake className="w-6 h-6" />, name: "Dukungan", count: 7, category: "umum" },
-                            { icon: <Moon className="w-6 h-6" />, name: "Istirahat", count: 6, category: "umum" },
-                            { icon: <Leaf className="w-6 h-6" />, name: "Herbal", count: 5, category: "umum" },
-                            { icon: <Footprints className="w-6 h-6" />, name: "Jalan Kaki", count: 8, category: "aktivitas" }
+                            { icon: <HeartPulse className="w-6 h-6" />, name: "Jantung", count: 12, category: "penyakit", image: "/images/edukasi/topik/jantung.jpg" },
+                            { icon: <Brain className="w-6 h-6" />, name: "Saraf", count: 8, category: "penyakit", image: "/images/edukasi/topik/saraf.jpg" },
+                            { icon: <Bone className="w-6 h-6" />, name: "Tulang", count: 10, category: "penyakit", image: "/images/edukasi/topik/tulang.jpg" },
+                            { icon: <EyeIcon className="w-6 h-6" />, name: "Mata", count: 6, category: "penyakit", image: "/images/edukasi/topik/mata.jpg" },
+                            { icon: <Ear className="w-6 h-6" />, name: "Telinga", count: 5, category: "penyakit", image: "/images/edukasi/topik/telinga.jpg" },
+                            { icon: <Wind className="w-6 h-6" />, name: "Paru-paru", count: 9, category: "penyakit", image: "/images/edukasi/topik/paru.jpg" },
+                            { icon: <Bandage className="w-6 h-6" />, name: "Perawatan Luka", count: 15, category: "pasca-operasi", image: "/images/edukasi/topik/luka.jpg" },
+                            { icon: <Hospital className="w-6 h-6" />, name: "Pasca Operasi", count: 20, category: "pasca-operasi", image: "/images/edukasi/topik/operasi.jpg" },
+                            { icon: <Droplets className="w-6 h-6" />, name: "Ginjal", count: 7, category: "penyakit", image: "/images/edukasi/topik/ginjal.jpg" },
+                            { icon: <Thermometer className="w-6 h-6" />, name: "Demam", count: 4, category: "umum", image: "/images/edukasi/topik/demam.jpg" },
+                            { icon: <Apple className="w-6 h-6" />, name: "Nutrisi", count: 18, category: "nutrisi", image: "/images/edukasi/topik/nutrisi.jpg" },
+                            { icon: <Pill className="w-6 h-6" />, name: "Obat", count: 14, category: "obat", image: "/images/edukasi/topik/obat.jpg" },
+                            { icon: <Activity className="w-6 h-6" />, name: "Olahraga", count: 11, category: "aktivitas", image: "/images/edukasi/topik/olahraga.jpg" },
+                            { icon: <Smile className="w-6 h-6" />, name: "Mental", count: 9, category: "mental", image: "/images/edukasi/topik/mental.jpg" },
+                            { icon: <HeartHandshake className="w-6 h-6" />, name: "Dukungan", count: 7, category: "umum", image: "/images/edukasi/topik/dukungan.jpg" },
+                            { icon: <Moon className="w-6 h-6" />, name: "Istirahat", count: 6, category: "umum", image: "/images/edukasi/topik/istirahat.jpg" },
+                            { icon: <Leaf className="w-6 h-6" />, name: "Herbal", count: 5, category: "umum", image: "/images/edukasi/topik/herbal.jpg" },
+                            { icon: <Footprints className="w-6 h-6" />, name: "Jalan Kaki", count: 8, category: "aktivitas", image: "/images/edukasi/topik/jalan.jpg" }
                         ].map((topic, i) => (
                             <Link
                                 href={`/edukasi?kategori=${topic.category}&topik=${topic.name.toLowerCase()}`}
@@ -963,12 +1074,18 @@ export default function EdukasiPage() {
                                     setSearchTerm(topic.name);
                                 }}
                             >
-                                <div className="bg-slate-50 p-4 rounded-xl text-center hover:bg-emerald-50 hover:shadow-lg transition-all duration-300 group cursor-pointer">
-                                    <div className="text-emerald-600 mb-2 group-hover:scale-110 transition-transform">
-                                        {topic.icon}
+                                <div className="relative h-32 rounded-xl overflow-hidden group cursor-pointer">
+                                    <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                                        style={{ backgroundImage: `url(${topic.image})` }}>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                                     </div>
-                                    <p className="font-medium text-sm">{topic.name}</p>
-                                    <p className="text-xs text-slate-400">{topic.count} artikel</p>
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                                        <div className="text-emerald-300 mb-1 group-hover:scale-110 transition-transform">
+                                            {topic.icon}
+                                        </div>
+                                        <p className="font-medium text-sm">{topic.name}</p>
+                                        <p className="text-xs text-white/70">{topic.count} artikel</p>
+                                    </div>
                                 </div>
                             </Link>
                         ))}
@@ -1010,11 +1127,40 @@ export default function EdukasiPage() {
                 .animate-blob {
                     animation: blob 7s infinite;
                 }
+                @keyframes pulse-slow {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.7; }
+                }
+                .animate-pulse-slow {
+                    animation: pulse-slow 4s ease-in-out infinite;
+                }
+                @keyframes slide-up {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .animate-slide-up {
+                    animation: slide-up 0.8s ease-out forwards;
+                }
+                .animation-delay-100 {
+                    animation-delay: 0.1s;
+                }
+                .animation-delay-200 {
+                    animation-delay: 0.2s;
+                }
+                .animation-delay-300 {
+                    animation-delay: 0.3s;
+                }
+                .animation-delay-500 {
+                    animation-delay: 0.5s;
+                }
                 .animation-delay-2000 {
                     animation-delay: 2s;
-                }
-                [data-aos="fade-up"] {
-                    transition: all 0.8s ease-out;
                 }
             `}</style>
         </main>
