@@ -139,8 +139,8 @@ export default function EdukasiPage() {
         },
         {
             id: 2,
-            title: "Mengenal Hipertensi pada Lansia",
-            excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia lanjut.",
+            title: "Mengenal Hipertensi pada Anak",
+            excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia dini.",
             category: "penyakit",
             subCategory: "umum",
             image: "/images/edukasi/hipertensi.jpg", // Ganti dengan file gambar Anda
@@ -184,8 +184,8 @@ export default function EdukasiPage() {
         },
         {
             id: 5,
-            title: "Mengatasi Depresi pada Lansia",
-            excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami lansia.",
+            title: "Mengatasi Depresi pada Anak",
+            excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami untuk diusia Dini.",
             category: "mental",
             subCategory: "umum",
             image: "/images/edukasi/depresi.jpg", // Ganti dengan file gambar Anda
@@ -195,7 +195,7 @@ export default function EdukasiPage() {
             views: "1.9K",
             likes: 267,
             featured: false,
-            tags: ["Mental", "Depresi", "Konseling", "Lansia"]
+            tags: ["Mental", "Depresi", "Konseling", "Anak Anak"]
         },
         {
             id: 6,
@@ -214,8 +214,8 @@ export default function EdukasiPage() {
         },
         {
             id: 7,
-            title: "Suplemen untuk Kesehatan Lansia",
-            excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia senja.",
+            title: "Suplemen untuk Kesehatan Untuk Remaja",
+            excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia Remaja.",
             category: "nutrisi",
             subCategory: "umum",
             image: "/images/edukasi/suplemen.jpg", // Ganti dengan file gambar Anda
@@ -225,7 +225,7 @@ export default function EdukasiPage() {
             views: "1.5K",
             likes: 198,
             featured: false,
-            tags: ["Suplemen", "Vitamin", "Mineral", "Lansia"]
+            tags: ["Suplemen", "Vitamin", "Mineral", "Remaja-Dewasa"]
         },
         {
             id: 8,
@@ -244,7 +244,7 @@ export default function EdukasiPage() {
         },
         {
             id: 9,
-            title: "Cara Merawat Lansia dengan Demensia",
+            title: "Cara Perawatan Untuk Lansia dengan Demensia",
             excerpt: "Panduan bagi keluarga dalam merawat lansia dengan gangguan daya ingat.",
             category: "mental",
             subCategory: "umum",
@@ -305,21 +305,6 @@ export default function EdukasiPage() {
             tags: ["Tulang", "Ortopedi", "Fisioterapi", "Pasca Operasi"]
         },
         {
-            id: 13,
-            title: "Nutrisi untuk Pemulihan Pasca Operasi",
-            excerpt: "Makanan yang mempercepat penyembuhan dan memulihkan energi setelah operasi.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/nutrisi.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Sarah Wijaya, Sp.GK",
-            date: "2 Mar 2026",
-            readTime: "8 menit",
-            views: "2.1K",
-            likes: 278,
-            featured: true,
-            tags: ["Nutrisi", "Protein", "Vitamin", "Pasca Operasi"]
-        },
-        {
             id: 14,
             title: "Perawatan Pasca Operasi Katarak",
             excerpt: "Panduan lengkap merawat mata setelah operasi katarak agar cepat sembuh.",
@@ -351,21 +336,6 @@ export default function EdukasiPage() {
         },
         {
             id: 16,
-            title: "Manajemen Nyeri Pasca Operasi",
-            excerpt: "Cara mengatasi dan mengurangi rasa sakit setelah menjalani operasi.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/nyeri.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Maya Angelina, Sp.An",
-            date: "27 Feb 2026",
-            readTime: "11 menit",
-            views: "4.5K",
-            likes: 612,
-            featured: true,
-            tags: ["Nyeri", "Manajemen Nyeri", "Obat", "Pasca Operasi"]
-        },
-        {
-            id: 17,
             title: "Pencegahan Infeksi Pasca Operasi",
             excerpt: "Langkah-langkah penting untuk mencegah infeksi pada luka operasi.",
             category: "pasca-operasi",
@@ -380,7 +350,7 @@ export default function EdukasiPage() {
             tags: ["Infeksi", "Kebersihan", "Luka", "Pasca Operasi"]
         },
         {
-            id: 18,
+            id: 17,
             title: "Latihan Pernapasan Pasca Operasi",
             excerpt: "Teknik pernapasan untuk mempercepat pemulihan dan mencegah komplikasi.",
             category: "pasca-operasi",
@@ -395,7 +365,7 @@ export default function EdukasiPage() {
             tags: ["Pernapasan", "Paru-paru", "Rehabilitasi", "Pasca Operasi"]
         },
         {
-            id: 19,
+            id: 18,
             title: "Perawatan Pasca Operasi Gigi",
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
             category: "pasca-operasi",
@@ -410,7 +380,7 @@ export default function EdukasiPage() {
             tags: ["Gigi", "Mulut", "Pencabutan", "Pasca Operasi"]
         },
         {
-            id: 20,
+            id: 19,
             title: "Kembali Bekerja Setelah Operasi",
             excerpt: "Panduan kapan dan bagaimana kembali bekerja dengan aman pasca operasi.",
             category: "pasca-operasi",
@@ -438,21 +408,6 @@ export default function EdukasiPage() {
             likes: 334,
             featured: true,
             tags: ["Perawatan", "Jangka Panjang", "Pemulihan", "Pasca Operasi"]
-        },
-        {
-            id: 22,
-            title: "Dukungan Keluarga Pasca Operasi",
-            excerpt: "Cara keluarga membantu proses pemulihan pasien pasca operasi.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/keluarga.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Maya Angelina, Sp.An",
-            date: "21 Feb 2026",
-            readTime: "8 menit",
-            views: "3.1K",
-            likes: 412,
-            featured: true,
-            tags: ["Keluarga", "Dukungan", "Pemulihan", "Pasca Operasi"]
         }
     ];
 
@@ -481,22 +436,6 @@ export default function EdukasiPage() {
             views: "6.2K",
             category: "pasca-operasi",
             thumbnail: "/images/edukasi/video/video3.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 4,
-            title: "Panduan Nutrisi Pasca Operasi",
-            duration: "10:15",
-            views: "5.8K",
-            category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video/video4.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 5,
-            title: "Teknik Pernapasan untuk Pemulihan",
-            duration: "7:30",
-            views: "4.2K",
-            category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video/video5.jpg" // Ganti dengan file gambar Anda
         }
     ];
 
@@ -528,24 +467,6 @@ export default function EdukasiPage() {
             size: "1.8 MB",
             category: "pasca-operasi",
             cover: "/images/edukasi/guides/guide3.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 4,
-            title: "Panduan Nutrisi Pasca Operasi",
-            pages: 36,
-            downloads: "4.1K",
-            size: "2.2 MB",
-            category: "pasca-operasi",
-            cover: "/images/edukasi/guides/guide4.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 5,
-            title: "Latihan Fisik untuk Pemulihan",
-            pages: 42,
-            downloads: "3.5K",
-            size: "2.5 MB",
-            category: "pasca-operasi",
-            cover: "/images/edukasi/guides/guide5.jpg" // Ganti dengan file gambar Anda
         }
     ];
 
