@@ -320,7 +320,7 @@ export default function EdukasiPage() {
             tags: ["Infeksi", "Kebersihan", "Luka", "Pasca Operasi"]
         },
         {
-            id: 18,
+            id: 17,
             title: "Perawatan Pasca Operasi Gigi",
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
             category: "pasca-operasi",

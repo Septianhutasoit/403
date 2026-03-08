@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import FloatingChat from "@/components/FloatingChat";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Heart, ShieldCheck, Activity, Users, BookOpen, Clock, Brain,
   Phone, Video, Calendar, Award, ChevronRight, MessageCircle,
@@ -14,7 +15,8 @@ import {
   Weight, Bandage, Hospital, Ambulance, FlaskConical, Ear,
   Eye, EyeOff, EyeIcon, Lungs, Microscope, Salad, Wheat,
   Citrus, Milk, Fish, Egg, Dumbbell, Footprints, HeartHandshake,
-  Trees, Moon, Sun, Waves, Leaf, Hand, Scissors, Syringe as Vaccine
+  Trees, Moon, Sun, Waves, Leaf, Hand, Scissors, Syringe as Vaccine,
+  ChevronLeft
 } from "lucide-react";
 
 export default function Home() {
@@ -431,7 +433,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Panduan Lengkap Kesehatan{' '}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                untuk Lansia
+                untuk Umum, Dari Anak-Anak,Remaja,Dewasa Hingga Lansia
               </span>
             </h2>
             <p className="text-slate-500 text-lg">
@@ -484,58 +486,338 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fitur Unggulan */}
-      <section ref={el => sectionRefs.current[2] = el} data-index="2" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white">
-        <div className={`max-w-7xl mx-auto ${fadeInUpClass(2)}`}>
+      {/* Fitur Unggulan dengan Carousel Infinite Smooth */}
+      <section ref={el => sectionRefs.current[2] = el} data-index="2" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
+        {/* Background Animasi Modern */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Gradient Background Dinamis */}
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80"></div>
+
+          {/* Animated Gradient Orbs - Modern */}
+          <motion.div
+            className="absolute top-0 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-emerald-300/20 to-teal-300/20 blur-3xl"
+            animate={{
+              x: [0, 50, -30, 20, 0],
+              y: [0, -40, 20, -20, 0],
+              scale: [1, 1.1, 0.95, 1.05, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          <motion.div
+            className="absolute bottom-0 -right-40 w-[700px] h-[700px] rounded-full bg-gradient-to-r from-blue-300/20 to-purple-300/20 blur-3xl"
+            animate={{
+              x: [0, -60, 40, -30, 0],
+              y: [0, 50, -30, 20, 0],
+              scale: [1, 1.15, 0.9, 1.1, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+
+          {/* Floating Particles dengan Animasi Lebih Halus */}
+          <div className="absolute inset-0">
+            {[...Array(30)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1.5 h-1.5 rounded-full"
+                style={{
+                  background: i % 3 === 0
+                    ? 'linear-gradient(135deg, #10b981, #3b82f6)'
+                    : i % 3 === 1
+                      ? 'linear-gradient(135deg, #8b5cf6, #ec4899)'
+                      : 'linear-gradient(135deg, #f59e0b, #ef4444)',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(1px)',
+                }}
+                animate={{
+                  y: [0, -100, 0],
+                  x: [0, Math.random() * 50 - 25, 0],
+                  opacity: [0.2, 0.6, 0.2],
+                  scale: [1, 1.5, 1],
+                }}
+                transition={{
+                  duration: 15 + Math.random() * 10,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 5,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Modern Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, #64748b 1px, transparent 0)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+
+          {/* Animated Lines */}
+          <svg className="absolute inset-0 w-full h-full opacity-10">
+            <motion.path
+              d="M0 100 Q 200 50, 400 100 T 800 100"
+              stroke="url(#gradient)"
+              strokeWidth="2"
+              fill="none"
+              animate={{
+                d: [
+                  "M0 100 Q 200 50, 400 100 T 800 100",
+                  "M0 150 Q 200 200, 400 150 T 800 150",
+                  "M0 100 Q 200 50, 400 100 T 800 100",
+                ]
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#10b981" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.5" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className={`max-w-7xl mx-auto relative z-10 ${fadeInUpClass(2)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-emerald-200 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg"
+            >
+              <Sparkles className="w-4 h-4 animate-pulse" />
+              LAYANAN LENGKAP
+            </motion.div>
+
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Mengapa Memilih{' '}
+              Solusi Kesehatan{' '}
               <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                LansiaCare?
+                Terintegrasi
               </span>
             </h2>
             <p className="text-slate-500 text-lg">
-              Kami menyediakan layanan lengkap untuk mendukung kesehatan dan kebahagiaan lansia.
+              Berbagai fitur dan layanan untuk mendukung kesehatan lansia dan pemulihan pasca operasi
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <Brain className="w-8 h-8" />,
-                title: "AI Health Assistant",
-                desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan",
-                color: "from-purple-500 to-pink-500"
-              },
-              {
-                icon: <Video className="w-8 h-8" />,
-                title: "Konsultasi Video",
-                desc: "Bertemu dokter spesialis melalui video call",
-                color: "from-blue-500 to-cyan-500"
-              },
-              {
-                icon: <Bell className="w-8 h-8" />,
-                title: "Pengingat Obat",
-                desc: "Notifikasi jadwal minum obat yang akurat",
-                color: "from-orange-500 to-red-500"
-              },
-              {
-                icon: <Activity className="w-8 h-8" />,
-                title: "Monitoring Real-time",
-                desc: "Pantau kesehatan lansia dari mana saja",
-                color: "from-green-500 to-emerald-500"
-              }
-            ].map((feature, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} bg-opacity-10 flex items-center justify-center mb-4`}>
-                  <div className={`text-${feature.color.split('-')[1]}-600`}>
-                    {feature.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-slate-500">{feature.desc}</p>
+          {/* Carousel Container - Tanpa efek fade putih */}
+          <div className="relative w-full">
+            {/* Slider Container */}
+            <div className="overflow-hidden w-full">
+              <motion.div
+                className="flex gap-6 py-4"
+                animate={{
+                  x: [0, -3840, -7680, -11520, -15360, -19200, -23040, -26880, -30720, -34560, -38400, -42240, -46080, -49920, -53760, 0]
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 360, // Lebih lambat untuk transisi lebih halus
+                    ease: "linear",
+                    repeatDelay: 0
+                  }
+                }}
+                style={{
+                  width: "fit-content",
+                  willChange: "transform"
+                }}
+              >
+                {/* Data fitur - 12 card original */}
+                {[
+                  // Umum (4 card)
+                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
+                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
+                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
+                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
+
+                  // Pasca Operasi (8 card)
+                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
+                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
+                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
+                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
+                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
+                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
+                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
+                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" }
+                ].concat(
+                  // Duplikasi 14x untuk infinite smooth (total 12 + 168 = 180 card)
+                  ...Array(14).fill([
+                    { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
+                    { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
+                    { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
+                    { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
+                    { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
+                    { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
+                    { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
+                    { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
+                    { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
+                    { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
+                    { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
+                    { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" }
+                  ])
+                ).flat().map((feature, i) => (
+                  <motion.div
+                    key={i}
+                    className={`${feature.bgColor} p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 min-w-[280px] sm:min-w-[300px] group relative overflow-hidden cursor-pointer`}
+                    whileHover={{
+                      scale: 1.05,
+                      transition: { type: "spring", stiffness: 400, damping: 10 }
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.02 }}
+                  >
+                    {/* Animated Background Gradient */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${feature.color}`}
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 0.1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    {/* Icon dengan Animasi */}
+                    <motion.div
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} bg-opacity-10 flex items-center justify-center mb-4 relative z-10`}
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: 360,
+                        transition: { duration: 0.5 }
+                      }}
+                    >
+                      <div className={`text-${feature.color.split('-')[1]}-600`}>
+                        {feature.icon}
+                      </div>
+                    </motion.div>
+
+                    {/* Content */}
+                    <motion.h3
+                      className="text-xl font-bold mb-2 relative z-10"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {feature.title}
+                    </motion.h3>
+                    <p className="text-slate-500 text-sm relative z-10">{feature.desc}</p>
+
+                    {/* Category Badge dengan Animasi */}
+                    <motion.div
+                      className="mt-4 relative z-10"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${feature.category === "Pasca Operasi"
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-emerald-100 text-emerald-700"
+                        }`}>
+                        {feature.category}
+                      </span>
+                    </motion.div>
+
+                    {/* Decorative Rotating Circle */}
+                    <motion.div
+                      className={`absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-br ${feature.color} rounded-full opacity-10`}
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    />
+
+                    {/* Shine Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
+                      animate={{
+                        x: ["-100%", "200%"],
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        repeatDelay: 3,
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Navigation Buttons dengan Animasi */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => {
+                const slider = document.querySelector('.overflow-hidden');
+                slider.scrollBy({ left: -320, behavior: 'smooth' });
+              }}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all z-20 border border-emerald-100"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => {
+                const slider = document.querySelector('.overflow-hidden');
+                slider.scrollBy({ left: 320, behavior: 'smooth' });
+              }}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all z-20 border border-emerald-100"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+          </div>
+
+          {/* Modern Progress Indicator */}
+          <div className="flex justify-center items-center gap-4 mt-8">
+            <div className="flex gap-1">
+              {[0, 1, 2, 3, 4].map((dot) => (
+                <motion.div
+                  key={dot}
+                  className="w-2 h-2 rounded-full bg-emerald-200"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    backgroundColor: ["#a7f3d0", "#10b981", "#a7f3d0"],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: dot * 0.4,
+                  }}
+                />
+              ))}
+            </div>
+
+            <motion.div
+              className="flex items-center gap-2"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="w-24 h-1 bg-slate-200 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                  animate={{
+                    x: ["-100%", "100%", "300%", "500%", "700%", "900%", "1100%", "1300%", "1500%", "-100%"],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 180,
+                    ease: "linear"
+                  }}
+                />
               </div>
-            ))}
+              <span className="text-sm text-slate-400 font-medium">Auto-scrolling ke kanan</span>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -548,7 +830,7 @@ export default function Home() {
               Apa Kata Mereka?
             </h2>
             <p className="text-slate-500 text-lg">
-              Ribuan keluarga telah merasakan manfaat LansiaCare
+              Ribuan keluarga telah merasakan manfaat GiveCare
             </p>
           </div>
 
