@@ -290,21 +290,6 @@ export default function EdukasiPage() {
             tags: ["Jantung", "Kardiovaskular", "Rehabilitasi", "Pasca Operasi"]
         },
         {
-            id: 12,
-            title: "Rehabilitasi Pasca Operasi Tulang",
-            excerpt: "Latihan dan perawatan yang tepat setelah operasi ortopedi.",
-            category: "pasca-operasi",
-            subCategory: "ortopedi",
-            image: "/images/edukasi/pasca-operasi/tulang.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Sari Indah, Sp.OT",
-            date: "3 Mar 2026",
-            readTime: "12 menit",
-            views: "2.9K",
-            likes: 345,
-            featured: false,
-            tags: ["Tulang", "Ortopedi", "Fisioterapi", "Pasca Operasi"]
-        },
-        {
             id: 14,
             title: "Perawatan Pasca Operasi Katarak",
             excerpt: "Panduan lengkap merawat mata setelah operasi katarak agar cepat sembuh.",
@@ -318,21 +303,6 @@ export default function EdukasiPage() {
             likes: 412,
             featured: true,
             tags: ["Mata", "Katarak", "Penglihatan", "Pasca Operasi"]
-        },
-        {
-            id: 15,
-            title: "Pemulihan Pasca Operasi Hernia",
-            excerpt: "Tips dan latihan untuk kembali beraktivitas setelah operasi hernia.",
-            category: "pasca-operasi",
-            subCategory: "abdomen",
-            image: "/images/edukasi/pasca-operasi/hernia.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Budi Santoso, Sp.B",
-            date: "28 Feb 2026",
-            readTime: "9 menit",
-            views: "1.9K",
-            likes: 234,
-            featured: false,
-            tags: ["Hernia", "Abdomen", "Pemulihan", "Pasca Operasi"]
         },
         {
             id: 16,
@@ -350,21 +320,6 @@ export default function EdukasiPage() {
             tags: ["Infeksi", "Kebersihan", "Luka", "Pasca Operasi"]
         },
         {
-            id: 17,
-            title: "Latihan Pernapasan Pasca Operasi",
-            excerpt: "Teknik pernapasan untuk mempercepat pemulihan dan mencegah komplikasi.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/pernapasan.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Dewi Lestari, Sp.P",
-            date: "25 Feb 2026",
-            readTime: "6 menit",
-            views: "1.8K",
-            likes: 223,
-            featured: false,
-            tags: ["Pernapasan", "Paru-paru", "Rehabilitasi", "Pasca Operasi"]
-        },
-        {
             id: 18,
             title: "Perawatan Pasca Operasi Gigi",
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
@@ -378,36 +333,6 @@ export default function EdukasiPage() {
             likes: 287,
             featured: false,
             tags: ["Gigi", "Mulut", "Pencabutan", "Pasca Operasi"]
-        },
-        {
-            id: 19,
-            title: "Kembali Bekerja Setelah Operasi",
-            excerpt: "Panduan kapan dan bagaimana kembali bekerja dengan aman pasca operasi.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/bekerja.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Andi Firmansyah, Sp.PD",
-            date: "23 Feb 2026",
-            readTime: "7 menit",
-            views: "2.0K",
-            likes: 256,
-            featured: false,
-            tags: ["Pekerjaan", "Aktivitas", "Produktivitas", "Pasca Operasi"]
-        },
-        {
-            id: 21,
-            title: "Perawatan Jangka Panjang Pasca Operasi",
-            excerpt: "Panduan menjaga kesehatan untuk mencegah komplikasi di masa depan.",
-            category: "pasca-operasi",
-            subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/jangka-panjang.jpg", // Ganti dengan file gambar Anda
-            author: "dr. Andi Firmansyah, Sp.PD",
-            date: "22 Feb 2026",
-            readTime: "9 menit",
-            views: "2.7K",
-            likes: 334,
-            featured: true,
-            tags: ["Perawatan", "Jangka Panjang", "Pemulihan", "Pasca Operasi"]
         }
     ];
 
