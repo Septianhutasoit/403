@@ -594,12 +594,11 @@ export default function Home() {
 
       {/* Fitur Unggulan dengan Carousel Infinite Smooth */}
       <section ref={el => sectionRefs.current[2] = el} data-index="2" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
-        {/* Background Animasi Modern */}
+        {/* Background Animasi Modern (SAMA PERSIS seperti sebelumnya) */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Gradient Background Dinamis */}
+          {/* ... background code tetap sama ... */}
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80"></div>
 
-          {/* Animated Gradient Orbs - Modern */}
           <motion.div
             className="absolute top-0 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-emerald-300/20 to-teal-300/20 blur-3xl"
             animate={{
@@ -629,7 +628,7 @@ export default function Home() {
             }}
           />
 
-          {/* Floating Particles dengan Animasi Lebih Halus */}
+          {/* Floating Particles */}
           <div className="absolute inset-0">
             {particles.map((p) => (
               <motion.div
@@ -661,7 +660,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Modern Grid Pattern */}
+          {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.03]" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, #64748b 1px, transparent 0)`,
             backgroundSize: '50px 50px'
@@ -720,38 +719,49 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Carousel Container - Tanpa efek fade putih */}
+          {/* ✅ CAROUSEL YANG SUDAH DIPERBAIKI ✅ */}
           <div className="relative w-full">
             {/* Slider Container */}
             <div className="overflow-hidden w-full">
               <motion.div
                 className="flex gap-6 py-4"
                 animate={{
-                  x: [0, -3840, -7680, -11520, -15360, -19200, -23040, -26880, -30720, -34560, -38400, -42240, -46080, -49920, -53760, 0]
+                  x: [0, -3456] // Hanya 2 titik keyframe (start dan end)
                 }}
                 transition={{
                   x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 530, // Diperlambat dari 360 ke 480 untuk lebih smooth
+                    duration: 45, // Durasi lebih pendek untuk smooth
                     ease: "linear",
                     repeatDelay: 0
                   }
                 }}
                 style={{
                   width: "fit-content",
-                  willChange: "transform" // Optimasi performa
+                  willChange: "transform" // ✅ Kunci utama smoothness
                 }}
               >
-                {/* Data fitur - 12 card original */}
+                {/* ✅ HANYA 2x DUPLIKASI (total 24 card) ✅ */}
                 {[
-                  // Umum (4 card)
+                  // Data original (12 card)
                   { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
                   { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
                   { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
                   { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
-
-                  // Pasca Operasi (8 card)
+                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
+                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
+                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
+                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
+                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
+                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
+                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
+                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" },
+                  // Duplikasi 1x saja (12 card tambahan)
+                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
+                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
+                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
+                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
                   { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
                   { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
                   { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
@@ -760,23 +770,7 @@ export default function Home() {
                   { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
                   { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
                   { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" }
-                ].concat(
-                  // Duplikasi 14x untuk infinite smooth (total 12 + 168 = 180 card)
-                  ...Array(14).fill([
-                    { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
-                    { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
-                    { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
-                    { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
-                    { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
-                    { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
-                    { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
-                    { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
-                    { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
-                    { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
-                    { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
-                    { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" }
-                  ])
-                ).flat().map((feature, i) => (
+                ].map((feature, i) => (
                   <motion.div
                     key={i}
                     className={`${feature.bgColor} p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 min-w-[280px] sm:min-w-[300px] group relative overflow-hidden cursor-pointer`}
@@ -784,9 +778,6 @@ export default function Home() {
                       scale: 1.05,
                       transition: { type: "spring", stiffness: 400, damping: 10 }
                     }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.02 }}
                   >
                     {/* Animated Background Gradient */}
                     <motion.div
@@ -796,7 +787,7 @@ export default function Home() {
                       transition={{ duration: 0.3 }}
                     />
 
-                    {/* Icon dengan Animasi */}
+                    {/* Icon dengan Animasi Hover */}
                     <motion.div
                       className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} bg-opacity-10 flex items-center justify-center mb-4 relative z-10`}
                       whileHover={{
@@ -810,7 +801,7 @@ export default function Home() {
                       </div>
                     </motion.div>
 
-                    {/* Content */}
+                    {/* Content dengan Animasi Hover */}
                     <motion.h3
                       className="text-xl font-bold mb-2 relative z-10"
                       whileHover={{ x: 5 }}
@@ -820,19 +811,15 @@ export default function Home() {
                     </motion.h3>
                     <p className="text-slate-500 text-sm relative z-10">{feature.desc}</p>
 
-                    {/* Category Badge dengan Animasi */}
-                    <motion.div
-                      className="mt-4 relative z-10"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
+                    {/* Category Badge */}
+                    <div className="mt-4 relative z-10">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${feature.category === "Pasca Operasi"
-                          ? "bg-blue-100 text-blue-700"
-                          : "bg-emerald-100 text-emerald-700"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-emerald-100 text-emerald-700"
                         }`}>
                         {feature.category}
                       </span>
-                    </motion.div>
+                    </div>
 
                     {/* Decorative Rotating Circle */}
                     <motion.div
@@ -858,7 +845,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Navigation Buttons dengan Animasi */}
+            {/* Navigation Buttons */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -884,7 +871,7 @@ export default function Home() {
             </motion.button>
           </div>
 
-          {/* Modern Progress Indicator */}
+          {/* Progress Indicator */}
           <div className="flex justify-center items-center gap-4 mt-8">
             <div className="flex gap-1">
               {[0, 1, 2, 3, 4].map((dot) => (
@@ -913,16 +900,16 @@ export default function Home() {
                 <motion.div
                   className="h-full bg-gradient-to-r from-emerald-500 to-teal-500"
                   animate={{
-                    x: ["-100%", "100%", "300%", "500%", "700%", "900%", "1100%", "1300%", "1500%", "-100%"],
+                    x: ["-100%", "100%"]
                   }}
                   transition={{
                     repeat: Infinity,
-                    duration: 180,
+                    duration: 3,
                     ease: "linear"
                   }}
                 />
               </div>
-              <span className="text-sm text-slate-400 font-medium">Auto-scrolling ke kanan</span>
+              <span className="text-sm text-slate-400 font-medium">Auto-scrolling</span>
             </motion.div>
           </div>
         </div>
