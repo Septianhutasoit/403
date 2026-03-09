@@ -341,27 +341,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Stats Section */}
+      {/* Quick Stats Section dengan Animasi Angka */}
       <section className="py-12 px-4 sm:px-6 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: <Users className="w-8 h-8" />, value: "40K+", label: "Pengguna Aktif", color: "from-emerald-500 to-teal-500" },
-              { icon: <Award className="w-8 h-8" />, value: "50+", label: "Dokter Spesialis", color: "from-blue-500 to-cyan-500" },
-              { icon: <BookOpen className="w-8 h-8" />, value: "120+", label: "Artikel Edukasi", color: "from-purple-500 to-pink-500" },
-              { icon: <HeartHandshake className="w-8 h-8" />, value: "12K+", label: "Keluarga Terbantu", color: "from-orange-500 to-red-500" }
-            ].map((stat, i) => (
-              <div key={i} className="text-center group">
-                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${stat.color} bg-opacity-10 text-white mb-3 group-hover:scale-110 transition-transform`}>
-                  <div className="text-emerald-600">{stat.icon}</div>
+              { icon: <Users className="w-8 h-8" />, value: 40, suffix: "K+", label: "Pengguna Aktif", color: "from-emerald-500 to-teal-500" },
+              { icon: <Award className="w-8 h-8" />, value: 50, suffix: "+", label: "Dokter Spesialis", color: "from-blue-500 to-cyan-500" },
+              { icon: <BookOpen className="w-8 h-8" />, value: 120, suffix: "+", label: "Artikel Edukasi", color: "from-purple-500 to-pink-500" },
+              { icon: <HeartHandshake className="w-8 h-8" />, value: 12, suffix: "K+", label: "Keluarga Terbantu", color: "from-orange-500 to-red-500" }
+            ].map((stat, i) => {
+              // State untuk counter
+              const [count, setCount] = useState(0);
+              const [isInView, setIsInView] = useState(false);
+              const [isRotating, setIsRotating] = useState(false);
+              const statRef = useRef(null);
+
+              // Intersection Observer untuk mendeteksi saat elemen terlihat
+              useEffect(() => {
+                const observer = new IntersectionObserver(
+                  ([entry]) => {
+                    if (entry.isIntersecting) {
+                      setIsInView(true);
+                    }
+                  },
+                  { threshold: 0.3 }
+                );
+
+                if (statRef.current) {
+                  observer.observe(statRef.current);
+                }
+
+                return () => observer.disconnect();
+              }, []);
+
+              // Animasi counter yang cepat dan smooth
+              useEffect(() => {
+                if (!isInView) return;
+
+                let start = 0;
+                const end = stat.value;
+                const duration = 1200;
+                let startTime;
+                let animationFrame;
+
+                const animateCount = (timestamp) => {
+                  if (!startTime) startTime = timestamp;
+                  const progress = timestamp - startTime;
+
+                  // Easing function untuk efek smooth
+                  const easeOutQuad = (t) => t * (2 - t);
+                  const progressPercent = Math.min(progress / duration, 1);
+                  const easedProgress = easeOutQuad(progressPercent);
+
+                  const currentValue = Math.floor(easedProgress * end);
+
+                  if (progressPercent < 1) {
+                    setCount(currentValue);
+                    animationFrame = requestAnimationFrame(animateCount);
+                  } else {
+                    setCount(end);
+                  }
+                };
+
+                animationFrame = requestAnimationFrame(animateCount);
+
+                return () => {
+                  if (animationFrame) {
+                    cancelAnimationFrame(animationFrame);
+                  }
+                };
+              }, [isInView, stat.value]);
+
+              // Handler untuk klik dengan efek putaran
+              const handleClick = () => {
+                setIsRotating(true);
+                setTimeout(() => {
+                  setIsRotating(false);
+                }, 600);
+              };
+
+              return (
+                <div
+                  key={i}
+                  ref={statRef}
+                  onClick={handleClick}
+                  className="text-center group cursor-pointer"
+                >
+                  <div
+                    className={`
+                inline-flex p-4 rounded-2xl bg-gradient-to-br ${stat.color} 
+                bg-opacity-10 text-white mb-3 
+                transition-all duration-600 ease-in-out
+                group-hover:scale-110 
+                ${isRotating ? 'animate-spin-once' : ''}
+              `}
+                  >
+                    <div className="text-emerald-600">{stat.icon}</div>
+                  </div>
+                  <div className="text-2xl font-bold text-slate-900 transition-all duration-300">
+                    {count}
+                    {stat.suffix}
+                  </div>
+                  <div className="text-sm text-slate-500">{stat.label}</div>
                 </div>
-                <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
-                <div className="text-sm text-slate-500">{stat.label}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
+
 
       {/* Layanan Pasca Operasi - Dengan Animasi Gambar */}
       <section ref={el => sectionRefs.current[0] = el} data-index="0" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white">
@@ -1018,69 +1107,92 @@ export default function Home() {
       <FloatingChat />
 
       <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-        .animation-delay-3000 {
-          animation-delay: 3s;
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 4s ease-in-out infinite;
-        }
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+  @keyframes spin-once {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .animate-spin-once {
+    animation: spin-once 0.6s ease-in-out;
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+  }
+  
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+`}</style>
     </main>
   );
 }
