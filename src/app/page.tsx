@@ -644,7 +644,7 @@ export default function Home() {
                   x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 480, // Diperlambat dari 360 ke 480 untuk lebih smooth
+                    duration: 530, // Diperlambat dari 360 ke 480 untuk lebih smooth
                     ease: "linear",
                     repeatDelay: 0
                   }
