@@ -174,6 +174,23 @@ export default function Home() {
     }
   ];
 
+  // Tambahkan state untuk particles
+  const [particles, setParticles] = useState([]);
+
+  // Generate particles hanya di client (useEffect)
+  useEffect(() => {
+    const newParticles = [...Array(30)].map((_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      type: i % 3,
+      xMove: Math.random() * 50 - 25,
+      duration: 15 + Math.random() * 10,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
+
   // Auto slide setiap 5 detik
   useEffect(() => {
     const timer = setInterval(() => {
@@ -525,31 +542,31 @@ export default function Home() {
 
           {/* Floating Particles dengan Animasi Lebih Halus */}
           <div className="absolute inset-0">
-            {[...Array(30)].map((_, i) => (
+            {particles.map((p) => (
               <motion.div
-                key={i}
+                key={p.id}
                 className="absolute w-1.5 h-1.5 rounded-full"
                 style={{
-                  background: i % 3 === 0
+                  background: p.type === 0
                     ? 'linear-gradient(135deg, #10b981, #3b82f6)'
-                    : i % 3 === 1
+                    : p.type === 1
                       ? 'linear-gradient(135deg, #8b5cf6, #ec4899)'
                       : 'linear-gradient(135deg, #f59e0b, #ef4444)',
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: p.left,
+                  top: p.top,
                   filter: 'blur(1px)',
                 }}
                 animate={{
                   y: [0, -100, 0],
-                  x: [0, Math.random() * 50 - 25, 0],
+                  x: [0, p.xMove, 0],
                   opacity: [0.2, 0.6, 0.2],
                   scale: [1, 1.5, 1],
                 }}
                 transition={{
-                  duration: 15 + Math.random() * 10,
+                  duration: p.duration,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: Math.random() * 5,
+                  delay: p.delay,
                 }}
               />
             ))}
@@ -627,14 +644,14 @@ export default function Home() {
                   x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 360, // Lebih lambat untuk transisi lebih halus
+                    duration: 480, // Diperlambat dari 360 ke 480 untuk lebih smooth
                     ease: "linear",
                     repeatDelay: 0
                   }
                 }}
                 style={{
                   width: "fit-content",
-                  willChange: "transform"
+                  willChange: "transform" // Optimasi performa
                 }}
               >
                 {/* Data fitur - 12 card original */}
