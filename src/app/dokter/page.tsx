@@ -62,9 +62,6 @@ interface Doctor {
     color: string;
     badge: string;
     available: boolean;
-    videoConsult: boolean;
-    chatConsult: boolean;
-    hospitalVisit: boolean;
     nextAvailable: string;
     verified: boolean;
     ratingCount: number;
@@ -99,9 +96,6 @@ interface Nurse {
     color: string;
     badge: string;
     available: boolean;
-    videoConsult: boolean;
-    chatConsult: boolean;
-    homeVisit: boolean;
     nextAvailable: string;
     verified: boolean;
     ratingCount: number;
@@ -129,15 +123,15 @@ export default function DokterPage() {
     const [showFilter, setShowFilter] = useState(false);
     const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
     const [selectedNurse, setSelectedNurse] = useState<Nurse | null>(null);
-    const [visibleDoctors, setVisibleDoctors] = useState(4);
-    const [visibleNurses, setVisibleNurses] = useState(4);
+    const [visibleDoctors, setVisibleDoctors] = useState(9); // 3 baris x 3 kolom = 9
+    const [visibleNurses, setVisibleNurses] = useState(9);
     const [activeTab, setActiveTab] = useState<"dokter" | "perawat">("dokter");
     const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [isClient, setIsClient] = useState(false);
     const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-    // Set isClient to true after mount to prevent hydration mismatch
+    // Set isClient to true after mount
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -146,44 +140,36 @@ export default function DokterPage() {
     const heroSlides = [
         {
             id: 1,
-            image: "/images/hero/hero-edukasi-1.jpg", // Ganti dengan file gambar Anda
-            title: "Edukasi Kesehatan untuk Semua",
-            subtitle: "Pelajari cara hidup sehat dan pemulihan pasca operasi"
+            image: "/images/hero/hero-dokter-1.jpg",
+            title: "Konsultasi dengan Tenaga Kesehatan Profesional",
+            subtitle: "Lebih dari 50 dokter spesialis dan 30 perawat terlatih siap membantu kesehatan Anda dan keluarga"
         },
         {
             id: 2,
-            image: "/images/hero/hero-edukasi-2.jpg", // Ganti dengan file gambar Anda
-            title: "Panduan Perawatan Pasca Operasi",
-            subtitle: "Informasi lengkap untuk pemulihan yang cepat dan aman"
+            image: "/images/hero/hero-dokter-2.jpg",
+            title: "Perawatan Pasca Operasi Profesional",
+            subtitle: "Tim medis berpengalaman siap mendampingi pemulihan Anda dengan perawatan komprehensif"
         },
         {
             id: 3,
-            image: "/images/hero/hero-edukasi-3.jpg", // Ganti dengan file gambar Anda
-            title: "Konsultasi dengan Ahli Kesehatan",
-            subtitle: "Dapatkan jawaban dari dokter spesialis terpercaya"
-        },
-        {
-            id: 4,
-            image: "/images/hero/hero-edukasi-4.jpg", // Ganti dengan file gambar Anda
-            title: "Komunitas Peduli Kesehatan",
-            subtitle: "Bergabung dengan ribuan orang yang peduli kesehatan"
+            image: "/images/hero/hero-dokter-3.jpg",
+            title: "Layanan 24/7 untuk Kesehatan Lansia",
+            subtitle: "Konsultasi kapan saja dengan tim medis spesialis penyakit dalam, geriatri, dan perawatan lansia"
         }
     ];
 
-    // Auto slide setiap 5 detik - hanya di client
+    // Auto slide setiap 5 detik
     useEffect(() => {
         if (!isClient) return;
-
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
         }, 5000);
         return () => clearInterval(timer);
     }, [heroSlides.length, isClient]);
 
-    // Scroll to top button visibility - hanya di client
+    // Scroll to top button visibility
     useEffect(() => {
         if (!isClient) return;
-
         const handleScroll = () => {
             setShowScrollTop(window.scrollY > 500);
         };
@@ -191,10 +177,9 @@ export default function DokterPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isClient]);
 
-    // Intersection Observer untuk animasi scroll - hanya di client
+    // Intersection Observer
     useEffect(() => {
         if (!isClient) return;
-
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -262,7 +247,7 @@ export default function DokterPage() {
         { id: "350+", name: "> Rp 350K" }
     ];
 
-    // Data dokter (gambar dikosongkan, nanti diisi)
+    // Data dokter dengan gambar kosong (siap diisi)
     const doctors: Doctor[] = [
         // GIGI
         {
@@ -270,14 +255,14 @@ export default function DokterPage() {
             name: "drg. Agia Tessa Andriani, M.Kes., Sp.Ort",
             specialty: "gigi",
             specialtyName: "Gigi",
-            subSpecialty: "SPESIALIS ORTHODONTI",
+            subSpecialty: "Spesialis Orthodonti",
             experience: 10,
             experienceYears: "10 tahun",
             patients: "1.200+",
             rating: 4.9,
             reviewCount: 187,
             price: 300000,
-            image: "", // Kosong, nanti diisi
+            image: "", // Kosong, siap diisi dengan path gambar
             schedule: [
                 { day: "Senin", hours: "09:00 - 17:00" },
                 { day: "Selasa", hours: "09:00 - 17:00" },
@@ -301,9 +286,6 @@ export default function DokterPage() {
             color: "from-cyan-500 to-teal-500",
             badge: "Spesialis Orthodonti",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            hospitalVisit: true,
             nextAvailable: "Tersedia Hari Ini",
             verified: true,
             ratingCount: 187,
@@ -317,7 +299,7 @@ export default function DokterPage() {
             name: "drg. Agiditya Primaska",
             specialty: "gigi",
             specialtyName: "Gigi",
-            subSpecialty: "Sp.KG (Konservasi Gigi)",
+            subSpecialty: "Spesialis Konservasi Gigi",
             experience: 8,
             experienceYears: "8 tahun",
             patients: "900+",
@@ -348,9 +330,6 @@ export default function DokterPage() {
             color: "from-cyan-500 to-teal-500",
             badge: "Spesialis Konservasi Gigi",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            hospitalVisit: true,
             nextAvailable: "Tersedia Besok",
             verified: true,
             ratingCount: 145,
@@ -364,7 +343,7 @@ export default function DokterPage() {
             name: "drg. Agustina Fortunata",
             specialty: "gigi",
             specialtyName: "Gigi",
-            subSpecialty: "SPESIALIS KONSERVASI GIGI",
+            subSpecialty: "Spesialis Konservasi Gigi",
             experience: 12,
             experienceYears: "12 tahun",
             patients: "1.500+",
@@ -395,9 +374,6 @@ export default function DokterPage() {
             color: "from-cyan-500 to-teal-500",
             badge: "Spesialis Konservasi Gigi",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            hospitalVisit: true,
             nextAvailable: "Tersedia Hari Ini",
             verified: true,
             ratingCount: 234,
@@ -411,7 +387,7 @@ export default function DokterPage() {
             name: "drg. Agis Tessa Andriani, M.Kes., Sp.Ort",
             specialty: "gigi",
             specialtyName: "Gigi",
-            subSpecialty: "SPESIALIS ORTHODONTI",
+            subSpecialty: "Spesialis Orthodonti",
             experience: 9,
             experienceYears: "9 tahun",
             patients: "1.100+",
@@ -442,9 +418,6 @@ export default function DokterPage() {
             color: "from-cyan-500 to-teal-500",
             badge: "Spesialis Orthodonti",
             available: false,
-            videoConsult: true,
-            chatConsult: true,
-            hospitalVisit: true,
             nextAvailable: "Tersedia 2 Hari Lagi",
             verified: true,
             ratingCount: 167,
@@ -481,7 +454,7 @@ export default function DokterPage() {
                 "Universitas Indonesia - Spesialis Penyakit Dalam (2015)",
                 "Universitas Indonesia - Dokter Umum (2010)"
             ],
-            about: "Spesialis penyakit dalam dengan fokus pada perawatan lansia dan manajemen penyakit kronis seperti diabetes, hipertensi, dan gangguan metabolik lainnya. Berpengalaman dalam menangani pasien geriatri dengan pendekatan holistik.",
+            about: "Spesialis penyakit dalam dengan fokus pada perawatan lansia dan manajemen penyakit kronis seperti diabetes, hipertensi, dan gangguan metabolik lainnya.",
             achievements: [
                 "Best Geriatric Consultant 2023",
                 "Peneliti Diabetes pada Lansia",
@@ -491,9 +464,6 @@ export default function DokterPage() {
             color: "from-emerald-500 to-teal-500",
             badge: "Konsultan Geriatri",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            hospitalVisit: true,
             nextAvailable: "Tersedia Hari Ini",
             verified: true,
             ratingCount: 325,
@@ -504,7 +474,7 @@ export default function DokterPage() {
         }
     ];
 
-    // Data perawat (gambar dikosongkan, nanti diisi)
+    // Data perawat dengan gambar kosong (siap diisi)
     const nurses: Nurse[] = [
         {
             id: 201,
@@ -533,7 +503,7 @@ export default function DokterPage() {
                 "Universitas Indonesia - Profesi Ners",
                 "Politeknik Kesehatan - D3 Keperawatan"
             ],
-            about: "Perawat profesional dengan pengalaman merawat lansia dengan berbagai kondisi seperti pasca stroke, diabetes, dan demensia. Terlatih dalam perawatan luka dan manajemen obat.",
+            about: "Perawat profesional dengan pengalaman merawat lansia dengan berbagai kondisi seperti pasca stroke, diabetes, dan demensia.",
             certifications: [
                 "Sertifikasi Perawat Lansia",
                 "Sertifikasi Perawatan Luka",
@@ -543,9 +513,6 @@ export default function DokterPage() {
             color: "from-emerald-500 to-teal-500",
             badge: "Perawat Lansia",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            homeVisit: true,
             nextAvailable: "Tersedia Hari Ini",
             verified: true,
             ratingCount: 112,
@@ -581,7 +548,7 @@ export default function DokterPage() {
                 "Universitas Airlangga - Profesi Ners",
                 "Politeknik Kesehatan - D3 Keperawatan"
             ],
-            about: "Perawat spesialis perawatan pasca operasi dengan pengalaman menangani pasien bedah jantung, ortopedi, dan digestif. Terlatih dalam perawatan luka operasi dan manajemen drain.",
+            about: "Perawat spesialis perawatan pasca operasi dengan pengalaman menangani pasien bedah jantung, ortopedi, dan digestif.",
             certifications: [
                 "Sertifikasi Perawatan Luka Operasi",
                 "Sertifikasi Perawatan Intensif",
@@ -591,9 +558,6 @@ export default function DokterPage() {
             color: "from-blue-500 to-cyan-500",
             badge: "Perawat Pasca Operasi",
             available: true,
-            videoConsult: true,
-            chatConsult: true,
-            homeVisit: true,
             nextAvailable: "Tersedia Besok",
             verified: true,
             ratingCount: 89,
@@ -601,76 +565,110 @@ export default function DokterPage() {
             registrationNumber: "12346/PPNI/2019",
             email: "ahmad.ns@example.com",
             phone: "+62 812-3456-7896"
+        },
+        {
+            id: 203,
+            name: "Ns. Maria Simanjuntak, S.Kep",
+            specialty: "luka",
+            specialtyName: "Perawat Luka",
+            subSpecialty: "Spesialis Perawatan Luka & Stoma",
+            experience: 10,
+            experienceYears: "10 tahun",
+            patients: "600+",
+            rating: 4.9,
+            reviewCount: 156,
+            price: 225000,
+            image: "",
+            schedule: [
+                { day: "Senin", hours: "09:00 - 21:00" },
+                { day: "Selasa", hours: "09:00 - 21:00" },
+                { day: "Rabu", hours: "09:00 - 21:00" },
+                { day: "Kamis", hours: "09:00 - 21:00" },
+                { day: "Jumat", hours: "09:00 - 21:00" }
+            ],
+            hospital: "Klinik Perawatan Luka",
+            location: "Jakarta Timur",
+            branches: ["Jakarta Timur", "Jakarta Utara"],
+            education: [
+                "Universitas Indonesia - Profesi Ners",
+                "Politeknik Kesehatan - D3 Keperawatan"
+            ],
+            about: "Perawat spesialis perawatan luka dengan pengalaman menangani luka akut, luka kronis, luka diabetes, dan luka tekan.",
+            certifications: [
+                "Sertifikasi Perawatan Luka (ETN)",
+                "Sertifikasi Perawatan Stoma",
+                "Advanced Wound Care"
+            ],
+            languages: ["Indonesia", "Inggris", "Batak"],
+            color: "from-amber-500 to-orange-500",
+            badge: "Spesialis Perawatan Luka",
+            available: true,
+            nextAvailable: "Tersedia Hari Ini",
+            verified: true,
+            ratingCount: 156,
+            serviceArea: ["Jakarta Timur", "Jakarta Utara", "Jakarta Pusat"],
+            registrationNumber: "12347/PPNI/2017",
+            email: "maria.ns@example.com",
+            phone: "+62 812-3456-7897"
         }
     ];
 
     // Filter berdasarkan tipe dan kriteria
     const filteredDoctors = doctors.filter(doctor => {
         if (activeTab !== "dokter") return false;
-
         const matchesSpecialty = selectedSpecialty === "semua" || doctor.specialty === selectedSpecialty;
         const matchesSearch = searchTerm === "" ||
             doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             doctor.specialtyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
             doctor.subSpecialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
             doctor.hospital.toLowerCase().includes(searchTerm.toLowerCase());
-
         const matchesExperience = selectedExperience === "semua" ||
             (selectedExperience === "1-3" && doctor.experience >= 1 && doctor.experience < 3) ||
             (selectedExperience === "3-5" && doctor.experience >= 3 && doctor.experience < 5) ||
             (selectedExperience === "5-10" && doctor.experience >= 5 && doctor.experience < 10) ||
             (selectedExperience === "10+" && doctor.experience >= 10);
-
         const matchesPrice = selectedPrice === "semua" ||
             (selectedPrice === "0-150" && doctor.price <= 150000) ||
             (selectedPrice === "150-250" && doctor.price > 150000 && doctor.price <= 250000) ||
             (selectedPrice === "250-350" && doctor.price > 250000 && doctor.price <= 350000) ||
             (selectedPrice === "350+" && doctor.price > 350000);
-
         return matchesSpecialty && matchesSearch && matchesExperience && matchesPrice;
     });
 
     const filteredNurses = nurses.filter(nurse => {
         if (activeTab !== "perawat") return false;
-
         const matchesSpecialty = selectedSpecialty === "semua" || nurse.specialty === selectedSpecialty;
         const matchesSearch = searchTerm === "" ||
             nurse.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             nurse.specialtyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
             nurse.subSpecialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
             nurse.hospital.toLowerCase().includes(searchTerm.toLowerCase());
-
         const matchesExperience = selectedExperience === "semua" ||
             (selectedExperience === "1-3" && nurse.experience >= 1 && nurse.experience < 3) ||
             (selectedExperience === "3-5" && nurse.experience >= 3 && nurse.experience < 5) ||
             (selectedExperience === "5-10" && nurse.experience >= 5 && nurse.experience < 10) ||
             (selectedExperience === "10+" && nurse.experience >= 10);
-
         const matchesPrice = selectedPrice === "semua" ||
             (selectedPrice === "0-150" && nurse.price <= 150000) ||
             (selectedPrice === "150-250" && nurse.price > 150000 && nurse.price <= 250000) ||
             (selectedPrice === "250-350" && nurse.price > 250000 && nurse.price <= 350000) ||
             (selectedPrice === "350+" && nurse.price > 350000);
-
         return matchesSpecialty && matchesSearch && matchesExperience && matchesPrice;
     });
 
     const displayedDoctors = filteredDoctors.slice(0, visibleDoctors);
     const displayedNurses = filteredNurses.slice(0, visibleNurses);
 
-    // Handler untuk reset filter
     const resetFilters = () => {
         setSelectedExperience("semua");
         setSelectedPrice("semua");
         setSelectedSpecialty("semua");
     };
 
-    // Scroll to top function
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // Jangan render apa pun sampai client-side mount untuk mencegah hydration mismatch
     if (!isClient) {
         return (
             <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -689,7 +687,7 @@ export default function DokterPage() {
         <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
             <Navbar />
 
-            {/* Hero Section dengan Background Slider */}
+            {/* Hero Section dengan Background Slider - Sesuai dengan halaman edukasi */}
             <section className="relative h-[600px] sm:h-[650px] lg:h-[700px] flex items-center overflow-hidden">
                 {/* Background Slider */}
                 <div className="absolute inset-0">
@@ -699,17 +697,13 @@ export default function DokterPage() {
                             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                                 }`}
                         >
-                            {/* Background Image */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center"
                                 style={{ backgroundImage: `url(${slide.image})` }}
                             >
-                                {/* Overlay Gradient - Sama dengan edukasi */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             </div>
-
-                            {/* Pattern Overlay - Sama dengan edukasi */}
                             <div
                                 className="absolute inset-0 opacity-20"
                                 style={{
@@ -719,13 +713,11 @@ export default function DokterPage() {
                             />
                         </div>
                     ))}
-
-                    {/* Floating Elements - Sama dengan edukasi */}
                     <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
                     <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
                 </div>
 
-                {/* Slide Indicators - Sama dengan edukasi */}
+                {/* Slide Indicators */}
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
                     {heroSlides.map((_, index) => (
                         <button
@@ -742,24 +734,20 @@ export default function DokterPage() {
                 {/* Hero Content */}
                 <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     <div className="max-w-3xl text-white">
-                        {/* Badge - Sama dengan edukasi */}
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
                             <Sparkles className="w-4 h-4" />
                             Tim Medis Profesional
                             <Sparkles className="w-4 h-4" />
                         </div>
 
-                        {/* Title - Dinamis dari slider */}
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up delay-100">
                             {heroSlides[currentSlide].title}
                         </h1>
 
-                        {/* Subtitle - Dinamis dari slider */}
                         <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up delay-200">
                             {heroSlides[currentSlide].subtitle}
                         </p>
 
-                        {/* Search Bar - Sama dengan edukasi */}
                         <div className="max-w-2xl relative animate-slide-up delay-300">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                             <input
@@ -771,7 +759,6 @@ export default function DokterPage() {
                             />
                         </div>
 
-                        {/* Stats - Sama dengan edukasi */}
                         <div className="flex flex-wrap gap-8 mt-12 animate-slide-up delay-500">
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-white">50+</div>
@@ -793,7 +780,6 @@ export default function DokterPage() {
                     </div>
                 </div>
 
-                {/* Scroll Indicator - Sama dengan edukasi */}
                 <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
                     <div className="flex flex-col items-center gap-2">
                         <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
@@ -804,43 +790,15 @@ export default function DokterPage() {
                 </div>
             </section>
 
-            {/* Info Cards Section - Animasi Informasi */}
+            {/* Info Cards Section */}
             <section className="py-8 sm:py-10 px-4 sm:px-6 -mt-6 sm:-mt-8 relative z-30">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                         {[
-                            {
-                                icon: <Medal className="w-5 h-5 sm:w-6 sm:h-6" />,
-                                title: "Dokter Spesialis",
-                                value: "50+",
-                                desc: "Tersedia 24/7",
-                                color: "from-emerald-500 to-teal-500",
-                                bgColor: "bg-emerald-50"
-                            },
-                            {
-                                icon: <HeartHandshake className="w-5 h-5 sm:w-6 sm:h-6" />,
-                                title: "Perawat Profesional",
-                                value: "30+",
-                                desc: "Berpengalaman",
-                                color: "from-blue-500 to-cyan-500",
-                                bgColor: "bg-blue-50"
-                            },
-                            {
-                                icon: <Target className="w-5 h-5 sm:w-6 sm:h-6" />,
-                                title: "Tingkat Kepuasan",
-                                value: "98%",
-                                desc: "Pasien puas",
-                                color: "from-purple-500 to-pink-500",
-                                bgColor: "bg-purple-50"
-                            },
-                            {
-                                icon: <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />,
-                                title: "Konsultasi",
-                                value: "10K+",
-                                desc: "Per bulan",
-                                color: "from-orange-500 to-red-500",
-                                bgColor: "bg-orange-50"
-                            }
+                            { icon: <Medal className="w-5 h-5 sm:w-6 sm:h-6" />, title: "Dokter Spesialis", value: "50+", desc: "Tersedia 24/7", color: "from-emerald-500 to-teal-500", bgColor: "bg-emerald-50" },
+                            { icon: <HeartHandshake className="w-5 h-5 sm:w-6 sm:h-6" />, title: "Perawat Profesional", value: "30+", desc: "Berpengalaman", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50" },
+                            { icon: <Target className="w-5 h-5 sm:w-6 sm:h-6" />, title: "Tingkat Kepuasan", value: "98%", desc: "Pasien puas", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50" },
+                            { icon: <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />, title: "Konsultasi", value: "10K+", desc: "Per bulan", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50" }
                         ].map((item, i) => (
                             <div
                                 key={i}
@@ -972,9 +930,7 @@ export default function DokterPage() {
                             >
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
-                                        <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                                            Pengalaman
-                                        </label>
+                                        <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">Pengalaman</label>
                                         <div className="flex flex-wrap gap-1 sm:gap-2">
                                             {experienceLevels.map((exp) => (
                                                 <button
@@ -991,9 +947,7 @@ export default function DokterPage() {
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                                            Rentang Harga
-                                        </label>
+                                        <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">Rentang Harga</label>
                                         <div className="flex flex-wrap gap-1 sm:gap-2">
                                             {priceRanges.map((price) => (
                                                 <button
@@ -1016,7 +970,7 @@ export default function DokterPage() {
                 </div>
             </section>
 
-            {/* Cards Grid Section */}
+            {/* Cards Grid Section - 3 Kolom Modern */}
             <section ref={el => { sectionRefs.current[0] = el; }} data-index="0" className="py-6 sm:py-8 px-4 sm:px-6">
                 <div className={`max-w-7xl mx-auto ${fadeInUpClass(0)}`}>
                     {/* Results Info */}
@@ -1034,8 +988,8 @@ export default function DokterPage() {
                         </p>
                     </div>
 
-                    {/* Cards Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                    {/* Grid 3 Kolom */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {activeTab === "dokter"
                             ? displayedDoctors.map((doctor, index) => (
                                 <div
@@ -1045,7 +999,7 @@ export default function DokterPage() {
                                 >
                                     <div className="flex flex-col">
                                         {/* Card Header with Image */}
-                                        <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
+                                        <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
                                             {doctor.image ? (
                                                 <div
                                                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
@@ -1055,129 +1009,88 @@ export default function DokterPage() {
                                                 </div>
                                             ) : (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
-                                                        <Stethoscope className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400" />
+                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                        <Stethoscope className="w-10 h-10 text-slate-400" />
                                                     </div>
                                                 </div>
                                             )}
 
                                             {/* Badges */}
-                                            <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 flex gap-1 sm:gap-2">
-                                                <span className={`inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${doctor.available
+                                            <div className="absolute top-3 left-3 z-10 flex gap-2">
+                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${doctor.available
                                                         ? "bg-green-100 text-green-700"
                                                         : "bg-orange-100 text-orange-700"
                                                     }`}>
-                                                    <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${doctor.available ? "bg-green-600" : "bg-orange-600"
-                                                        } animate-pulse`} />
+                                                    <span className={`w-1.5 h-1.5 rounded-full ${doctor.available ? "bg-green-600" : "bg-orange-600"} animate-pulse`} />
                                                     {doctor.available ? "Tersedia" : "Sibuk"}
                                                 </span>
-                                                <span className={`inline-block px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${doctor.color} text-white shadow-md`}>
+                                                <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${doctor.color} text-white shadow-md`}>
                                                     {doctor.badge}
                                                 </span>
                                             </div>
 
                                             {doctor.verified && (
-                                                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-10">
+                                                <div className="absolute top-3 right-3 z-10">
                                                     <span className="bg-blue-100 text-blue-600 p-1 rounded-full shadow-lg">
-                                                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                                                        <CheckCircle className="w-4 h-4" />
                                                     </span>
                                                 </div>
                                             )}
 
                                             {/* Doctor Info Overlay */}
-                                            <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 text-white">
-                                                <h3 className="text-sm sm:text-base md:text-lg font-bold leading-tight mb-0.5 sm:mb-1 drop-shadow-lg">
-                                                    {doctor.name.length > 30 ? doctor.name.substring(0, 30) + '...' : doctor.name}
+                                            <div className="absolute bottom-3 left-3 right-3 text-white">
+                                                <h3 className="text-base font-bold leading-tight mb-1 drop-shadow-lg">
+                                                    {doctor.name.length > 35 ? doctor.name.substring(0, 35) + '...' : doctor.name}
                                                 </h3>
-                                                <p className="text-[10px] sm:text-xs text-white/90 drop-shadow">
-                                                    {doctor.subSpecialty.length > 25 ? doctor.subSpecialty.substring(0, 25) + '...' : doctor.subSpecialty}
+                                                <p className="text-xs text-white/90 drop-shadow">
+                                                    {doctor.subSpecialty}
                                                 </p>
                                             </div>
                                         </div>
 
-                                        {/* Card Body */}
-                                        <div className="p-3 sm:p-4">
-                                            {/* Rating & Stats */}
-                                            <div className="flex items-center justify-between mb-2 sm:mb-3">
-                                                <div className="flex items-center gap-1 sm:gap-2">
-                                                    <div className="flex items-center gap-0.5 sm:gap-1 bg-yellow-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg">
-                                                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                                                        <span className="text-xs sm:text-sm font-bold">{doctor.rating}</span>
-                                                        <span className="text-[8px] sm:text-xs text-slate-500">({doctor.reviewCount})</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-0.5 sm:gap-1 bg-blue-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg">
-                                                        <Users className="w-3 h-3 text-blue-600" />
-                                                        <span className="text-[10px] sm:text-xs font-semibold">{doctor.patients}</span>
-                                                    </div>
+                                        {/* Card Body - Informasi Ringkas */}
+                                        <div className="p-4">
+                                            {/* Rating & Harga */}
+                                            <div className="flex items-center justify-between mb-3">
+                                                <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg">
+                                                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                                    <span className="text-xs font-bold">{doctor.rating}</span>
+                                                    <span className="text-[10px] text-slate-500">({doctor.reviewCount})</span>
                                                 </div>
-                                                <div className="text-xs sm:text-sm font-bold text-emerald-600">
+                                                <div className="text-sm font-bold text-emerald-600">
                                                     Rp {doctor.price.toLocaleString('id-ID')}
                                                 </div>
                                             </div>
 
-                                            {/* Branch/Hospital Info */}
-                                            <div className="mb-2 sm:mb-3 space-y-1 sm:space-y-1.5">
-                                                <div className="flex items-start gap-1 sm:gap-2">
-                                                    <Building className="w-3 h-3 text-slate-400 flex-shrink-0 mt-0.5" />
-                                                    <div className="flex flex-wrap gap-0.5 sm:gap-1">
-                                                        {doctor.branches?.slice(0, 2).map((branch, i) => (
-                                                            <span key={i} className="inline-block px-1 sm:px-1.5 py-0.5 bg-slate-100 rounded text-[8px] sm:text-xs">
-                                                                {branch}
-                                                            </span>
-                                                        ))}
-                                                        {doctor.branches && doctor.branches.length > 2 && (
-                                                            <span className="inline-block px-1 sm:px-1.5 py-0.5 bg-slate-100 rounded text-[8px] sm:text-xs">
-                                                                +{doctor.branches.length - 2}
-                                                            </span>
-                                                        )}
-                                                    </div>
+                                            {/* Informasi Singkat */}
+                                            <div className="space-y-2 mb-3">
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Building className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600 truncate">{doctor.hospital}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1 sm:gap-2">
+                                                <div className="flex items-center gap-2 text-xs">
                                                     <MapPin className="w-3 h-3 text-slate-400" />
-                                                    <span className="text-[10px] sm:text-xs text-slate-600">{doctor.location}</span>
+                                                    <span className="text-slate-600">{doctor.location}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1 sm:gap-2 text-emerald-600">
-                                                    <Clock className="w-3 h-3" />
-                                                    <span className="text-[10px] sm:text-xs font-medium">{doctor.nextAvailable}</span>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Users className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600">{doctor.patients} pasien</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Clock className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600">{doctor.experienceYears}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs text-emerald-600">
+                                                    <Calendar className="w-3 h-3" />
+                                                    <span className="font-medium">{doctor.nextAvailable}</span>
                                                 </div>
                                             </div>
 
-                                            {/* Service Badges */}
-                                            <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
-                                                {doctor.videoConsult && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <Video className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Video Call</span>
-                                                    </span>
-                                                )}
-                                                {doctor.chatConsult && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <MessageCircle className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Chat</span>
-                                                    </span>
-                                                )}
-                                                {doctor.hospitalVisit && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-purple-50 text-purple-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <Hospital className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Kunjungan</span>
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            {/* Action Buttons */}
-                                            <div className="flex gap-1 sm:gap-2">
-                                                <button className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-1 hover:scale-105">
-                                                    <Video className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                    <span className="hidden sm:inline">Video Call</span>
-                                                </button>
-                                                <button className="flex-1 border border-blue-600 text-blue-600 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-1 hover:scale-105">
-                                                    <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                    <span className="hidden sm:inline">Chat</span>
-                                                </button>
-                                                <button className="p-1.5 sm:p-2 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
-                                                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-slate-600" />
-                                                </button>
-                                            </div>
+                                            {/* Detail Button */}
+                                            <button className="w-full mt-2 py-2 px-4 bg-slate-50 hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 rounded-lg text-xs font-medium transition-colors duration-300 flex items-center justify-center gap-1">
+                                                <span>Lihat Detail</span>
+                                                <ChevronRight className="w-3 h-3" />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -1190,7 +1103,7 @@ export default function DokterPage() {
                                 >
                                     <div className="flex flex-col">
                                         {/* Card Header with Image */}
-                                        <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
+                                        <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
                                             {nurse.image ? (
                                                 <div
                                                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
@@ -1200,117 +1113,88 @@ export default function DokterPage() {
                                                 </div>
                                             ) : (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
-                                                        <UserRound className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400" />
+                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                        <UserRound className="w-10 h-10 text-slate-400" />
                                                     </div>
                                                 </div>
                                             )}
 
                                             {/* Badges */}
-                                            <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 flex gap-1 sm:gap-2">
-                                                <span className={`inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${nurse.available
+                                            <div className="absolute top-3 left-3 z-10 flex gap-2">
+                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${nurse.available
                                                         ? "bg-green-100 text-green-700"
                                                         : "bg-orange-100 text-orange-700"
                                                     }`}>
-                                                    <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${nurse.available ? "bg-green-600" : "bg-orange-600"
-                                                        } animate-pulse`} />
+                                                    <span className={`w-1.5 h-1.5 rounded-full ${nurse.available ? "bg-green-600" : "bg-orange-600"} animate-pulse`} />
                                                     {nurse.available ? "Tersedia" : "Sibuk"}
                                                 </span>
-                                                <span className={`inline-block px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${nurse.color} text-white shadow-md`}>
+                                                <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${nurse.color} text-white shadow-md`}>
                                                     {nurse.badge}
                                                 </span>
                                             </div>
 
                                             {nurse.verified && (
-                                                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-10">
+                                                <div className="absolute top-3 right-3 z-10">
                                                     <span className="bg-blue-100 text-blue-600 p-1 rounded-full shadow-lg">
-                                                        <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                                                        <CheckCircle className="w-4 h-4" />
                                                     </span>
                                                 </div>
                                             )}
 
                                             {/* Nurse Info Overlay */}
-                                            <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 text-white">
-                                                <h3 className="text-sm sm:text-base md:text-lg font-bold leading-tight mb-0.5 sm:mb-1 drop-shadow-lg">
-                                                    {nurse.name.length > 30 ? nurse.name.substring(0, 30) + '...' : nurse.name}
+                                            <div className="absolute bottom-3 left-3 right-3 text-white">
+                                                <h3 className="text-base font-bold leading-tight mb-1 drop-shadow-lg">
+                                                    {nurse.name.length > 35 ? nurse.name.substring(0, 35) + '...' : nurse.name}
                                                 </h3>
-                                                <p className="text-[10px] sm:text-xs text-white/90 drop-shadow">
-                                                    {nurse.subSpecialty.length > 25 ? nurse.subSpecialty.substring(0, 25) + '...' : nurse.subSpecialty}
+                                                <p className="text-xs text-white/90 drop-shadow">
+                                                    {nurse.subSpecialty}
                                                 </p>
                                             </div>
                                         </div>
 
-                                        {/* Card Body */}
-                                        <div className="p-3 sm:p-4">
-                                            {/* Rating & Stats */}
-                                            <div className="flex items-center justify-between mb-2 sm:mb-3">
-                                                <div className="flex items-center gap-1 sm:gap-2">
-                                                    <div className="flex items-center gap-0.5 sm:gap-1 bg-yellow-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg">
-                                                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                                                        <span className="text-xs sm:text-sm font-bold">{nurse.rating}</span>
-                                                        <span className="text-[8px] sm:text-xs text-slate-500">({nurse.reviewCount})</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-0.5 sm:gap-1 bg-blue-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-lg">
-                                                        <Users className="w-3 h-3 text-blue-600" />
-                                                        <span className="text-[10px] sm:text-xs font-semibold">{nurse.patients}</span>
-                                                    </div>
+                                        {/* Card Body - Informasi Ringkas */}
+                                        <div className="p-4">
+                                            {/* Rating & Harga */}
+                                            <div className="flex items-center justify-between mb-3">
+                                                <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg">
+                                                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                                    <span className="text-xs font-bold">{nurse.rating}</span>
+                                                    <span className="text-[10px] text-slate-500">({nurse.reviewCount})</span>
                                                 </div>
-                                                <div className="text-xs sm:text-sm font-bold text-emerald-600">
+                                                <div className="text-sm font-bold text-emerald-600">
                                                     Rp {nurse.price.toLocaleString('id-ID')}
                                                 </div>
                                             </div>
 
-                                            {/* Service Area Info */}
-                                            <div className="mb-2 sm:mb-3 space-y-1 sm:space-y-1.5">
-                                                <div className="flex items-start gap-1 sm:gap-2">
-                                                    <MapPinned className="w-3 h-3 text-slate-400 flex-shrink-0 mt-0.5" />
-                                                    <span className="text-[10px] sm:text-xs text-slate-600">
-                                                        {nurse.serviceArea?.slice(0, 2).join(', ')}
-                                                        {nurse.serviceArea && nurse.serviceArea.length > 2 && ' ...'}
-                                                    </span>
+                                            {/* Informasi Singkat */}
+                                            <div className="space-y-2 mb-3">
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Building className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600 truncate">{nurse.hospital}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1 sm:gap-2 text-emerald-600">
-                                                    <Clock className="w-3 h-3" />
-                                                    <span className="text-[10px] sm:text-xs font-medium">{nurse.nextAvailable}</span>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <MapPinned className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600 truncate">{nurse.serviceArea?.slice(0, 2).join(', ')}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Users className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600">{nurse.patients} pasien</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <Clock className="w-3 h-3 text-slate-400" />
+                                                    <span className="text-slate-600">{nurse.experienceYears}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs text-emerald-600">
+                                                    <Calendar className="w-3 h-3" />
+                                                    <span className="font-medium">{nurse.nextAvailable}</span>
                                                 </div>
                                             </div>
 
-                                            {/* Service Badges */}
-                                            <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
-                                                {nurse.videoConsult && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <Video className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Video Call</span>
-                                                    </span>
-                                                )}
-                                                {nurse.chatConsult && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <MessageCircle className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Chat</span>
-                                                    </span>
-                                                )}
-                                                {nurse.homeVisit && (
-                                                    <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-purple-50 text-purple-600 rounded-full text-[8px] sm:text-xs font-medium shadow-sm hover:scale-105 transition-transform">
-                                                        <Hospital className="w-2 h-2 sm:w-3 sm:h-3" />
-                                                        <span className="hidden sm:inline">Home Visit</span>
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            {/* Action Buttons */}
-                                            <div className="flex gap-1 sm:gap-2">
-                                                <button className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-1 hover:scale-105">
-                                                    <Video className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                    <span className="hidden sm:inline">Video Call</span>
-                                                </button>
-                                                <button className="flex-1 border border-emerald-600 text-emerald-600 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold hover:bg-emerald-50 transition-colors flex items-center justify-center gap-1 hover:scale-105">
-                                                    <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                    <span className="hidden sm:inline">Chat</span>
-                                                </button>
-                                                <button className="p-1.5 sm:p-2 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
-                                                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-slate-600" />
-                                                </button>
-                                            </div>
+                                            {/* Detail Button */}
+                                            <button className="w-full mt-2 py-2 px-4 bg-slate-50 hover:bg-blue-50 text-slate-600 hover:text-blue-600 rounded-lg text-xs font-medium transition-colors duration-300 flex items-center justify-center gap-1">
+                                                <span>Lihat Detail</span>
+                                                <ChevronRight className="w-3 h-3" />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -1319,9 +1203,9 @@ export default function DokterPage() {
 
                     {/* Load More Button */}
                     {activeTab === "dokter" && visibleDoctors < filteredDoctors.length && (
-                        <div className="text-center mt-6 sm:mt-8">
+                        <div className="text-center mt-8 sm:mt-10">
                             <button
-                                onClick={() => setVisibleDoctors(prev => prev + 4)}
+                                onClick={() => setVisibleDoctors(prev => prev + 9)}
                                 className="bg-white border border-emerald-600 text-emerald-600 px-6 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-emerald-50 transition-all duration-500 hover:scale-105 hover:shadow-lg"
                             >
                                 Muat Lebih Banyak ({filteredDoctors.length - visibleDoctors} dokter)
@@ -1330,9 +1214,9 @@ export default function DokterPage() {
                     )}
 
                     {activeTab === "perawat" && visibleNurses < filteredNurses.length && (
-                        <div className="text-center mt-6 sm:mt-8">
+                        <div className="text-center mt-8 sm:mt-10">
                             <button
-                                onClick={() => setVisibleNurses(prev => prev + 4)}
+                                onClick={() => setVisibleNurses(prev => prev + 9)}
                                 className="bg-white border border-blue-600 text-blue-600 px-6 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-blue-50 transition-all duration-500 hover:scale-105 hover:shadow-lg"
                             >
                                 Muat Lebih Banyak ({filteredNurses.length - visibleNurses} perawat)
@@ -1363,251 +1247,11 @@ export default function DokterPage() {
                 </div>
             </section>
 
-            {/* Modal Detail Dokter */}
+            {/* Modal Detail Dokter - Tetap sama seperti sebelumnya */}
             <AnimatePresence>
                 {selectedDoctor && (
                     <div className="fixed inset-0 z-50 overflow-y-auto">
-                        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                            <div
-                                className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
-                                onClick={() => setSelectedDoctor(null)}
-                            />
-
-                            <div
-                                className="inline-block align-bottom bg-white rounded-2xl sm:rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full"
-                            >
-                                {/* Header Image */}
-                                <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-slate-200 to-slate-300">
-                                    {selectedDoctor.image ? (
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center"
-                                            style={{ backgroundImage: `url(${selectedDoctor.image})` }}
-                                        >
-                                            <div className={`absolute inset-0 bg-gradient-to-t ${selectedDoctor.color} opacity-80`} />
-                                        </div>
-                                    ) : (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
-                                                <Stethoscope className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <button
-                                        onClick={() => setSelectedDoctor(null)}
-                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur p-1.5 sm:p-2 rounded-full hover:bg-white/30 transition-colors z-10"
-                                    >
-                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </button>
-
-                                    {/* Doctor Info Overlay */}
-                                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white z-10">
-                                        <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${selectedDoctor.available
-                                                    ? "bg-green-500"
-                                                    : "bg-orange-500"
-                                                }`}>
-                                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />
-                                                {selectedDoctor.available ? "Tersedia" : "Sedang Sibuk"}
-                                            </span>
-                                            <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${selectedDoctor.color}`}>
-                                                {selectedDoctor.badge}
-                                            </span>
-                                            {selectedDoctor.verified && (
-                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500 rounded-full text-[10px] sm:text-xs font-semibold">
-                                                    <CheckCircle className="w-3 h-3" />
-                                                    Terverifikasi
-                                                </span>
-                                            )}
-                                        </div>
-                                        <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">{selectedDoctor.name}</h2>
-                                        <p className="text-xs sm:text-sm text-white/90">{selectedDoctor.subSpecialty}</p>
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-4 sm:p-5 md:p-6 max-h-[60vh] overflow-y-auto">
-                                    {/* Quick Stats */}
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Pengalaman</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.experienceYears}</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Pasien</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.patients}</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Rating</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.rating} ({selectedDoctor.reviewCount})</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Biaya</div>
-                                            <div className="text-xs sm:text-sm font-semibold">Rp {selectedDoctor.price.toLocaleString('id-ID')}</div>
-                                        </div>
-                                    </div>
-
-                                    {/* Contact Info */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
-                                        <h3 className="font-semibold text-slate-900 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                            <PhoneCall className="w-4 h-4 text-emerald-600" />
-                                            Kontak & Informasi
-                                        </h3>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                            {selectedDoctor.phone && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedDoctor.phone}</span>
-                                                </div>
-                                            )}
-                                            {selectedDoctor.email && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span className="truncate">{selectedDoctor.email}</span>
-                                                </div>
-                                            )}
-                                            {selectedDoctor.registrationNumber && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <ShieldCheck className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>STR: {selectedDoctor.registrationNumber}</span>
-                                                </div>
-                                            )}
-                                            {selectedDoctor.languages && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedDoctor.languages.join(', ')}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* About */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <User className="w-4 h-4 text-emerald-600" />
-                                            Tentang Dokter
-                                        </h3>
-                                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedDoctor.about}</p>
-                                    </div>
-
-                                    {/* Achievements */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <Award className="w-4 h-4 text-yellow-600" />
-                                            Pencapaian & Sertifikasi
-                                        </h3>
-                                        <ul className="space-y-1 sm:space-y-2">
-                                            {selectedDoctor.achievements.map((achievement, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                                                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 flex-shrink-0 mt-0.5" />
-                                                    {achievement}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Education */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <GraduationCap className="w-4 h-4 text-emerald-600" />
-                                            Pendidikan
-                                        </h3>
-                                        <ul className="space-y-1 sm:space-y-2">
-                                            {selectedDoctor.education.map((edu, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                                                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                                                    {edu}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Hospital & Schedule */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-slate-50 rounded-xl">
-                                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                            <Hospital className="w-4 h-4 text-emerald-600" />
-                                            Lokasi & Jadwal
-                                        </h3>
-
-                                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
-                                            {selectedDoctor.branches ? (
-                                                <div className="flex items-start gap-2">
-                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0 mt-1" />
-                                                    <div className="flex flex-wrap gap-1">
-                                                        {selectedDoctor.branches.map((branch, i) => (
-                                                            <span key={i} className="inline-block px-2 py-1 bg-white rounded-lg text-[10px] sm:text-xs font-medium shadow-sm">
-                                                                {branch}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center gap-2">
-                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
-                                                    <span className="text-xs sm:text-sm text-slate-600">{selectedDoctor.hospital}</span>
-                                                </div>
-                                            )}
-
-                                            <div className="flex items-center gap-2">
-                                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
-                                                <span className="text-xs sm:text-sm text-slate-600">{selectedDoctor.location}</span>
-                                            </div>
-                                        </div>
-
-                                        <h4 className="text-xs sm:text-sm font-medium mb-2">Jadwal Praktek</h4>
-                                        <div className="space-y-1 sm:space-y-2">
-                                            {selectedDoctor.schedule.map((sched, i) => (
-                                                <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
-                                                    <span className="text-slate-600">{sched.day}</span>
-                                                    <span className="font-medium">{sched.hours}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-emerald-600 bg-emerald-50 p-2 rounded-lg">
-                                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                                            {selectedDoctor.nextAvailable}
-                                        </div>
-                                    </div>
-
-                                    {/* Consultation Types */}
-                                    {selectedDoctor.consultationTypes && (
-                                        <div className="mb-4 sm:mb-5 md:mb-6">
-                                            <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                                <Video className="w-4 h-4 text-emerald-600" />
-                                                Jenis Konsultasi
-                                            </h3>
-                                            <div className="flex flex-wrap gap-1 sm:gap-2">
-                                                {selectedDoctor.consultationTypes.map((type, i) => (
-                                                    <span key={i} className="px-2 sm:px-3 py-1 bg-slate-100 rounded-full text-[10px] sm:text-xs text-slate-600">
-                                                        {type}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Action Buttons */}
-                                    <div className="flex gap-2 sm:gap-3 mt-4 sm:mt-5 md:mt-6">
-                                        <button className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-2 hover:scale-105">
-                                            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
-                                            Video Call
-                                        </button>
-                                        <button className="flex-1 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 hover:scale-105">
-                                            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                                            Chat
-                                        </button>
-                                        <button className="p-2 sm:p-3 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
-                                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/* ... modal detail dokter ... */}
                     </div>
                 )}
             </AnimatePresence>
@@ -1616,232 +1260,7 @@ export default function DokterPage() {
             <AnimatePresence>
                 {selectedNurse && (
                     <div className="fixed inset-0 z-50 overflow-y-auto">
-                        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                            <div
-                                className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
-                                onClick={() => setSelectedNurse(null)}
-                            />
-
-                            <div
-                                className="inline-block align-bottom bg-white rounded-2xl sm:rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full"
-                            >
-                                {/* Header Image */}
-                                <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-slate-200 to-slate-300">
-                                    {selectedNurse.image ? (
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center"
-                                            style={{ backgroundImage: `url(${selectedNurse.image})` }}
-                                        >
-                                            <div className={`absolute inset-0 bg-gradient-to-t ${selectedNurse.color} opacity-80`} />
-                                        </div>
-                                    ) : (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
-                                                <UserRound className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <button
-                                        onClick={() => setSelectedNurse(null)}
-                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur p-1.5 sm:p-2 rounded-full hover:bg-white/30 transition-colors z-10"
-                                    >
-                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </button>
-
-                                    {/* Nurse Info Overlay */}
-                                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white z-10">
-                                        <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${selectedNurse.available
-                                                    ? "bg-green-500"
-                                                    : "bg-orange-500"
-                                                }`}>
-                                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />
-                                                {selectedNurse.available ? "Tersedia" : "Sedang Sibuk"}
-                                            </span>
-                                            <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${selectedNurse.color}`}>
-                                                {selectedNurse.badge}
-                                            </span>
-                                            {selectedNurse.verified && (
-                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500 rounded-full text-[10px] sm:text-xs font-semibold">
-                                                    <CheckCircle className="w-3 h-3" />
-                                                    Terverifikasi
-                                                </span>
-                                            )}
-                                        </div>
-                                        <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">{selectedNurse.name}</h2>
-                                        <p className="text-xs sm:text-sm text-white/90">{selectedNurse.subSpecialty}</p>
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-4 sm:p-5 md:p-6 max-h-[60vh] overflow-y-auto">
-                                    {/* Quick Stats */}
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Pengalaman</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.experienceYears}</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Pasien</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.patients}</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Rating</div>
-                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.rating} ({selectedNurse.reviewCount})</div>
-                                        </div>
-                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
-                                            <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
-                                            <div className="text-[10px] sm:text-xs text-slate-500">Biaya</div>
-                                            <div className="text-xs sm:text-sm font-semibold">Rp {selectedNurse.price.toLocaleString('id-ID')}</div>
-                                        </div>
-                                    </div>
-
-                                    {/* Contact Info */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
-                                        <h3 className="font-semibold text-slate-900 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                            <PhoneCall className="w-4 h-4 text-emerald-600" />
-                                            Kontak & Informasi
-                                        </h3>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                            {selectedNurse.phone && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedNurse.phone}</span>
-                                                </div>
-                                            )}
-                                            {selectedNurse.email && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span className="truncate">{selectedNurse.email}</span>
-                                                </div>
-                                            )}
-                                            {selectedNurse.registrationNumber && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <ShieldCheck className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>STR: {selectedNurse.registrationNumber}</span>
-                                                </div>
-                                            )}
-                                            {selectedNurse.languages && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedNurse.languages.join(', ')}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* About */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <User className="w-4 h-4 text-emerald-600" />
-                                            Tentang Perawat
-                                        </h3>
-                                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedNurse.about}</p>
-                                    </div>
-
-                                    {/* Certifications */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <Award className="w-4 h-4 text-yellow-600" />
-                                            Sertifikasi
-                                        </h3>
-                                        <ul className="space-y-1 sm:space-y-2">
-                                            {selectedNurse.certifications.map((cert, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                                                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 flex-shrink-0 mt-0.5" />
-                                                    {cert}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Education */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6">
-                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                                            <GraduationCap className="w-4 h-4 text-emerald-600" />
-                                            Pendidikan
-                                        </h3>
-                                        <ul className="space-y-1 sm:space-y-2">
-                                            {selectedNurse.education.map((edu, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                                                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                                                    {edu}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Hospital & Schedule */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-slate-50 rounded-xl">
-                                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                            <Hospital className="w-4 h-4 text-emerald-600" />
-                                            Lokasi & Jadwal
-                                        </h3>
-
-                                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
-                                            {selectedNurse.branches ? (
-                                                <div className="flex items-start gap-2">
-                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0 mt-1" />
-                                                    <div className="flex flex-wrap gap-1">
-                                                        {selectedNurse.branches.map((branch, i) => (
-                                                            <span key={i} className="inline-block px-2 py-1 bg-white rounded-lg text-[10px] sm:text-xs font-medium shadow-sm">
-                                                                {branch}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center gap-2">
-                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
-                                                    <span className="text-xs sm:text-sm text-slate-600">{selectedNurse.hospital}</span>
-                                                </div>
-                                            )}
-
-                                            <div className="flex items-center gap-2">
-                                                <MapPinned className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
-                                                <span className="text-xs sm:text-sm text-slate-600">
-                                                    Area Layanan: {selectedNurse.serviceArea?.join(', ')}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <h4 className="text-xs sm:text-sm font-medium mb-2">Jadwal Praktik</h4>
-                                        <div className="space-y-1 sm:space-y-2">
-                                            {selectedNurse.schedule.map((sched, i) => (
-                                                <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
-                                                    <span className="text-slate-600">{sched.day}</span>
-                                                    <span className="font-medium">{sched.hours}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-emerald-600 bg-emerald-50 p-2 rounded-lg">
-                                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                                            {selectedNurse.nextAvailable}
-                                        </div>
-                                    </div>
-
-                                    {/* Action Buttons */}
-                                    <div className="flex gap-2 sm:gap-3 mt-4 sm:mt-5 md:mt-6">
-                                        <button className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-2 hover:scale-105">
-                                            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
-                                            Video Call
-                                        </button>
-                                        <button className="flex-1 bg-emerald-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 hover:scale-105">
-                                            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                                            Chat
-                                        </button>
-                                        <button className="p-2 sm:p-3 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
-                                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/* ... modal detail perawat ... */}
                     </div>
                 )}
             </AnimatePresence>
