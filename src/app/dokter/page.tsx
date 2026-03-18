@@ -262,7 +262,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 187,
             price: 300000,
-            image: "", // Kosong, siap diisi dengan path gambar
+            image: "/images/dokter/dokter-gigi-1.jpg", // Kosong, siap diisi dengan path gambar
             schedule: [
                 { day: "Senin", hours: "09:00 - 17:00" },
                 { day: "Selasa", hours: "09:00 - 17:00" },
@@ -306,7 +306,7 @@ export default function DokterPage() {
             rating: 4.8,
             reviewCount: 145,
             price: 275000,
-            image: "",
+            image: "/images/dokter/dokter-gigi-2.jpg",
             schedule: [
                 { day: "Senin", hours: "10:00 - 18:00" },
                 { day: "Selasa", hours: "10:00 - 18:00" },
@@ -350,7 +350,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 234,
             price: 325000,
-            image: "",
+            image: "/images/dokter/dokter-gigi-3.jpg",
             schedule: [
                 { day: "Senin", hours: "08:00 - 16:00" },
                 { day: "Selasa", hours: "08:00 - 16:00" },
@@ -394,7 +394,7 @@ export default function DokterPage() {
             rating: 4.8,
             reviewCount: 167,
             price: 300000,
-            image: "",
+            image: "/images/dokter/dokter-gigi-4.jpg",
             schedule: [
                 { day: "Selasa", hours: "09:00 - 17:00" },
                 { day: "Rabu", hours: "09:00 - 17:00" },
@@ -439,7 +439,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 325,
             price: 250000,
-            image: "",
+            image: "/images/dokter/dokter-gigi-5.jpg",
             schedule: [
                 { day: "Senin", hours: "09:00 - 17:00" },
                 { day: "Selasa", hours: "09:00 - 17:00" },
@@ -488,7 +488,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 112,
             price: 175000,
-            image: "",
+            image: "/images/perawat/perawat-1.jpg",
             schedule: [
                 { day: "Senin", hours: "08:00 - 20:00" },
                 { day: "Selasa", hours: "08:00 - 20:00" },
@@ -533,7 +533,7 @@ export default function DokterPage() {
             rating: 4.8,
             reviewCount: 89,
             price: 200000,
-            image: "",
+            image: "/images/perawat/perawat-2.jpg",
             schedule: [
                 { day: "Senin", hours: "07:00 - 19:00" },
                 { day: "Selasa", hours: "07:00 - 19:00" },
@@ -578,7 +578,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 156,
             price: 225000,
-            image: "",
+            image: "/images/perawat/perawat-3.jpg",
             schedule: [
                 { day: "Senin", hours: "09:00 - 21:00" },
                 { day: "Selasa", hours: "09:00 - 21:00" },
