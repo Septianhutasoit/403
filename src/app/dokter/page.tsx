@@ -439,7 +439,7 @@ export default function DokterPage() {
             rating: 4.9,
             reviewCount: 325,
             price: 250000,
-            image: "/images/dokter/dokter-gigi-5.jpg",
+            image: "/images/dokter/dokter-1.jpg",
             schedule: [
                 { day: "Senin", hours: "09:00 - 17:00" },
                 { day: "Selasa", hours: "09:00 - 17:00" },
