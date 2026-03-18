@@ -71,7 +71,7 @@ export default function Navbar() {
                             </Link>
                         ))}
 
-                        <button className="ml-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-2 rounded-full hover:shadow-xl hover:shadow-emerald-200/50 hover:scale-105 transition-all duration-500 font-semibold">
+                        <button className="ml-4 text-white px-6 py-2 rounded-full hover:shadow-xl hover:scale-105 transition-all duration-500 font-semibold" style={{ background: 'linear-gradient(135deg, #000000, #233E2E, #3E624C)' }}>
                             Daftar Sekarang
                         </button>
                     </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
-                        <button className="w-full mt-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold">
+                        <button className="w-full mt-4 text-white px-6 py-3 rounded-xl font-semibold" style={{ background: 'linear-gradient(135deg, #000000, #233E2E, #3E624C)' }}>
                             Daftar Sekarang
                         </button>
                     </div>
