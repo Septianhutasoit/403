@@ -998,19 +998,18 @@ export default function DokterPage() {
                                     onClick={() => setSelectedDoctor(doctor)}
                                 >
                                     <div className="flex flex-col">
-                                        {/* Card Header with Image */}
+                                        {/* Card Header with Image - Tanpa Overlay Warna */}
                                         <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
                                             {doctor.image ? (
                                                 <div
                                                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                                                     style={{ backgroundImage: `url(${doctor.image})` }}
                                                 >
-                                                    {/* HAPUS BAGIAN INI */}
-                                                    <div className={`absolute inset-0 bg-gradient-to-t ${doctor.color} opacity-70`} />
+                                                    {/* TIDAK ADA OVERLAY WARNA - HANYA GAMBAR MURNI */}
                                                 </div>
                                             ) : (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg">
                                                         <Stethoscope className="w-10 h-10 text-slate-400" />
                                                     </div>
                                                 </div>
@@ -1018,11 +1017,11 @@ export default function DokterPage() {
 
                                             {/* Badges */}
                                             <div className="absolute top-3 left-3 z-10 flex gap-2">
-                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${doctor.available
-                                                        ? "bg-green-100 text-green-700"
-                                                        : "bg-orange-100 text-orange-700"
+                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold shadow-md backdrop-blur-sm ${doctor.available
+                                                        ? "bg-green-500/90 text-white"
+                                                        : "bg-orange-500/90 text-white"
                                                     }`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${doctor.available ? "bg-green-600" : "bg-orange-600"} animate-pulse`} />
+                                                    <span className={`w-1.5 h-1.5 rounded-full ${doctor.available ? "bg-white" : "bg-white"} animate-pulse`} />
                                                     {doctor.available ? "Tersedia" : "Sibuk"}
                                                 </span>
                                                 <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${doctor.color} text-white shadow-md`}>
@@ -1032,18 +1031,18 @@ export default function DokterPage() {
 
                                             {doctor.verified && (
                                                 <div className="absolute top-3 right-3 z-10">
-                                                    <span className="bg-blue-100 text-blue-600 p-1 rounded-full shadow-lg">
+                                                    <span className="bg-blue-500/90 backdrop-blur-sm text-white p-1.5 rounded-full shadow-lg">
                                                         <CheckCircle className="w-4 h-4" />
                                                     </span>
                                                 </div>
                                             )}
 
-                                            {/* Doctor Info Overlay - dengan background transparan dan text shadow */}
-                                            <div className="absolute bottom-3 left-3 right-3 text-white">
-                                                <h3 className="text-base font-bold leading-tight mb-1 drop-shadow-lg [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
+                                            {/* Doctor Info Overlay - dengan background gradient transparan untuk teks */}
+                                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                                                <h3 className="text-base font-bold leading-tight mb-1 text-white drop-shadow-lg">
                                                     {doctor.name.length > 35 ? doctor.name.substring(0, 35) + '...' : doctor.name}
                                                 </h3>
-                                                <p className="text-xs text-white/90 drop-shadow [text-shadow:1px_1px_2px_rgba(0,0,0,0.5)]">
+                                                <p className="text-xs text-white/90 drop-shadow">
                                                     {doctor.subSpecialty}
                                                 </p>
                                             </div>
@@ -1103,18 +1102,18 @@ export default function DokterPage() {
                                     onClick={() => setSelectedNurse(nurse)}
                                 >
                                     <div className="flex flex-col">
-                                        {/* Card Header with Image */}
+                                        {/* Card Header with Image - Tanpa Overlay Warna */}
                                         <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
                                             {nurse.image ? (
                                                 <div
                                                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                                                     style={{ backgroundImage: `url(${nurse.image})` }}
                                                 >
-                                                    <div className={`absolute inset-0 bg-gradient-to-t ${nurse.color} opacity-70`} />
+                                                    {/* TIDAK ADA OVERLAY WARNA - HANYA GAMBAR MURNI */}
                                                 </div>
                                             ) : (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                    <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg">
                                                         <UserRound className="w-10 h-10 text-slate-400" />
                                                     </div>
                                                 </div>
@@ -1122,11 +1121,11 @@ export default function DokterPage() {
 
                                             {/* Badges */}
                                             <div className="absolute top-3 left-3 z-10 flex gap-2">
-                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${nurse.available
-                                                        ? "bg-green-100 text-green-700"
-                                                        : "bg-orange-100 text-orange-700"
+                                                <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold shadow-md backdrop-blur-sm ${nurse.available
+                                                        ? "bg-green-500/90 text-white"
+                                                        : "bg-orange-500/90 text-white"
                                                     }`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${nurse.available ? "bg-green-600" : "bg-orange-600"} animate-pulse`} />
+                                                    <span className={`w-1.5 h-1.5 rounded-full ${nurse.available ? "bg-white" : "bg-white"} animate-pulse`} />
                                                     {nurse.available ? "Tersedia" : "Sibuk"}
                                                 </span>
                                                 <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${nurse.color} text-white shadow-md`}>
@@ -1136,15 +1135,15 @@ export default function DokterPage() {
 
                                             {nurse.verified && (
                                                 <div className="absolute top-3 right-3 z-10">
-                                                    <span className="bg-blue-100 text-blue-600 p-1 rounded-full shadow-lg">
+                                                    <span className="bg-blue-500/90 backdrop-blur-sm text-white p-1.5 rounded-full shadow-lg">
                                                         <CheckCircle className="w-4 h-4" />
                                                     </span>
                                                 </div>
                                             )}
 
-                                            {/* Nurse Info Overlay */}
-                                            <div className="absolute bottom-3 left-3 right-3 text-white">
-                                                <h3 className="text-base font-bold leading-tight mb-1 drop-shadow-lg">
+                                            {/* Nurse Info Overlay - dengan background gradient transparan untuk teks */}
+                                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                                                <h3 className="text-base font-bold leading-tight mb-1 text-white drop-shadow-lg">
                                                     {nurse.name.length > 35 ? nurse.name.substring(0, 35) + '...' : nurse.name}
                                                 </h3>
                                                 <p className="text-xs text-white/90 drop-shadow">
@@ -1268,18 +1267,18 @@ export default function DokterPage() {
                                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                                 className="inline-block align-bottom bg-white rounded-2xl sm:rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full relative z-50"
                             >
-                                {/* Header Image */}
+                                {/* Header Image - Tanpa Overlay Warna */}
                                 <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-slate-200 to-slate-300">
                                     {selectedNurse.image ? (
                                         <div
                                             className="absolute inset-0 bg-cover bg-center"
                                             style={{ backgroundImage: `url(${selectedNurse.image})` }}
                                         >
-                                            <div className={`absolute inset-0 bg-gradient-to-t ${selectedNurse.color} opacity-80`} />
+                                            {/* TIDAK ADA OVERLAY WARNA */}
                                         </div>
                                     ) : (
                                         <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 flex items-center justify-center">
+                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 flex items-center justify-center shadow-xl">
                                                 <UserRound className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
                                             </div>
                                         </div>
@@ -1287,33 +1286,33 @@ export default function DokterPage() {
 
                                     <button
                                         onClick={() => setSelectedNurse(null)}
-                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-black/30 hover:bg-black/50 p-1.5 sm:p-2 rounded-full transition-colors z-10"
+                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-black/50 hover:bg-black/70 p-1.5 sm:p-2 rounded-full transition-colors z-10 backdrop-blur-sm"
                                     >
                                         <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                     </button>
 
-                                    {/* Nurse Info Overlay */}
-                                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white z-10">
-                                        <div className="flex items-center gap-2 mb-1 sm:mb-2 flex-wrap">
-                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${selectedNurse.available
+                                    {/* Nurse Info Overlay - dengan background gradient untuk teks */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${selectedNurse.available
                                                     ? "bg-green-500"
                                                     : "bg-orange-500"
                                                 }`}>
-                                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />
+                                                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                                                 {selectedNurse.available ? "Tersedia" : "Sedang Sibuk"}
                                             </span>
-                                            <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${selectedNurse.color}`}>
+                                            <span className={`inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${selectedNurse.color}`}>
                                                 {selectedNurse.badge}
                                             </span>
                                             {selectedNurse.verified && (
-                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500 rounded-full text-[10px] sm:text-xs font-semibold">
+                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-1 bg-blue-500 rounded-full text-xs font-semibold">
                                                     <CheckCircle className="w-3 h-3" />
                                                     Terverifikasi
                                                 </span>
                                             )}
                                         </div>
-                                        <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">{selectedNurse.name}</h2>
-                                        <p className="text-xs sm:text-sm text-white/90">{selectedNurse.subSpecialty}</p>
+                                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1">{selectedNurse.name}</h2>
+                                        <p className="text-sm sm:text-base text-white/90">{selectedNurse.subSpecialty}</p>
                                     </div>
                                 </div>
 
@@ -1424,38 +1423,52 @@ export default function DokterPage() {
                                         </div>
                                     </div>
 
-                                    {/* Contact Info */}
-                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
-                                        <h3 className="font-semibold text-slate-900 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
-                                            <PhoneCall className="w-4 h-4 text-emerald-600" />
-                                            Kontak & Informasi
-                                        </h3>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                            {selectedDoctor.phone && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedDoctor.phone}</span>
+                                    {/* Contact Info - dengan desain card yang lebih modern */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        {selectedDoctor.phone && (
+                                            <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl hover:shadow-md transition-shadow">
+                                                <div className="p-2 bg-emerald-100 rounded-lg">
+                                                    <Phone className="w-4 h-4 text-emerald-600" />
                                                 </div>
-                                            )}
-                                            {selectedDoctor.email && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span className="truncate">{selectedDoctor.email}</span>
+                                                <div>
+                                                    <p className="text-xs text-slate-500">Telepon</p>
+                                                    <p className="text-sm font-medium text-slate-700">{selectedDoctor.phone}</p>
                                                 </div>
-                                            )}
-                                            {selectedDoctor.registrationNumber && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <ShieldCheck className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>STR: {selectedDoctor.registrationNumber}</span>
+                                            </div>
+                                        )}
+                                        {selectedDoctor.email && (
+                                            <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl hover:shadow-md transition-shadow">
+                                                <div className="p-2 bg-blue-100 rounded-lg">
+                                                    <Mail className="w-4 h-4 text-blue-600" />
                                                 </div>
-                                            )}
-                                            {selectedDoctor.languages && (
-                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                    <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
-                                                    <span>{selectedDoctor.languages.join(', ')}</span>
+                                                <div>
+                                                    <p className="text-xs text-slate-500">Email</p>
+                                                    <p className="text-sm font-medium text-slate-700 truncate">{selectedDoctor.email}</p>
                                                 </div>
-                                            )}
-                                        </div>
+                                            </div>
+                                        )}
+                                        {selectedDoctor.registrationNumber && (
+                                            <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl hover:shadow-md transition-shadow">
+                                                <div className="p-2 bg-purple-100 rounded-lg">
+                                                    <ShieldCheck className="w-4 h-4 text-purple-600" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-slate-500">STR</p>
+                                                    <p className="text-sm font-medium text-slate-700">{selectedDoctor.registrationNumber}</p>
+                                                </div>
+                                            </div>
+                                        )}
+                                        {selectedDoctor.languages && (
+                                            <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl hover:shadow-md transition-shadow">
+                                                <div className="p-2 bg-amber-100 rounded-lg">
+                                                    <Globe className="w-4 h-4 text-amber-600" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-slate-500">Bahasa</p>
+                                                    <p className="text-sm font-medium text-slate-700">{selectedDoctor.languages.join(', ')}</p>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* About */}
