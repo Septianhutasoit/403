@@ -1246,21 +1246,498 @@ export default function DokterPage() {
                     )}
                 </div>
             </section>
-
-            {/* Modal Detail Dokter - Tetap sama seperti sebelumnya */}
-            <AnimatePresence>
-                {selectedDoctor && (
-                    <div className="fixed inset-0 z-50 overflow-y-auto">
-                        {/* ... modal detail dokter ... */}
-                    </div>
-                )}
-            </AnimatePresence>
-
+            
             {/* Modal Detail Perawat */}
             <AnimatePresence>
                 {selectedNurse && (
                     <div className="fixed inset-0 z-50 overflow-y-auto">
-                        {/* ... modal detail perawat ... */}
+                        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+                                onClick={() => setSelectedNurse(null)}
+                            />
+
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                className="inline-block align-bottom bg-white rounded-2xl sm:rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full"
+                            >
+                                {/* Header Image */}
+                                <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-slate-200 to-slate-300">
+                                    {selectedNurse.image ? (
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center"
+                                            style={{ backgroundImage: `url(${selectedNurse.image})` }}
+                                        >
+                                            <div className={`absolute inset-0 bg-gradient-to-t ${selectedNurse.color} opacity-80`} />
+                                        </div>
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                <UserRound className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <button
+                                        onClick={() => setSelectedNurse(null)}
+                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur p-1.5 sm:p-2 rounded-full hover:bg-white/30 transition-colors z-10"
+                                    >
+                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                                    </button>
+
+                                    {/* Nurse Info Overlay */}
+                                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white z-10">
+                                        <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${selectedNurse.available
+                                                    ? "bg-green-500"
+                                                    : "bg-orange-500"
+                                                }`}>
+                                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />
+                                                {selectedNurse.available ? "Tersedia" : "Sedang Sibuk"}
+                                            </span>
+                                            <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${selectedNurse.color}`}>
+                                                {selectedNurse.badge}
+                                            </span>
+                                            {selectedNurse.verified && (
+                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500 rounded-full text-[10px] sm:text-xs font-semibold">
+                                                    <CheckCircle className="w-3 h-3" />
+                                                    Terverifikasi
+                                                </span>
+                                            )}
+                                        </div>
+                                        <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">{selectedNurse.name}</h2>
+                                        <p className="text-xs sm:text-sm text-white/90">{selectedNurse.subSpecialty}</p>
+                                    </div>
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-4 sm:p-5 md:p-6 max-h-[60vh] overflow-y-auto">
+                                    {/* Quick Stats */}
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Pengalaman</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.experienceYears}</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Pasien</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.patients}</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Rating</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedNurse.rating} ({selectedNurse.reviewCount})</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Biaya</div>
+                                            <div className="text-xs sm:text-sm font-semibold">Rp {selectedNurse.price.toLocaleString('id-ID')}</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Contact Info */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
+                                        <h3 className="font-semibold text-slate-900 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
+                                            <PhoneCall className="w-4 h-4 text-emerald-600" />
+                                            Kontak & Informasi
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                                            {selectedNurse.phone && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>{selectedNurse.phone}</span>
+                                                </div>
+                                            )}
+                                            {selectedNurse.email && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span className="truncate">{selectedNurse.email}</span>
+                                                </div>
+                                            )}
+                                            {selectedNurse.registrationNumber && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <ShieldCheck className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>STR: {selectedNurse.registrationNumber}</span>
+                                                </div>
+                                            )}
+                                            {selectedNurse.languages && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>{selectedNurse.languages.join(', ')}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* About */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <User className="w-4 h-4 text-emerald-600" />
+                                            Tentang Perawat
+                                        </h3>
+                                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedNurse.about}</p>
+                                    </div>
+
+                                    {/* Certifications */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <Award className="w-4 h-4 text-yellow-600" />
+                                            Sertifikasi
+                                        </h3>
+                                        <ul className="space-y-1 sm:space-y-2">
+                                            {selectedNurse.certifications.map((cert, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                                                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 flex-shrink-0 mt-0.5" />
+                                                    {cert}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Education */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <GraduationCap className="w-4 h-4 text-emerald-600" />
+                                            Pendidikan
+                                        </h3>
+                                        <ul className="space-y-1 sm:space-y-2">
+                                            {selectedNurse.education.map((edu, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                                                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                                                    {edu}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Hospital & Schedule */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-slate-50 rounded-xl">
+                                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2 text-sm sm:text-base">
+                                            <Hospital className="w-4 h-4 text-emerald-600" />
+                                            Lokasi & Jadwal
+                                        </h3>
+
+                                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
+                                            {selectedNurse.branches ? (
+                                                <div className="flex items-start gap-2">
+                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0 mt-1" />
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {selectedNurse.branches.map((branch, i) => (
+                                                            <span key={i} className="inline-block px-2 py-1 bg-white rounded-lg text-[10px] sm:text-xs font-medium shadow-sm">
+                                                                {branch}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2">
+                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                                                    <span className="text-xs sm:text-sm text-slate-600">{selectedNurse.hospital}</span>
+                                                </div>
+                                            )}
+
+                                            <div className="flex items-center gap-2">
+                                                <MapPinned className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                                                <span className="text-xs sm:text-sm text-slate-600">
+                                                    Area Layanan: {selectedNurse.serviceArea?.join(', ')}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <h4 className="text-xs sm:text-sm font-medium mb-2">Jadwal Praktik</h4>
+                                        <div className="space-y-1 sm:space-y-2">
+                                            {selectedNurse.schedule.map((sched, i) => (
+                                                <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
+                                                    <span className="text-slate-600">{sched.day}</span>
+                                                    <span className="font-medium">{sched.hours}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-emerald-600 bg-emerald-50 p-2 rounded-lg">
+                                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                                            {selectedNurse.nextAvailable}
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="flex gap-2 sm:gap-3 mt-4 sm:mt-5 md:mt-6">
+                                        <button className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-2 hover:scale-105">
+                                            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            Video Call
+                                        </button>
+                                        <button className="flex-1 bg-emerald-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 hover:scale-105">
+                                            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            Chat
+                                        </button>
+                                        <button className="p-2 sm:p-3 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
+                                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                )}
+            </AnimatePresence>
+
+            {/* Modal Detail Dokter */}
+            <AnimatePresence>
+                {selectedDoctor && (
+                    <div className="fixed inset-0 z-50 overflow-y-auto">
+                        <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+                                onClick={() => setSelectedDoctor(null)}
+                            />
+
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                className="inline-block align-bottom bg-white rounded-2xl sm:rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full"
+                            >
+                                {/* Header Image */}
+                                <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-slate-200 to-slate-300">
+                                    {selectedDoctor.image ? (
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center"
+                                            style={{ backgroundImage: `url(${selectedDoctor.image})` }}
+                                        >
+                                            <div className={`absolute inset-0 bg-gradient-to-t ${selectedDoctor.color} opacity-80`} />
+                                        </div>
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
+                                                <Stethoscope className="w-10 h-10 sm:w-12 sm:h-12 text-slate-400" />
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <button
+                                        onClick={() => setSelectedDoctor(null)}
+                                        className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur p-1.5 sm:p-2 rounded-full hover:bg-white/30 transition-colors z-10"
+                                    >
+                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                                    </button>
+
+                                    {/* Doctor Info Overlay */}
+                                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white z-10">
+                                        <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                                            <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${selectedDoctor.available
+                                                    ? "bg-green-500"
+                                                    : "bg-orange-500"
+                                                }`}>
+                                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />
+                                                {selectedDoctor.available ? "Tersedia" : "Sedang Sibuk"}
+                                            </span>
+                                            <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${selectedDoctor.color}`}>
+                                                {selectedDoctor.badge}
+                                            </span>
+                                            {selectedDoctor.verified && (
+                                                <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-500 rounded-full text-[10px] sm:text-xs font-semibold">
+                                                    <CheckCircle className="w-3 h-3" />
+                                                    Terverifikasi
+                                                </span>
+                                            )}
+                                        </div>
+                                        <h2 className="text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">{selectedDoctor.name}</h2>
+                                        <p className="text-xs sm:text-sm text-white/90">{selectedDoctor.subSpecialty}</p>
+                                    </div>
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-4 sm:p-5 md:p-6 max-h-[60vh] overflow-y-auto">
+                                    {/* Quick Stats */}
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Pengalaman</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.experienceYears}</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Pasien</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.patients}</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Rating</div>
+                                            <div className="text-xs sm:text-sm font-semibold">{selectedDoctor.rating} ({selectedDoctor.reviewCount})</div>
+                                        </div>
+                                        <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-lg sm:rounded-xl">
+                                            <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto mb-1" />
+                                            <div className="text-[10px] sm:text-xs text-slate-500">Biaya</div>
+                                            <div className="text-xs sm:text-sm font-semibold">Rp {selectedDoctor.price.toLocaleString('id-ID')}</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Contact Info */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl">
+                                        <h3 className="font-semibold text-slate-900 mb-2 sm:mb-3 flex items-center gap-2 text-sm sm:text-base">
+                                            <PhoneCall className="w-4 h-4 text-emerald-600" />
+                                            Kontak & Informasi
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                                            {selectedDoctor.phone && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>{selectedDoctor.phone}</span>
+                                                </div>
+                                            )}
+                                            {selectedDoctor.email && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span className="truncate">{selectedDoctor.email}</span>
+                                                </div>
+                                            )}
+                                            {selectedDoctor.registrationNumber && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <ShieldCheck className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>STR: {selectedDoctor.registrationNumber}</span>
+                                                </div>
+                                            )}
+                                            {selectedDoctor.languages && (
+                                                <div className="flex items-center gap-2 text-xs sm:text-sm">
+                                                    <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
+                                                    <span>{selectedDoctor.languages.join(', ')}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* About */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <User className="w-4 h-4 text-emerald-600" />
+                                            Tentang Dokter
+                                        </h3>
+                                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedDoctor.about}</p>
+                                    </div>
+
+                                    {/* Achievements */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <Award className="w-4 h-4 text-yellow-600" />
+                                            Pencapaian & Sertifikasi
+                                        </h3>
+                                        <ul className="space-y-1 sm:space-y-2">
+                                            {selectedDoctor.achievements.map((achievement, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                                                    <Award className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 flex-shrink-0 mt-0.5" />
+                                                    {achievement}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Education */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                            <GraduationCap className="w-4 h-4 text-emerald-600" />
+                                            Pendidikan
+                                        </h3>
+                                        <ul className="space-y-1 sm:space-y-2">
+                                            {selectedDoctor.education.map((edu, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                                                    <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                                                    {edu}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Hospital & Schedule */}
+                                    <div className="mb-4 sm:mb-5 md:mb-6 p-3 sm:p-4 bg-slate-50 rounded-xl">
+                                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2 text-sm sm:text-base">
+                                            <Hospital className="w-4 h-4 text-emerald-600" />
+                                            Lokasi & Jadwal
+                                        </h3>
+
+                                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
+                                            {selectedDoctor.branches ? (
+                                                <div className="flex items-start gap-2">
+                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0 mt-1" />
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {selectedDoctor.branches.map((branch, i) => (
+                                                            <span key={i} className="inline-block px-2 py-1 bg-white rounded-lg text-[10px] sm:text-xs font-medium shadow-sm">
+                                                                {branch}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2">
+                                                    <Building className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                                                    <span className="text-xs sm:text-sm text-slate-600">{selectedDoctor.hospital}</span>
+                                                </div>
+                                            )}
+
+                                            <div className="flex items-center gap-2">
+                                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                                                <span className="text-xs sm:text-sm text-slate-600">{selectedDoctor.location}</span>
+                                            </div>
+                                        </div>
+
+                                        <h4 className="text-xs sm:text-sm font-medium mb-2">Jadwal Praktek</h4>
+                                        <div className="space-y-1 sm:space-y-2">
+                                            {selectedDoctor.schedule.map((sched, i) => (
+                                                <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
+                                                    <span className="text-slate-600">{sched.day}</span>
+                                                    <span className="font-medium">{sched.hours}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-emerald-600 bg-emerald-50 p-2 rounded-lg">
+                                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                                            {selectedDoctor.nextAvailable}
+                                        </div>
+                                    </div>
+
+                                    {/* Consultation Types */}
+                                    {selectedDoctor.consultationTypes && (
+                                        <div className="mb-4 sm:mb-5 md:mb-6">
+                                            <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                                <Video className="w-4 h-4 text-emerald-600" />
+                                                Jenis Konsultasi
+                                            </h3>
+                                            <div className="flex flex-wrap gap-1 sm:gap-2">
+                                                {selectedDoctor.consultationTypes.map((type, i) => (
+                                                    <span key={i} className="px-2 sm:px-3 py-1 bg-slate-100 rounded-full text-[10px] sm:text-xs text-slate-600">
+                                                        {type}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Action Buttons */}
+                                    <div className="flex gap-2 sm:gap-3 mt-4 sm:mt-5 md:mt-6">
+                                        <button className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-500 flex items-center justify-center gap-2 hover:scale-105">
+                                            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            Video Call
+                                        </button>
+                                        <button className="flex-1 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 hover:scale-105">
+                                            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            Chat
+                                        </button>
+                                        <button className="p-2 sm:p-3 border border-slate-200 rounded-lg sm:rounded-xl hover:bg-slate-50 transition-colors hover:scale-105">
+                                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
                     </div>
                 )}
             </AnimatePresence>
