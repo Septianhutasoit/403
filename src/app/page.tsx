@@ -53,14 +53,14 @@ export default function Home() {
   ];
 
   // Data layanan pasca operasi dengan animasi gambar
-  const postOpServices = [
+const postOpServices = [
     {
       id: 1,
       title: "Perawatan Luka Operasi",
       description: "Panduan lengkap merawat luka pasca operasi untuk mencegah infeksi dan mempercepat penyembuhan.",
       icon: <Bandage className="w-8 h-8" />,
-      image: "/images/layanan/luka-operasi.jpg", // Ganti dengan file gambar Anda
-      color: "from-blue-500 to-cyan-500",
+      image: "/images/layanan/luka-operasi.jpg",
+      color: "from-[#233E2E] to-[#3E624C]",
       stats: "15+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=luka"
     },
@@ -69,8 +69,8 @@ export default function Home() {
       title: "Pemulihan Pasca Operasi Jantung",
       description: "Program rehabilitasi jantung yang aman dan efektif untuk lansia pasca operasi.",
       icon: <HeartPulse className="w-8 h-8" />,
-      image: "/images/layanan/jantung.jpg", // Ganti dengan file gambar Anda
-      color: "from-red-500 to-pink-500",
+      image: "/images/layanan/jantung.jpg",
+      color: "from-[#3E624C] to-[#434C47]",
       stats: "10+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=jantung"
     },
@@ -79,8 +79,8 @@ export default function Home() {
       title: "Rehabilitasi Pasca Operasi Tulang",
       description: "Latihan fisioterapi untuk memulihkan mobilitas setelah operasi ortopedi.",
       icon: <Bone className="w-8 h-8" />,
-      image: "/images/layanan/tulang.jpg", // Ganti dengan file gambar Anda
-      color: "from-amber-500 to-orange-500",
+      image: "/images/layanan/tulang.jpg",
+      color: "from-[#434C47] to-[#233E2E]",
       stats: "10+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=tulang"
     },
@@ -89,8 +89,8 @@ export default function Home() {
       title: "Nutrisi Pasca Operasi",
       description: "Panduan makanan bergizi untuk mempercepat pemulihan dan mengembalikan energi.",
       icon: <Apple className="w-8 h-8" />,
-      image: "/images/layanan/nutrisi.jpg", // Ganti dengan file gambar Anda
-      color: "from-green-500 to-emerald-500",
+      image: "/images/layanan/nutrisi.jpg",
+      color: "from-[#3C6243] to-[#DBAA28]",
       stats: "18+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=nutrisi"
     },
@@ -99,8 +99,8 @@ export default function Home() {
       title: "Perawatan Pasca Operasi Mata",
       description: "Tips merawat mata setelah operasi katarak dan operasi mata lainnya.",
       icon: <Eye className="w-8 h-8" />,
-      image: "/images/layanan/mata.jpg", // Ganti dengan file gambar Anda
-      color: "from-purple-500 to-violet-500",
+      image: "/images/layanan/mata.jpg",
+      color: "from-[#233E2E] to-[#3E624C]",
       stats: "8+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=mata"
     },
@@ -109,8 +109,8 @@ export default function Home() {
       title: "Manajemen Nyeri Pasca Operasi",
       description: "Cara mengatasi rasa sakit pasca operasi dengan aman dan efektif.",
       icon: <AlertCircle className="w-8 h-8" />,
-      image: "/images/layanan/nyeri.jpg", // Ganti dengan file gambar Anda
-      color: "from-orange-500 to-red-500",
+      image: "/images/layanan/nyeri.jpg",
+      color: "from-[#3E624C] to-[#434C47]",
       stats: "14+ Artikel",
       link: "/edukasi?kategori=pasca-operasi&topik=nyeri"
     }
@@ -123,8 +123,8 @@ export default function Home() {
       title: "Hipertensi pada Lansia",
       description: "Panduan mengelola tekanan darah tinggi di usia lanjut.",
       icon: <Activity className="w-6 h-6" />,
-      image: "/images/informasi/hipertensi.jpg", // Ganti dengan file gambar Anda
-      color: "from-red-500 to-orange-500",
+      image: "/images/informasi/hipertensi.jpg",
+      color: "from-[#233E2E] to-[#3E624C]",
       link: "/edukasi?kategori=penyakit&topik=hipertensi"
     },
     {
@@ -132,8 +132,8 @@ export default function Home() {
       title: "Diabetes Mellitus",
       description: "Cara mengelola gula darah agar tetap stabil dan sehat.",
       icon: <Droplets className="w-6 h-6" />,
-      image: "/images/informasi/diabetes.jpg", // Ganti dengan file gambar Anda
-      color: "from-blue-500 to-cyan-500",
+      image: "/images/informasi/diabetes.jpg",
+      color: "from-[#3E624C] to-[#434C47]",
       link: "/edukasi?kategori=penyakit&topik=diabetes"
     },
     {
@@ -141,8 +141,8 @@ export default function Home() {
       title: "Osteoporosis",
       description: "Menjaga kepadatan tulang untuk mencegah patah tulang.",
       icon: <Bone className="w-6 h-6" />,
-      image: "/images/informasi/osteoporosis.jpg", // Ganti dengan file gambar Anda
-      color: "from-amber-500 to-yellow-500",
+      image: "/images/informasi/osteoporosis.jpg",
+      color: "from-[#434C47] to-[#233E2E]",
       link: "/edukasi?kategori=penyakit&topik=osteoporosis"
     },
     {
@@ -150,8 +150,8 @@ export default function Home() {
       title: "Demensia & Alzheimer",
       description: "Merawat lansia dengan gangguan daya ingat dan fungsi kognitif.",
       icon: <Brain className="w-6 h-6" />,
-      image: "/images/informasi/demensia.jpg", // Ganti dengan file gambar Anda
-      color: "from-purple-500 to-pink-500",
+      image: "/images/informasi/demensia.jpg",
+      color: "from-[#3C6243] to-[#DBAA28]",
       link: "/edukasi?kategori=mental&topik=demensia"
     },
     {
@@ -159,8 +159,8 @@ export default function Home() {
       title: "Nutrisi Seimbang",
       description: "Panduan makanan sehat untuk menjaga vitalitas lansia.",
       icon: <Apple className="w-6 h-6" />,
-      image: "/images/informasi/nutrisi.jpg", // Ganti dengan file gambar Anda
-      color: "from-green-500 to-emerald-500",
+      image: "/images/informasi/nutrisi.jpg",
+      color: "from-[#233E2E] to-[#3E624C]",
       link: "/edukasi?kategori=nutrisi"
     },
     {
@@ -168,8 +168,8 @@ export default function Home() {
       title: "Olahraga Ringan",
       description: "Gerakan sederhana yang aman dilakukan untuk kebugaran lansia.",
       icon: <Footprints className="w-6 h-6" />,
-      image: "/images/informasi/olahraga.jpg", // Ganti dengan file gambar Anda
-      color: "from-teal-500 to-green-500",
+      image: "/images/informasi/olahraga.jpg",
+      color: "from-[#3E624C] to-[#434C47]",
       link: "/edukasi?kategori=aktivitas"
     }
   ];
@@ -245,6 +245,7 @@ export default function Home() {
                 {/* Overlay Gradient - Lebih soft */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                
               </div>
 
               {/* Pattern Overlay - Lebih soft */}
@@ -258,9 +259,10 @@ export default function Home() {
           ))}
 
           {/* Floating Elements - Lebih soft */}
-          <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-2xl animate-pulse-slow"></div>
-          <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
-        </div>
+          <div className="absolute top-20 right-20 w-96 h-96 bg-[#233E2E]/10 rounded-full blur-2xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#3E624C]/10 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
+
+        </div> {/* <== INI YANG KURANG! TUTUP div absolute inset-0 */}
 
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
@@ -292,11 +294,10 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up delay-200">
               {heroSlides[currentSlide].subtitle}
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
               <Link href="/konsultasi">
-                <button className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2">
-                  Mulai Konsultasi Gratis
+                <button className="group bg-gradient-to-r from-[#233E2E] to-[#3E624C] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-[#233E2E]/50 hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2">
+                  Mulai Konsultasi Gratis {/* <== TAMBAHKAN INI! */}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>
@@ -346,10 +347,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: <Users className="w-8 h-8" />, value: 40, suffix: "K+", label: "Pengguna Aktif", color: "from-emerald-500 to-teal-500" },
-              { icon: <Award className="w-8 h-8" />, value: 50, suffix: "+", label: "Dokter Spesialis", color: "from-blue-500 to-cyan-500" },
-              { icon: <BookOpen className="w-8 h-8" />, value: 120, suffix: "+", label: "Artikel Edukasi", color: "from-purple-500 to-pink-500" },
-              { icon: <HeartHandshake className="w-8 h-8" />, value: 12, suffix: "K+", label: "Keluarga Terbantu", color: "from-orange-500 to-red-500" }
+              { icon: <Users className="w-8 h-8" />, value: 40, suffix: "K+", label: "Pengguna Aktif", color: "from-[#233E2E] to-[#3E624C]" },
+              { icon: <Award className="w-8 h-8" />, value: 50, suffix: "+", label: "Dokter Spesialis", color: "from-[#3E624C] to-[#434C47]" },
+              { icon: <BookOpen className="w-8 h-8" />, value: 120, suffix: "+", label: "Artikel Edukasi", color: "from-[#434C47] to-[#233E2E]" },
+              { icon: <HeartHandshake className="w-8 h-8" />, value: 12, suffix: "K+", label: "Keluarga Terbantu", color: "from-[#3C6243] to-[#DBAA28]" }
             ].map((stat, i) => {
               // State untuk counter
               const [count, setCount] = useState(0);
@@ -437,7 +438,7 @@ export default function Home() {
                 ${isRotating ? 'animate-spin-once' : ''}
               `}
                   >
-                    <div className="text-emerald-600">{stat.icon}</div>
+                    <div className="text-[#233E2E]">{stat.icon}</div>
                   </div>
                   <div className="text-2xl font-bold text-slate-900 transition-all duration-300">
                     {count}
@@ -456,13 +457,13 @@ export default function Home() {
       <section ref={el => sectionRefs.current[0] = el} data-index="0" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white">
         <div className={`max-w-7xl mx-auto ${fadeInUpClass(0)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 bg-[#233E2E]/10 text-[#233E2E] px-4 py-2 rounded-full text-sm font-semibold mb-4">
               <HeartPulse className="w-4 h-4" />
               LAYANAN PASCA OPERASI
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Perawatan Lengkap untuk{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] bg-clip-text text-transparent">
                 Pemulihan Optimal
               </span>
             </h2>
@@ -520,7 +521,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/edukasi?kategori=pasca-operasi">
-              <button className="bg-white border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-500">
+              <button className="bg-white border-2 border-[#233E2E] text-[#233E2E] px-8 py-3 rounded-xl font-semibold hover:bg-[#233E2E]/10 transition-all duration-500">
                 Lihat Semua Layanan Pasca Operasi
               </button>
             </Link>
@@ -532,13 +533,13 @@ export default function Home() {
       <section ref={el => sectionRefs.current[1] = el} data-index="1" className="py-16 sm:py-24 px-4 sm:px-6 bg-white">
         <div className={`max-w-7xl mx-auto ${fadeInUpClass(1)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              <Heart className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 bg-[#233E2E]/10 text-[#233E2E] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Heart className="w-4 h-4 text-[#233E2E]" />
               INFORMASI KESEHATAN UMUM
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Panduan Lengkap Kesehatan{' '}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] bg-clip-text text-transparent">
                 untuk Umum, Dari Anak-Anak,Remaja,Dewasa Hingga Lansia
               </span>
             </h2>
@@ -584,7 +585,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/edukasi">
-              <button className="bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-emerald-700 transition-all duration-500 hover:scale-105">
+              <button className="bg-[#233E2E] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#3E624C] transition-all duration-500 hover:scale-105">
                 Lihat Semua Informasi
               </button>
             </Link>
@@ -597,7 +598,7 @@ export default function Home() {
         {/* Background Animasi Modern (SAMA PERSIS seperti sebelumnya) */}
         <div className="absolute inset-0 overflow-hidden">
           {/* ... background code tetap sama ... */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E]/10 via-white to-[#3E624C]/10"></div>
 
           <motion.div
             className="absolute top-0 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-emerald-300/20 to-teal-300/20 blur-3xl"
@@ -702,7 +703,7 @@ export default function Home() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-emerald-200 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg"
+              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-[#233E2E]/20 text-[#233E2E] px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg"
             >
               <Sparkles className="w-4 h-4 animate-pulse" />
               LAYANAN LENGKAP
@@ -710,7 +711,7 @@ export default function Home() {
 
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Solusi Kesehatan{' '}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] bg-clip-text text-transparent">
                 Terintegrasi
               </span>
             </h2>
@@ -742,34 +743,34 @@ export default function Home() {
                   willChange: "transform" // ✅ Kunci utama smoothness
                 }}
               >
-                {/* ✅ HANYA 2x DUPLIKASI (total 24 card) ✅ */}
+                {/* Data Carousel */}
                 {[
                   // Data original (12 card)
-                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
-                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
-                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
-                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
-                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
-                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
-                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
-                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
-                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
-                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
-                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
-                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" },
+                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Umum" },
+                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Umum" },
+                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Umum" },
+                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Umum" },
+                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Pasca Operasi" },
+                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Pasca Operasi" },
+                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Pasca Operasi" },
+                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Pasca Operasi" },
+                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Pasca Operasi" },
+                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Pasca Operasi" },
+                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Pasca Operasi" },
+                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Pasca Operasi" },
                   // Duplikasi 1x saja (12 card tambahan)
-                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-purple-500 to-pink-500", bgColor: "bg-purple-50", category: "Umum" },
-                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-50", category: "Umum" },
-                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-orange-500 to-red-500", bgColor: "bg-orange-50", category: "Umum" },
-                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-green-500 to-emerald-500", bgColor: "bg-green-50", category: "Umum" },
-                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-red-500 to-pink-500", bgColor: "bg-red-50", category: "Pasca Operasi" },
-                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-amber-500 to-orange-500", bgColor: "bg-amber-50", category: "Pasca Operasi" },
-                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50", category: "Pasca Operasi" },
-                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-green-500 to-lime-500", bgColor: "bg-green-50", category: "Pasca Operasi" },
-                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-cyan-500 to-teal-500", bgColor: "bg-cyan-50", category: "Pasca Operasi" },
-                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-purple-500 to-violet-500", bgColor: "bg-purple-50", category: "Pasca Operasi" },
-                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-orange-500 to-amber-500", bgColor: "bg-orange-50", category: "Pasca Operasi" },
-                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-indigo-500 to-purple-500", bgColor: "bg-indigo-50", category: "Pasca Operasi" }
+                  { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Umum" },
+                  { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Umum" },
+                  { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Umum" },
+                  { icon: <Activity className="w-8 h-8" />, title: "Monitoring Real-time", desc: "Pantau kesehatan lansia dari mana saja", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Umum" },
+                  { icon: <HeartPulse className="w-8 h-8" />, title: "Pemulihan Jantung", desc: "Program rehabilitasi jantung pasca operasi", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Pasca Operasi" },
+                  { icon: <Bone className="w-8 h-8" />, title: "Rehabilitasi Tulang", desc: "Latihan fisioterapi pasca operasi ortopedi", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Pasca Operasi" },
+                  { icon: <Bandage className="w-8 h-8" />, title: "Perawatan Luka", desc: "Panduan merawat luka operasi agar cepat sembuh", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Pasca Operasi" },
+                  { icon: <Apple className="w-8 h-8" />, title: "Nutrisi Pemulihan", desc: "Makanan khusus untuk percepat penyembuhan", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Pasca Operasi" },
+                  { icon: <Wind className="w-8 h-8" />, title: "Terapi Pernapasan", desc: "Latihan pernapasan pasca operasi paru", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Pasca Operasi" },
+                  { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Pasca Operasi" },
+                  { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Pasca Operasi" },
+                  { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Pasca Operasi" }
                 ].map((feature, i) => (
                   <motion.div
                     key={i}
@@ -796,7 +797,7 @@ export default function Home() {
                         transition: { duration: 0.5 }
                       }}
                     >
-                      <div className={`text-${feature.color.split('-')[1]}-600`}>
+                      <div className="text-[#233E2E]">
                         {feature.icon}
                       </div>
                     </motion.div>
@@ -814,8 +815,8 @@ export default function Home() {
                     {/* Category Badge */}
                     <div className="mt-4 relative z-10">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${feature.category === "Pasca Operasi"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-emerald-100 text-emerald-700"
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-emerald-100 text-emerald-700"
                         }`}>
                         {feature.category}
                       </span>
@@ -851,9 +852,9 @@ export default function Home() {
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 const slider = document.querySelector('.overflow-hidden');
-                slider.scrollBy({ left: -320, behavior: 'smooth' });
+                if (slider) slider.scrollBy({ left: -320, behavior: 'smooth' });
               }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all z-20 border border-emerald-100"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-[#233E2E] hover:bg-[#233E2E] hover:text-white transition-all z-20 border border-[#233E2E]/20"
             >
               <ChevronLeft className="w-6 h-6" />
             </motion.button>
@@ -863,9 +864,9 @@ export default function Home() {
               whileTap={{ scale: 0.9 }}
               onClick={() => {
                 const slider = document.querySelector('.overflow-hidden');
-                slider.scrollBy({ left: 320, behavior: 'smooth' });
+                if (slider) slider.scrollBy({ left: 320, behavior: 'smooth' });
               }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all z-20 border border-emerald-100"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-[#233E2E] hover:bg-[#233E2E] hover:text-white transition-all z-20 border border-[#233E2E]/20"
             >
               <ChevronRight className="w-6 h-6" />
             </motion.button>
@@ -880,7 +881,7 @@ export default function Home() {
                   className="w-2 h-2 rounded-full bg-emerald-200"
                   animate={{
                     scale: [1, 1.5, 1],
-                    backgroundColor: ["#a7f3d0", "#10b981", "#a7f3d0"],
+                    backgroundColor: ["#233E2E20", "#233E2E", "#233E2E20"],
                   }}
                   transition={{
                     duration: 2,
@@ -898,7 +899,7 @@ export default function Home() {
             >
               <div className="w-24 h-1 bg-slate-200 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                  className="h-full bg-gradient-to-r from-[#233E2E] to-[#3E624C]"
                   animate={{
                     x: ["-100%", "100%"]
                   }}
@@ -959,7 +960,7 @@ export default function Home() {
                 </div>
                 <p className="text-slate-600 mb-6 italic">"{testi.testimonial}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#233E2E] to-[#3E624C] flex items-center justify-center text-white font-bold text-lg">
                     {testi.image}
                   </div>
                   <div>
@@ -974,7 +975,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section ref={el => sectionRefs.current[4] = el} data-index="4" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-emerald-600 to-teal-600 text-white relative overflow-hidden">
+      <section ref={el => sectionRefs.current[4] = el} data-index="4" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/20 rounded-full blur-3xl animate-blob"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
@@ -987,7 +988,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/konsultasi">
-              <button className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2 group">
+              <button className="bg-white text-[#233E2E] px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2 group">
                 <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 Mulai Konsultasi Gratis
               </button>
@@ -1017,7 +1018,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="bg-emerald-600 p-1.5 rounded-lg">
+                <div className="bg-[#233E2E] p-1.5 rounded-lg"> {/* GANTI INI */}
                   <Heart className="text-white w-5 h-5" />
                 </div>
                 <span className="text-xl font-bold">LansiaCare</span>
