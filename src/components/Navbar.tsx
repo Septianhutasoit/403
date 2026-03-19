@@ -47,7 +47,7 @@ export default function Navbar() {
                         </div>
                         <span className="text-xl sm:text-2xl font-bold tracking-tight">
                             <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                                Lansia
+                                Give
                             </span>
                             <span className="text-emerald-600">Care</span>
                         </span>
