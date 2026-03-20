@@ -455,10 +455,10 @@ export default function Home() {
                 TENTANG LAYANAN PASCA OPERASI
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Layanan Pasca Operasi LansiaCare
+                Layanan Pasca Operasi GiveCare
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                Layanan Pasca Operasi LansiaCare didirikan oleh tim medis profesional yang berpengalaman dalam perawatan pemulihan pasca operasi. Kami hadir untuk membantu pasien dan keluarga dalam proses pemulihan yang aman, nyaman, dan optimal.
+                Layanan Pasca Operasi GiveCare didirikan oleh tim medis profesional yang berpengalaman dalam perawatan pemulihan pasca operasi. Kami hadir untuk membantu pasien dan keluarga dalam proses pemulihan yang aman, nyaman, dan optimal.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed mb-8">
                 Tim medis kami terdiri dari dokter spesialis, perawat terlatih, dan fisioterapis yang siap mendampingi pasien dalam setiap tahap pemulihan. Kami menyediakan tenaga medis terlatih, tersertifikasi serta ramah. Tim Medis LansiaCare berpengalaman menangani kasus pasca operasi yang kompleks.
