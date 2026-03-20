@@ -20,30 +20,37 @@ export default function FloatingChat() {
         <>
             {/* --- TOMBOL BUBBLE (FAB) --- */}
             {!isOpen && (
-                <motion.button
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={toggleChat}
-                    className="fixed bottom-8 right-8 w-16 h-16 bg-white rounded-full shadow-[0_15px_50px_-10px_rgba(16,185,129,0.4)] flex items-center justify-center z-50 border-2 border-emerald-100 group"
-                >
-                    <div className="relative w-11 h-11 flex items-center justify-center pointer-events-none">
-                        <img
-                            src="/chat-icon.png"
-                            alt="AI Assistant"
-                            className="w-full h-full object-contain transition-all duration-300 group-hover:scale-110"
-                        />
-                    </div>
+                <div className="fixed bottom-6 right-6 z-50"> {/* Container Utama */}
+                    <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="relative"
+                    >
+                        {/* 1. TOMBOL UTAMA (KHUSUS GAMBAR) */}
+                        <button
+                            onClick={toggleChat}
+                            className="w-16 h-16 bg-white rounded-full shadow-[0_15px_50px_-10px_rgba(16,185,129,0.5)] flex items-center justify-center border-2 border-emerald-100 overflow-hidden group"
+                        >
+                            <img
+                                src="/chat-icon.png"
+                                alt="AI Assistant"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            {/* Efek Glow di belakang robot */}
+                            <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-transparent transition-colors" />
+                        </button>
 
-                    {/* Badge AI Modern */}
-                    <span className="absolute -top-1 -right-1 bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-md border-2 border-white animate-bounce">
-                        AI
-                    </span>
+                        {/* 2. BADGE AI (DI LUAR TOMBOL) */}
+                        <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-xl border-2 border-white z-[60] animate-bounce">
+                            AI
+                        </span>
 
-                    {/* Efek Glow di belakang */}
-                    <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.button>
+                        {/* Efek Cahaya Halus di luar lingkaran */}
+                        <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                    </motion.div>
+                </div>
             )}
 
             {/* --- OVERLAY CHAT WINDOW --- */}

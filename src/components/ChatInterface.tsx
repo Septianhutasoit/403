@@ -4,7 +4,7 @@ import { useChat } from "ai/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot, User, Send, Loader2, Trash2, Sparkles, ChevronRight, Zap } from "lucide-react";
+import { User, Send, Loader2, Trash2, ChevronRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -16,7 +16,6 @@ export default function ChatInterface() {
 
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // --- LOGIKA AUTO-SCROLL YANG SANGAT STABIL ---
     useEffect(() => {
         const scrollToBottom = () => {
             if (scrollRef.current) {
@@ -66,8 +65,16 @@ export default function ChatInterface() {
                     <AnimatePresence initial={false}>
                         {messages.length === 0 && (
                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center justify-center mt-12 text-center">
-                                <div className="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-100 mb-6 rotate-3">
-                                    <Zap className="text-white w-8 h-8" />
+                                {/* --- LOGO STARTER MODERN --- */}
+                                <div className="w-20 h-20 bg-[#233E2E] rounded-[24px] flex items-center justify-center shadow-2xl shadow-emerald-200/50 mb-6 rotate-3 overflow-hidden border-2 border-white/10 group relative">
+                                    <img
+                                        src="/chat-icon.png"
+                                        alt="Logo"
+                                        // KUNCINYA: object-cover akan memotong bagian putih pinggir gambar agar pas dengan kotak hijau
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    {/* Overlay gradasi halus agar terlihat premium */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent pointer-events-none" />
                                 </div>
                                 <h3 className="text-2xl font-black text-slate-800 tracking-tighter">Intelligence Healthcare</h3>
                                 <p className="text-xs text-slate-400 mb-8 max-w-[240px]">Asisten cerdas Anda untuk segala pertanyaan kesehatan medis.</p>
@@ -100,21 +107,23 @@ export default function ChatInterface() {
                                             <span className="font-medium whitespace-pre-wrap">{m.content}</span>
                                         ) : (
                                             <div className="relative group">
-                                                {/* PERBAIKAN: Render Markdown Langsung dari m.content agar tidak looping */}
                                                 <div className="prose prose-sm max-w-none break-words prose-p:leading-relaxed prose-li:my-1 prose-strong:text-emerald-600 [&&]:text-inherit">
                                                     <ReactMarkdown>{m.content}</ReactMarkdown>
                                                 </div>
 
-                                                {/* Ikon Animasi di Akhir Teks AI - Muncul jika tidak sedang loading atau bukan pesan terakhir */}
+                                                {/* GANTI SPARKLES JADI LOGO KAMU DI AKHIR TEKS */}
                                                 {(!isLoading || idx < messages.length - 1) && (
                                                     <motion.div
                                                         initial={{ opacity: 0, scale: 0.5 }}
                                                         animate={{ opacity: 1, scale: 1 }}
                                                         className="flex justify-end items-center mt-3 pt-2 border-t border-emerald-50"
                                                     >
-                                                        <div className="flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 rounded-full">
-                                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">Verified Response</span>
-                                                            <Sparkles size={10} className="text-emerald-500 animate-pulse" />
+                                                        <div className="flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">CarePulse AI</span>
+                                                            {/* Logo Kecil di Akhir Teks */}
+                                                            <div className="w-3 h-3 overflow-hidden rounded-[2px]">
+                                                                <img src="/logo1.png" alt="mini-logo" className="w-full h-full object-contain animate-pulse" />
+                                                            </div>
                                                         </div>
                                                     </motion.div>
                                                 )}
