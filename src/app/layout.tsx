@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CareAi",
+  title: "GiveCareAi",
   description: "Your Intelligent Healthcare Assistant",
   icons: {
-    icon:"./logo.png",
+    icon:"./logo1.png",
   }
 };
 
