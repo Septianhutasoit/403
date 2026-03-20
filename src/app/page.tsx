@@ -481,54 +481,79 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="grid grid-cols-2 gap-4"
             >
+              {/* Kolom Kiri - 2 gambar */}
               <div className="space-y-4">
+                {/* Gambar 1: Tim Medis */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="relative h-48 rounded-2xl overflow-hidden shadow-lg"
+                  className="relative h-48 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E] to-[#3E624C] opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    <div className="w-full h-full bg-slate-300 flex items-center justify-center">
-                      <span className="text-slate-600">Tim Medis</span>
+                  <img
+                    src="/images/tentang/tim-medis.jpg"
+                    alt="Tim Medis LansiaCare"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
+                      Tim Medis Profesional
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Gambar 2: Ruang Perawatan */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="relative h-64 rounded-2xl overflow-hidden shadow-lg"
+                  className="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E] to-[#3E624C] opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    <div className="w-full h-full bg-slate-400 flex items-center justify-center">
-                      <span className="text-slate-600">Ruang Perawatan</span>
+                  <img
+                    src="/images/tentang/ruang-perawatan.jpg"
+                    alt="Ruang Perawatan LansiaCare"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
+                      Ruang Perawatan VIP
                     </div>
                   </div>
                 </motion.div>
               </div>
+
+              {/* Kolom Kanan - 2 gambar dengan offset */}
               <div className="space-y-4 mt-8">
+                {/* Gambar 3: Fisioterapi */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="relative h-64 rounded-2xl overflow-hidden shadow-lg"
+                  className="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E] to-[#3E624C] opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    <div className="w-full h-full bg-slate-300 flex items-center justify-center">
-                      <span className="text-slate-600">Fisioterapi</span>
+                  <img
+                    src="/images/tentang/fisioterapi.jpg"
+                    alt="Fisioterapi LansiaCare"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
+                      Fisioterapi Terbaik
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Gambar 4: Konsultasi */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="relative h-48 rounded-2xl overflow-hidden shadow-lg"
+                  className="relative h-48 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E] to-[#3E624C] opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    <div className="w-full h-full bg-slate-400 flex items-center justify-center">
-                      <span className="text-slate-600">Konsultasi</span>
+                  <img
+                    src="/images/tentang/konsultasi.jpg"
+                    alt="Konsultasi LansiaCare"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
+                      Konsultasi 
                     </div>
                   </div>
                 </motion.div>
