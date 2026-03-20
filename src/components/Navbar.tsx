@@ -40,29 +40,32 @@ export default function Navbar() {
 
                     {/* --- LOGO AREA --- */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                            <AnimatePresence mode="wait">
-                                <motion.img
-                                    key={isScrolled ? "logo-dark" : "logo-light"}
-                                    // LOGIKA TUKAR LOGO:
-                                    // Jika isScrolled (Latar Putih), pakai logo warna (hijau/gelap)
-                                    // Jika belum scroll (Latar Transparan), pakai logo putih
-                                    src={isScrolled ? "/logo1.png" : "/logo2.png"}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    transition={{ duration: 0.3 }}
-                                    alt="Logo"
-                                    className="w-full h-full object-contain"
-                                />
-                            </AnimatePresence>
-                        </div>
-                        <span className={`text-xl sm:text-2xl font-black tracking-tighter transition-colors duration-500 ${isScrolled ? "text-slate-900" : "text-white drop-shadow-md"
+                        {/* PEMBUNGKUS LOGO: Menggunakan rounded-2xl agar sudut tumpul tapi tidak bulat sempurna */}
+                        <div className={`relative w-10 h-10 sm:w-11 sm:h-11 overflow-hidden rounded-2xl transition-all duration-500 shadow-sm flex items-center justify-center ${isScrolled
+                                ? "border border-slate-100 bg-white"
+                                : "border border-white/20 bg-white/5"
                             }`}>
-                            Give<span className="text-emerald-500">Care</span>
-                        </span>
-                    </Link>
+                            <img
+                                src={isScrolled ? "/logo1.png" : "/logo2.png"}
+                                alt="Logo"
+                                // object-cover agar gambar mengisi ruang dengan rapi
+                                className="w-full h-full object-cover transform transition-transform group-hover:scale-110"
+                            />
+                        </div>
 
+                        {/* Bagian Teks */}
+                        <div className="flex flex-col">
+                            <span className={`text-xl font-black tracking-tighter leading-tight transition-colors duration-500 ${isScrolled ? "text-slate-900" : "text-white"
+                                }`}>
+                                Give<span className="text-emerald-500">Care</span>
+                            </span>
+                            <span className={`text-[9px] font-bold uppercase tracking-widest leading-none transition-opacity duration-500 ${isScrolled ? "text-slate-400" : "text-white/60"
+                                }`}>
+                                Medical AI
+                            </span>
+                        </div>
+                    </Link>
+                    
                     {/* --- DESKTOP MENU --- */}
                     <div className="hidden md:flex items-center gap-2 lg:gap-4">
                         <div className="flex items-center gap-1 lg:gap-2 mr-2">

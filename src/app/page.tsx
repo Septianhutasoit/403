@@ -1272,13 +1272,27 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="bg-[#233E2E] p-1.5 rounded-lg">
-                  <Heart className="text-white w-5 h-5" />
+              {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
+              <div className="flex items-center gap-4 mb-8">
+                {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
+                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
+                  <img
+                    src="/logo2.png"
+                    alt="GiveCare Logo"
+                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
-                <span className="text-xl font-bold">LansiaCare</span>
+
+                {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
+                <div className="flex flex-col leading-tight">
+                  <span className="text-2xl font-black tracking-tighter text-white">
+                    Give<span className="text-emerald-500">Care</span>
+                  </span>
+                </div>
               </div>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              {/* --- BATAS PERUBAHAN --- */}
+
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
                 Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
               </p>
             </div>
