@@ -25,7 +25,7 @@ export default function Navbar() {
         { name: "Edukasi", href: "/edukasi" },
         { name: "Dokter", href: "/dokter" },
         { name: "Layanan", href: "/layanan" },
-        { name: "Lokasi", href: "/lokasi" },
+        { name: "Kontak", href: "/kontak" },
     ];
 
     return (
