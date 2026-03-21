@@ -590,6 +590,99 @@ export default function KontakPage() {
         </div>
       </section>
 
+            {/* Office Gallery Section */}
+      <section className="py-16 px-4 sm:px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-[#233E2E]/10 text-[#233E2E] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Building className="w-4 h-4" />
+              GALERI KANTOR KAMI
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Suasana &{' '}
+              <span className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] bg-clip-text text-transparent">
+                Fasilitas Kami
+              </span>
+            </h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Lihat suasana dan fasilitas yang kami sediakan untuk kenyamanan pasien
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { 
+                title: "Ruang Tunggu Nyaman", 
+                image: "/images/kontak/gallery-1.jpg",
+                desc: "Area tunggu yang nyaman dengan fasilitas lengkap"
+              },
+              { 
+                title: "Ruang Konsultasi", 
+                image: "/images/kontak/gallery-2.jpg",
+                desc: "Ruang konsultasi privat dengan dokter spesialis"
+              },
+              { 
+                title: "Tim Medis Profesional", 
+                image: "/images/kontak/gallery-3.jpg",
+                desc: "Tenaga medis berpengalaman dan ramah"
+              },
+              { 
+                title: "Fasilitas Lengkap", 
+                image: "/images/kontak/gallery-4.jpg",
+                desc: "Peralatan medis modern dan lengkap"
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100"
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    onError={(e) => {
+                      e.target.src = "https://placehold.co/600x400/e2e8f0/475569?text=Foto+Coming+Soon";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <p className="text-sm font-semibold">{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="font-bold text-slate-800 group-hover:text-[#233E2E] transition-colors">
+                    {item.title}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Tombol Lihat Lebih Banyak */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-10"
+          >
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white relative overflow-hidden">
         <div className="absolute inset-0">
