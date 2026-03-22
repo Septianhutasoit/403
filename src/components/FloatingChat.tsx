@@ -79,7 +79,7 @@ export default function FloatingChat() {
                                     <Bot size={20} className="text-white" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="font-bold text-sm tracking-tight leading-none">Asisten CarePulse AI</span>
+                                    <span className="font-bold text-sm tracking-tight leading-none">Asisten KawanPulih AI</span>
                                     <span className="text-[10px] opacity-70 flex items-center gap-1 mt-1">
                                         <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-pulse" /> Online & Active
                                     </span>

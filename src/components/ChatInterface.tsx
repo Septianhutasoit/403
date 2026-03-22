@@ -52,7 +52,7 @@ export default function ChatInterface() {
             <div className="px-4 py-3 border-b bg-white/50 backdrop-blur-md flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">CarePulse AI Online</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">KawanPulih AI Online</span>
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleNewChat} className="h-8 text-slate-400 hover:text-red-500 gap-1.5 transition-all">
                     <Trash2 size={14} />
@@ -119,7 +119,7 @@ export default function ChatInterface() {
                                                         className="flex justify-end items-center mt-3 pt-2 border-t border-emerald-50"
                                                     >
                                                         <div className="flex items-center gap-1.5 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">CarePulse AI</span>
+                                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">KawanPulih AI</span>
                                                             {/* Logo Kecil di Akhir Teks */}
                                                             <div className="w-3 h-3 overflow-hidden rounded-[2px]">
                                                                 <img src="/logo1.png" alt="mini-logo" className="w-full h-full object-contain animate-pulse" />
