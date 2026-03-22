@@ -60,7 +60,7 @@ export default function Home() {
       id: 1,
       title: "Perawatan Luka Operasi",
       description: "Panduan lengkap merawat luka pasca operasi untuk mencegah infeksi dan mempercepat penyembuhan.",
-      icon: <Bandage className="w-8 h-8" />,
+      icon: <Bandage className="w-8 h-8 text-white" />,
       image: "/images/layanan/luka-operasi.jpg",
       color: "from-[#233E2E] to-[#3E624C]",
       stats: "15+ Artikel",
@@ -70,7 +70,7 @@ export default function Home() {
       id: 2,
       title: "Pemulihan Pasca Operasi Jantung",
       description: "Program rehabilitasi jantung yang aman dan efektif untuk lansia pasca operasi.",
-      icon: <HeartPulse className="w-8 h-8" />,
+      icon: <HeartPulse className="w-8 h-8 text-white" />,
       image: "/images/layanan/jantung.jpg",
       color: "from-[#3E624C] to-[#434C47]",
       stats: "10+ Artikel",
@@ -80,7 +80,7 @@ export default function Home() {
       id: 3,
       title: "Rehabilitasi Pasca Operasi Tulang",
       description: "Latihan fisioterapi untuk memulihkan mobilitas setelah operasi ortopedi.",
-      icon: <Bone className="w-8 h-8" />,
+      icon: <Bone className="w-8 h-8 text-white" />,
       image: "/images/layanan/tulang.jpg",
       color: "from-[#434C47] to-[#233E2E]",
       stats: "10+ Artikel",
@@ -90,7 +90,7 @@ export default function Home() {
       id: 4,
       title: "Nutrisi Pasca Operasi",
       description: "Panduan makanan bergizi untuk mempercepat pemulihan dan mengembalikan energi.",
-      icon: <Apple className="w-8 h-8" />,
+      icon: <Apple className="w-8 h-8 text-white" />,
       image: "/images/layanan/nutrisi.jpg",
       color: "from-[#3C6243] to-[#DBAA28]",
       stats: "18+ Artikel",
@@ -100,7 +100,7 @@ export default function Home() {
       id: 5,
       title: "Perawatan Pasca Operasi Mata",
       description: "Tips merawat mata setelah operasi katarak dan operasi mata lainnya.",
-      icon: <Eye className="w-8 h-8" />,
+      icon: <Eye className="w-8 h-8 text-white" />,
       image: "/images/layanan/mata.jpg",
       color: "from-[#233E2E] to-[#3E624C]",
       stats: "8+ Artikel",
@@ -110,7 +110,7 @@ export default function Home() {
       id: 6,
       title: "Manajemen Nyeri Pasca Operasi",
       description: "Cara mengatasi rasa sakit pasca operasi dengan aman dan efektif.",
-      icon: <AlertCircle className="w-8 h-8" />,
+      icon: <AlertCircle className="w-8 h-8 text-white" />,
       image: "/images/layanan/nyeri.jpg",
       color: "from-[#3E624C] to-[#434C47]",
       stats: "14+ Artikel",
@@ -176,10 +176,8 @@ export default function Home() {
     }
   ];
 
-  // Tambahkan state untuk particles
   const [particles, setParticles] = useState([]);
 
-  // Generate particles hanya di client (useEffect)
   useEffect(() => {
     const newParticles = [...Array(30)].map((_, i) => ({
       id: i,
@@ -193,7 +191,6 @@ export default function Home() {
     setParticles(newParticles);
   }, []);
 
-  // Auto slide setiap 5 detik
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -228,9 +225,7 @@ export default function Home() {
     <main className="min-h-screen bg-white text-slate-900 font-sans overflow-x-hidden scroll-smooth">
       <Navbar />
 
-      {/* Hero Section dengan Background Slider */}
       <section className="relative h-[700px] sm:h-[750px] lg:h-[800px] flex items-center overflow-hidden">
-        {/* Background Slider */}
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
             <div
@@ -238,17 +233,14 @@ export default function Home() {
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
             >
-              {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
-                {/* Overlay Gradient - Lebih soft */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
               </div>
 
-              {/* Pattern Overlay - Lebih soft */}
               <div className="absolute inset-0 opacity-10"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
@@ -258,12 +250,10 @@ export default function Home() {
             </div>
           ))}
 
-          {/* Floating Elements - Lebih soft */}
           <div className="absolute top-20 right-20 w-96 h-96 bg-[#233E2E]/10 rounded-full blur-2xl animate-pulse-slow"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#3E624C]/10 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
         </div>
 
-        {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
           {heroSlides.map((_, index) => (
             <button
@@ -277,7 +267,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Hero Content */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <div className="max-w-3xl text-white">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
@@ -309,7 +298,6 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Stats */}
             <div className="flex flex-wrap gap-8 mt-12 animate-slide-up delay-500">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white">40K+</div>
@@ -331,7 +319,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
           <div className="flex flex-col items-center gap-2">
             <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
@@ -342,7 +329,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Stats Section dengan Animasi Angka - DIPINDAHKAN KE SINI */}
       <section className="py-16 px-4 sm:px-6 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -352,10 +338,10 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
-              { icon: <Users className="w-8 h-8" />, value: 40, suffix: "K+", label: "Pengguna Aktif", color: "from-[#233E2E] to-[#3E624C]", gradient: "from-[#233E2E] to-[#3E624C]" },
-              { icon: <Award className="w-8 h-8" />, value: 50, suffix: "+", label: "Dokter Spesialis", color: "from-[#3E624C] to-[#434C47]", gradient: "from-[#3E624C] to-[#434C47]" },
-              { icon: <BookOpen className="w-8 h-8" />, value: 120, suffix: "+", label: "Artikel Edukasi", color: "from-[#434C47] to-[#233E2E]", gradient: "from-[#434C47] to-[#233E2E]" },
-              { icon: <HeartHandshake className="w-8 h-8" />, value: 12, suffix: "K+", label: "Keluarga Terbantu", color: "from-[#3C6243] to-[#DBAA28]", gradient: "from-[#3C6243] to-[#DBAA28]" }
+              { icon: <Users className="w-8 h-8 text-white" />, value: 40, suffix: "K+", label: "Pengguna Aktif", color: "from-[#233E2E] to-[#3E624C]", gradient: "from-[#233E2E] to-[#3E624C]" },
+              { icon: <Award className="w-8 h-8 text-white" />, value: 50, suffix: "+", label: "Dokter Spesialis", color: "from-[#3E624C] to-[#434C47]", gradient: "from-[#3E624C] to-[#434C47]" },
+              { icon: <BookOpen className="w-8 h-8 text-white" />, value: 120, suffix: "+", label: "Artikel Edukasi", color: "from-[#434C47] to-[#233E2E]", gradient: "from-[#434C47] to-[#233E2E]" },
+              { icon: <HeartHandshake className="w-8 h-8 text-white" />, value: 12, suffix: "K+", label: "Keluarga Terbantu", color: "from-[#3C6243] to-[#DBAA28]", gradient: "from-[#3C6243] to-[#DBAA28]" }
             ].map((stat, i) => {
               const [count, setCount] = useState(0);
               const [isInView, setIsInView] = useState(false);
@@ -418,8 +404,8 @@ export default function Home() {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="text-center group cursor-pointer p-6 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500"
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${stat.gradient} bg-opacity-10 mb-4 transition-all duration-300 group-hover:scale-110 ${isRotating ? 'animate-spin-once' : ''}`}>
-                    <div className="text-[#233E2E]">{stat.icon}</div>
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${stat.gradient} mb-4 transition-all duration-300 group-hover:scale-110 ${isRotating ? 'animate-spin-once' : ''}`}>
+                    <div className="text-white">{stat.icon}</div>
                   </div>
                   <div className="text-3xl sm:text-4xl font-bold text-slate-900 mb-1">
                     {count}{stat.suffix}
@@ -433,7 +419,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tentang Layanan Pasca Operasi */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -443,7 +428,6 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -455,16 +439,15 @@ export default function Home() {
                 TENTANG LAYANAN PASCA OPERASI
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Layanan Pasca Operasi GiveCare
+                Layanan Pasca Operasi KawanPulih
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                Layanan Pasca Operasi GiveCare didirikan oleh tim medis profesional yang berpengalaman dalam perawatan pemulihan pasca operasi. Kami hadir untuk membantu pasien dan keluarga dalam proses pemulihan yang aman, nyaman, dan optimal.
+                Layanan Pasca Operasi KawanPulih didirikan oleh tim medis profesional yang berpengalaman dalam perawatan pemulihan pasca operasi. Kami hadir untuk membantu pasien dan keluarga dalam proses pemulihan yang aman, nyaman, dan optimal.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed mb-8">
-                Tim medis kami terdiri dari dokter spesialis, perawat terlatih, dan fisioterapis yang siap mendampingi pasien dalam setiap tahap pemulihan. Kami menyediakan tenaga medis terlatih, tersertifikasi serta ramah. Tim Medis LansiaCare berpengalaman menangani kasus pasca operasi yang kompleks.
+                Tim medis kami terdiri dari dokter spesialis, perawat terlatih, dan fisioterapis yang siap mendampingi pasien dalam setiap tahap pemulihan. Kami menyediakan tenaga medis terlatih, tersertifikasi serta ramah. Tim Medis KawanPulih berpengalaman menangani kasus pasca operasi yang kompleks.
               </p>
 
-              {/* Visi */}
               <div className="bg-gradient-to-br from-[#233E2E]/5 to-[#3E624C]/5 p-6 rounded-2xl border border-[#233E2E]/10">
                 <h3 className="text-xl font-bold text-[#233E2E] mb-3">Visi Kami</h3>
                 <p className="text-slate-600 text-lg italic">
@@ -473,7 +456,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right Column - Image/Gallery */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -481,9 +463,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="grid grid-cols-2 gap-4"
             >
-              {/* Kolom Kiri - 2 gambar */}
               <div className="space-y-4">
-                {/* Gambar 1: Tim Medis */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -491,7 +471,7 @@ export default function Home() {
                 >
                   <img
                     src="/images/tentang/tim-medis.jpg"
-                    alt="Tim Medis LansiaCare"
+                    alt="Tim Medis KawanPulih"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -501,7 +481,6 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Gambar 2: Ruang Perawatan */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -509,7 +488,7 @@ export default function Home() {
                 >
                   <img
                     src="/images/tentang/ruang-perawatan.jpg"
-                    alt="Ruang Perawatan LansiaCare"
+                    alt="Ruang Perawatan KawanPulih"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -520,9 +499,7 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* Kolom Kanan - 2 gambar dengan offset */}
               <div className="space-y-4 mt-8">
-                {/* Gambar 3: Fisioterapi */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -530,7 +507,7 @@ export default function Home() {
                 >
                   <img
                     src="/images/tentang/fisioterapi.jpg"
-                    alt="Fisioterapi LansiaCare"
+                    alt="Fisioterapi KawanPulih"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -540,7 +517,6 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Gambar 4: Konsultasi */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -548,7 +524,7 @@ export default function Home() {
                 >
                   <img
                     src="/images/tentang/konsultasi.jpg"
-                    alt="Konsultasi LansiaCare"
+                    alt="Konsultasi KawanPulih"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -563,7 +539,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Misi Layanan Pasca Operasi */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -573,7 +548,6 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Misi */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -624,7 +598,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right Column - Stats */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -632,7 +605,6 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="space-y-6"
             >
-              {/* Stats Cards */}
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { label: "Tahun Berdiri", value: "2015", icon: <Calendar className="w-6 h-6" /> },
@@ -654,7 +626,6 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Promo Banner - Pasca Operasi */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="relative bg-gradient-to-r from-[#DBAA28] to-[#3E624C] rounded-2xl p-8 text-white overflow-hidden"
@@ -681,7 +652,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Need Help Banner */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] rounded-2xl p-6 text-white relative overflow-hidden"
@@ -709,7 +679,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Layanan Pasca Operasi - Dengan Animasi Gambar */}
       <section ref={el => sectionRefs.current[0] = el} data-index="0" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white">
         <div className={`max-w-7xl mx-auto ${fadeInUpClass(0)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -732,7 +701,6 @@ export default function Home() {
             {postOpServices.map((service, index) => (
               <Link href={service.link} key={service.id}>
                 <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 cursor-pointer">
-                  {/* Image Container dengan Animasi */}
                   <div className="relative h-56 overflow-hidden">
                     <div
                       className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
@@ -741,26 +709,22 @@ export default function Home() {
                       <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-60`}></div>
                     </div>
 
-                    {/* Icon Container */}
                     <div className={`absolute top-4 left-4 bg-gradient-to-br ${service.color} p-3 rounded-2xl shadow-lg z-10 group-hover:scale-110 transition-transform duration-500`}>
                       <div className="text-white">
                         {service.icon}
                       </div>
                     </div>
 
-                    {/* Badge Stats */}
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold text-slate-700 z-10">
                       {service.stats}
                     </div>
 
-                    {/* Overlay Text */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
                       <h3 className="text-xl font-bold text-white mb-1">{service.title}</h3>
                       <p className="text-sm text-white/90 line-clamp-2">{service.description}</p>
                     </div>
                   </div>
 
-                  {/* Footer */}
                   <div className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -785,7 +749,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Informasi Kesehatan Umum */}
       <section ref={el => sectionRefs.current[1] = el} data-index="1" className="py-16 sm:py-24 px-4 sm:px-6 bg-white">
         <div className={`max-w-7xl mx-auto ${fadeInUpClass(1)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -809,7 +772,6 @@ export default function Home() {
               <Link href={info.link} key={info.id}>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-slate-100">
                   <div className="flex p-4 gap-4">
-                    {/* Image Container */}
                     <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
                       <div
                         className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
@@ -822,7 +784,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="flex-1">
                       <h3 className="font-bold text-lg mb-1 group-hover:text-emerald-600 transition-colors">
                         {info.title}
@@ -849,9 +810,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fitur Unggulan dengan Carousel Infinite Smooth */}
       <section ref={el => sectionRefs.current[2] = el} data-index="2" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
-        {/* Background Animasi Modern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#233E2E]/10 via-white to-[#3E624C]/10"></div>
 
@@ -884,7 +843,6 @@ export default function Home() {
             }}
           />
 
-          {/* Floating Particles */}
           <div className="absolute inset-0">
             {particles.map((p) => (
               <motion.div
@@ -916,13 +874,11 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.03]" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, #64748b 1px, transparent 0)`,
             backgroundSize: '50px 50px'
           }}></div>
 
-          {/* Animated Lines */}
           <svg className="absolute inset-0 w-full h-full opacity-10">
             <motion.path
               d="M0 100 Q 200 50, 400 100 T 800 100"
@@ -975,9 +931,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* CAROUSEL */}
           <div className="relative w-full">
-            {/* Slider Container */}
             <div className="overflow-hidden w-full">
               <motion.div
                 className="flex gap-6 py-4"
@@ -998,9 +952,7 @@ export default function Home() {
                   willChange: "transform"
                 }}
               >
-                {/* Data Carousel */}
                 {[
-                  // Data original (12 card)
                   { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Umum" },
                   { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Umum" },
                   { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Umum" },
@@ -1013,7 +965,6 @@ export default function Home() {
                   { icon: <Eye className="w-8 h-8" />, title: "Perawatan Mata", desc: "Panduan pasca operasi katarak", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Pasca Operasi" },
                   { icon: <Droplets className="w-8 h-8" />, title: "Manajemen Nyeri", desc: "Cara mengatasi rasa sakit pasca operasi", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Pasca Operasi" },
                   { icon: <Stethoscope className="w-8 h-8" />, title: "Kontrol Rutin", desc: "Jadwal kontrol pasca operasi teratur", color: "from-[#3C6243] to-[#DBAA28]", bgColor: "bg-[#3C6243]/10", category: "Pasca Operasi" },
-                  // Duplikasi 1x saja (12 card tambahan)
                   { icon: <Brain className="w-8 h-8" />, title: "AI Health Assistant", desc: "Asisten pintar 24/7 siap menjawab pertanyaan kesehatan", color: "from-[#233E2E] to-[#3E624C]", bgColor: "bg-[#233E2E]/10", category: "Umum" },
                   { icon: <Video className="w-8 h-8" />, title: "Konsultasi Video", desc: "Bertemu dokter spesialis melalui video call", color: "from-[#3E624C] to-[#434C47]", bgColor: "bg-[#3E624C]/10", category: "Umum" },
                   { icon: <Bell className="w-8 h-8" />, title: "Pengingat Obat", desc: "Notifikasi jadwal minum obat yang akurat", color: "from-[#434C47] to-[#233E2E]", bgColor: "bg-[#434C47]/10", category: "Umum" },
@@ -1035,7 +986,6 @@ export default function Home() {
                       transition: { type: "spring", stiffness: 400, damping: 10 }
                     }}
                   >
-                    {/* Animated Background Gradient */}
                     <motion.div
                       className={`absolute inset-0 bg-gradient-to-br ${feature.color}`}
                       initial={{ opacity: 0 }}
@@ -1043,21 +993,19 @@ export default function Home() {
                       transition={{ duration: 0.3 }}
                     />
 
-                    {/* Icon dengan Animasi Hover */}
                     <motion.div
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} bg-opacity-10 flex items-center justify-center mb-4 relative z-10`}
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 relative z-10 shadow-md`}
                       whileHover={{
                         scale: 1.2,
                         rotate: 360,
                         transition: { duration: 0.5 }
                       }}
                     >
-                      <div className="text-[#233E2E]">
+                      <div className="text-white">
                         {feature.icon}
                       </div>
                     </motion.div>
 
-                    {/* Content dengan Animasi Hover */}
                     <motion.h3
                       className="text-xl font-bold mb-2 relative z-10"
                       whileHover={{ x: 5 }}
@@ -1067,7 +1015,6 @@ export default function Home() {
                     </motion.h3>
                     <p className="text-slate-500 text-sm relative z-10">{feature.desc}</p>
 
-                    {/* Category Badge */}
                     <div className="mt-4 relative z-10">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${feature.category === "Pasca Operasi"
                         ? "bg-blue-100 text-blue-700"
@@ -1077,14 +1024,12 @@ export default function Home() {
                       </span>
                     </div>
 
-                    {/* Decorative Rotating Circle */}
                     <motion.div
                       className={`absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-br ${feature.color} rounded-full opacity-10`}
                       animate={{ rotate: 360 }}
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     />
 
-                    {/* Shine Effect */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
                       animate={{
@@ -1101,7 +1046,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Navigation Buttons */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -1127,7 +1071,6 @@ export default function Home() {
             </motion.button>
           </div>
 
-          {/* Progress Indicator */}
           <div className="flex justify-center items-center gap-4 mt-8">
             <div className="flex gap-1">
               {[0, 1, 2, 3, 4].map((dot) => (
@@ -1171,7 +1114,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial Section */}
       <section ref={el => sectionRefs.current[3] = el} data-index="3" className="py-16 sm:py-24 px-4 sm:px-6 bg-white">
         <div className={`max-w-7xl mx-auto ${fadeInUpClass(3)}`}>
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -1179,7 +1121,7 @@ export default function Home() {
               Apa Kata Mereka?
             </h2>
             <p className="text-slate-500 text-lg">
-              Ribuan keluarga telah merasakan manfaat LansiaCare
+              Ribuan keluarga telah merasakan manfaat KawanPulih
             </p>
           </div>
 
@@ -1229,7 +1171,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section ref={el => sectionRefs.current[4] = el} data-index="4" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl"></div>
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/20 rounded-full blur-3xl animate-blob"></div>
@@ -1238,7 +1179,7 @@ export default function Home() {
         <div className={`max-w-4xl mx-auto text-center relative z-10 ${fadeInUpClass(4)}`}>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Siap untuk Hidup Sehat dan Bahagia?</h2>
           <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Bergabung dengan ribuan keluarga yang sudah merasakan manfaat LansiaCare
+            Bergabung dengan ribuan keluarga yang sudah merasakan manfaat KawanPulih
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1267,30 +1208,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
             <div>
-              {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
               <div className="flex items-center gap-4 mb-8">
-                {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
                 <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
                   <img
                     src="/logo2.png"
-                    alt="GiveCare Logo"
+                    alt="KawanPulih Logo"
                     className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                   />
                 </div>
 
-                {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
                 <div className="flex flex-col leading-tight">
                   <span className="text-2xl font-black tracking-tighter text-white">
-                    Give<span className="text-emerald-500">Care</span>
+                    Kawan<span className="text-emerald-500">Pulih</span>
                   </span>
                 </div>
               </div>
-              {/* --- BATAS PERUBAHAN --- */}
 
               <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
                 Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
@@ -1343,7 +1279,7 @@ export default function Home() {
 
           <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-slate-400 text-sm text-center sm:text-left">
-              © 2026 LansiaCare AI. Semua Hak Dilindungi.
+              © 2026 KawanPulih. Semua Hak Dilindungi.
             </p>
             <div className="flex items-center gap-4">
               {[

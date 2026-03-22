@@ -223,7 +223,7 @@ export default function KontakPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { icon: <Phone className="w-6 h-6" />, title: "Telepon", value: "+62 21 1234 5678", desc: "Senin - Sabtu, 08:00 - 20:00", color: "from-[#233E2E] to-[#3E624C]" },
-              { icon: <Mail className="w-6 h-6" />, title: "Email", value: "info@lansiacare.id", desc: "Balas dalam 24 jam", color: "from-[#3E624C] to-[#434C47]" },
+              { icon: <Mail className="w-6 h-6" />, title: "Email", value: "kawanPulih@gmail.com", desc: "Balas dalam 24 jam", color: "from-[#3E624C] to-[#434C47]" },
               { icon: <MessageCircle className="w-6 h-6" />, title: "WhatsApp", value: "+62 812-3456-7890", desc: "Respon cepat 24/7", color: "from-[#434C47] to-[#233E2E]" },
               { icon: <Clock className="w-6 h-6" />, title: "Jam Operasional", value: "24/7", desc: "Layanan darurat 24 jam", color: "from-[#3C6243] to-[#DBAA28]" }
             ].map((item, i) => (
@@ -711,6 +711,99 @@ export default function KontakPage() {
           </div>
         </div>
       </section>
+     {/* Footer */}
+                      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
+                        <div className="max-w-7xl mx-auto">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+                            <div>
+                              {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
+                              <div className="flex items-center gap-4 mb-8">
+                                {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
+                                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
+                                  <img
+                                    src="/logo2.png"
+                                    alt="GiveCare Logo"
+                                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                  />
+                                </div>
+                
+                                {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
+                                <div className="flex flex-col leading-tight">
+                                  <span className="text-2xl font-black tracking-tighter text-white">
+                                    Kawan<span className="text-emerald-500">Pulih</span>
+                                  </span>
+                                </div>
+                              </div>
+                              {/* --- BATAS PERUBAHAN --- */}
+                
+                              <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
+                              </p>
+                            </div>
+                
+                            {[
+                              {
+                                title: "Produk",
+                                links: [
+                                  { name: "Fitur", href: "/layanan" },
+                                  { name: "Harga", href: "/harga" },
+                                  { name: "FAQ", href: "/faq" },
+                                  { name: "Blog", href: "/edukasi" }
+                                ]
+                              },
+                              {
+                                title: "Perusahaan",
+                                links: [
+                                  { name: "Tentang", href: "/tentang" },
+                                  { name: "Karir", href: "/karir" },
+                                  { name: "Kontak", href: "/kontak" },
+                                  { name: "Mitra", href: "/mitra" }
+                                ]
+                              },
+                              {
+                                title: "Dukungan",
+                                links: [
+                                  { name: "Pusat Bantuan", href: "/bantuan" },
+                                  { name: "Privasi", href: "/privasi" },
+                                  { name: "Syarat & Ketentuan", href: "/syarat" },
+                                  { name: "Keamanan", href: "/keamanan" }
+                                ]
+                              }
+                            ].map((section, i) => (
+                              <div key={i}>
+                                <h4 className="font-bold mb-4">{section.title}</h4>
+                                <ul className="space-y-2">
+                                  {section.links.map((link, j) => (
+                                    <li key={j}>
+                                      <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                                        {link.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                
+                          <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <p className="text-slate-400 text-sm text-center sm:text-left">
+                              © 2026 KawanPulih. Semua Hak Dilindungi.
+                            </p>
+                            <div className="flex items-center gap-4">
+                              {[
+                                { name: "Twitter", href: "https://twitter.com" },
+                                { name: "Facebook", href: "https://facebook.com" },
+                                { name: "Instagram", href: "https://instagram.com" },
+                                { name: "LinkedIn", href: "https://linkedin.com" }
+                              ].map((social, i) => (
+                                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                                  {social.name}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </footer>
 
       <FloatingChat />
 
