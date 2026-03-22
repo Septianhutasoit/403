@@ -235,9 +235,19 @@ export default function KontakPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 text-center group"
               >
-                <div className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br ${item.color} bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                  <div className="text-[#233E2E]">{item.icon}</div>
-                </div>
+                <motion.div
+                  className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center`}
+                  whileHover={{
+                    rotate: 360,
+                    scale: 1.1,
+                    transition: {
+                      duration: 0.4,
+                      ease: "easeOut"
+                    }
+                  }}
+                >
+                  <div className="text-white">{item.icon}</div>
+                </motion.div>
                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                 <p className="text-slate-800 font-medium mb-1">{item.value}</p>
                 <p className="text-sm text-slate-500">{item.desc}</p>
@@ -521,9 +531,19 @@ export default function KontakPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 text-center group"
               >
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${service.color} bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                  <div className="text-[#233E2E]">{service.icon}</div>
-                </div>
+                <motion.div
+                  className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center`}
+                  whileHover={{
+                    rotate: 360,
+                    scale: 1.15,
+                    transition: {
+                      duration: 0.4,
+                      ease: "easeOut"
+                    }
+                  }}
+                >
+                  <div className="text-white">{service.icon}</div>
+                </motion.div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-[#233E2E] transition-colors">{service.title}</h3>
                 <p className="text-sm text-slate-500">{service.desc}</p>
               </motion.div>
