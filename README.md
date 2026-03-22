@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KAWAN PULIH
 
-## Getting Started
+## Institusi
+Institut Teknologi Del
 
-First, run the development server:
+## Anggota Tim
+-Ketua: Septian Anugrah Hutasoit
+-Anggota 1: Joice Anastasya Napitupulu
+-Anggota 2: Davina Olivia Yosefanny Hutabarat
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Deskripsi Karya
+Kawan Pulih adalah platform digital yang dirancang untuk menghubungkan keluarga pasien dengan tenaga kesehatan atau caregiver profesional untuk layanan perawatan di rumah (home care).Proyek ini dilatarbelakangi oleh kekhawatiran keluarga dalam memasukkan orang asing ke dalam rumah mereka. Oleh karena itu, KawanPulih hadir dengan pendekatan bahasa yang membumi dan penuh empati, mengubah persepsi tenaga kesehatan dari sekadar "pekerja asing" menjadi "pendamping terpercaya" atau Kawan.
 
+## Tujuan dan Manfaat: 
+- Hadirkan Kehangatan: Memberikan pendampingan yang humanis dan penuh kasih sayang dalam setiap fase pemulihan pasien.
+- Proses Pulih yang Terukur: Mendampingi perjalanan penyembuhan pasien selangkah demi selangkah menuju kemandirian.
+- Transparansi & Kepercayaan: Menyediakan profil caregiver yang terverifikasi dan transparan bagi keluarga.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visual identitas KawanPulih menggunakan palet warna hijau bumi yang melambangkan kedamaian dan stabilitas, serta aksen kuning keemasan yang melambangkan kehangatan dan optimisme.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Link Website
