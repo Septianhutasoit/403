@@ -17,7 +17,7 @@ export default function ChatInterface() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const scrollToBottom = () => {
+        const scrollToBottom = () => { 
             if (scrollRef.current) {
                 const viewport = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
                 if (viewport) {
