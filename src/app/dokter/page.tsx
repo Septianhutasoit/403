@@ -1674,7 +1674,7 @@ export default function DokterPage() {
                             {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
                             <div className="flex flex-col leading-tight">
                               <span className="text-2xl font-black tracking-tighter text-white">
-                                Give<span className="text-emerald-500">Care</span>
+                                Kawan<span className="text-emerald-500">Pulih</span>
                               </span>
                             </div>
                           </div>

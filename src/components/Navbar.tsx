@@ -57,7 +57,7 @@ export default function Navbar() {
                         <div className="flex flex-col">
                             <span className={`text-xl font-black tracking-tighter leading-tight transition-colors duration-500 ${isScrolled ? "text-slate-900" : "text-white"
                                 }`}>
-                                Give<span className="text-emerald-500">Care</span>
+                                Kawan<span className="text-emerald-500">Pulih</span>
                             </span>
                             <span className={`text-[9px] font-bold uppercase tracking-widest leading-none transition-opacity duration-500 ${isScrolled ? "text-slate-400" : "text-white/60"
                                 }`}>

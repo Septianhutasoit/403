@@ -223,7 +223,7 @@ export default function KontakPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { icon: <Phone className="w-6 h-6" />, title: "Telepon", value: "+62 21 1234 5678", desc: "Senin - Sabtu, 08:00 - 20:00", color: "from-[#233E2E] to-[#3E624C]" },
-              { icon: <Mail className="w-6 h-6" />, title: "Email", value: "info@lansiacare.id", desc: "Balas dalam 24 jam", color: "from-[#3E624C] to-[#434C47]" },
+              { icon: <Mail className="w-6 h-6" />, title: "Email", value: "kawanPulih@gmail.com", desc: "Balas dalam 24 jam", color: "from-[#3E624C] to-[#434C47]" },
               { icon: <MessageCircle className="w-6 h-6" />, title: "WhatsApp", value: "+62 812-3456-7890", desc: "Respon cepat 24/7", color: "from-[#434C47] to-[#233E2E]" },
               { icon: <Clock className="w-6 h-6" />, title: "Jam Operasional", value: "24/7", desc: "Layanan darurat 24 jam", color: "from-[#3C6243] to-[#DBAA28]" }
             ].map((item, i) => (
@@ -730,7 +730,7 @@ export default function KontakPage() {
                                 {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
                                 <div className="flex flex-col leading-tight">
                                   <span className="text-2xl font-black tracking-tighter text-white">
-                                    Give<span className="text-emerald-500">Care</span>
+                                    Kawan<span className="text-emerald-500">Pulih</span>
                                   </span>
                                 </div>
                               </div>
