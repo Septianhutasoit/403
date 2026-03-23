@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import FloatingChat from "@/components/FloatingChat";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
     // Ikon dasar
     Heart, ShieldCheck, Activity, Users, BookOpen, Clock, Brain,
@@ -96,16 +97,16 @@ export default function EdukasiPage() {
     const fadeInUpClass = (index) =>
         `transition-all duration-1000 transform ${isVisible[index] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`;
 
-    // Kategori edukasi
+    // Kategori edukasi - Warna Hijau
     const categories = [
-        { id: "semua", name: "Semua", icon: <BookOpen className="w-4 h-4" />, color: "from-gray-500 to-gray-600" },
-        { id: "umum", name: "Kesehatan Umum", icon: <Heart className="w-4 h-4" />, color: "from-emerald-500 to-emerald-600" },
-        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" />, color: "from-blue-500 to-blue-600" },
-        { id: "nutrisi", name: "Nutrisi & Gizi", icon: <Apple className="w-4 h-4" />, color: "from-green-500 to-green-600" },
-        { id: "penyakit", name: "Penyakit Umum", icon: <AlertCircle className="w-4 h-4" />, color: "from-orange-500 to-orange-600" },
-        { id: "obat", name: "Penggunaan Obat", icon: <Pill className="w-4 h-4" />, color: "from-purple-500 to-purple-600" },
-        { id: "aktivitas", name: "Aktivitas Fisik", icon: <Activity className="w-4 h-4" />, color: "from-teal-500 to-teal-600" },
-        { id: "mental", name: "Kesehatan Mental", icon: <Brain className="w-4 h-4" />, color: "from-pink-500 to-pink-600" }
+        { id: "semua", name: "Semua", icon: <BookOpen className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "umum", name: "Kesehatan Umum", icon: <Heart className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "nutrisi", name: "Nutrisi & Gizi", icon: <Apple className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "penyakit", name: "Penyakit Umum", icon: <AlertCircle className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "obat", name: "Penggunaan Obat", icon: <Pill className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "aktivitas", name: "Aktivitas Fisik", icon: <Activity className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" },
+        { id: "mental", name: "Kesehatan Mental", icon: <Brain className="w-4 h-4" />, color: "from-[#233E2E] to-[#3E624C]" }
     ];
 
     // Sub-kategori untuk Pasca Operasi
@@ -119,9 +120,8 @@ export default function EdukasiPage() {
         { id: "umum", name: "Operasi Umum" }
     ];
 
-    // Data artikel edukasi
+    // Data artikel edukasi lengkap
     const articles = [
-        // KESEHATAN UMUM
         {
             id: 1,
             title: "Panduan Lengkap Nutrisi untuk Lansia",
@@ -130,27 +130,34 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/nutrisi.jpg",
             author: "dr. Sarah Wijaya, Sp.GK",
-            date: "2 Mar 2026",
+            date: "2 Maret 2026",
             readTime: "8 menit",
             views: "2.5K",
             likes: 342,
             featured: true,
-            tags: ["Gizi", "Makanan Sehat", "Suplemen", "Lansia"]
+            tags: ["Gizi", "Makanan Sehat", "Suplemen", "Lansia"],
+            content: `<p>Kesehatan lansia sangat dipengaruhi oleh asupan nutrisi yang tepat. Seiring bertambahnya usia, tubuh mengalami perubahan yang mempengaruhi kebutuhan gizi. Berikut panduan lengkap nutrisi untuk lansia.</p>
+            <h2>Kebutuhan Gizi Harian Lansia</h2>
+            <ul><li>Kalori: 1.800-2.000 kkal</li><li>Protein: 50-60 gram</li><li>Kalsium: 1.000-1.200 mg</li><li>Vitamin D: 800-1.000 IU</li><li>Air: 6-8 gelas/hari</li></ul>
+            <p>Sumber protein terbaik: ikan, ayam tanpa kulit, telur, tahu, tempe. Perbanyak sayur hijau dan buah-buahan segar.</p>`
         },
         {
             id: 2,
-            title: "Mengenal Hipertensi pada Anak",
-            excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia dini.",
+            title: "Mengenal Hipertensi pada Lansia",
+            excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia lanjut.",
             category: "penyakit",
             subCategory: "umum",
             image: "/images/edukasi/hipertensi.jpg",
             author: "dr. Ahmad Hasan, Sp.PD",
-            date: "1 Mar 2026",
+            date: "1 Maret 2026",
             readTime: "6 menit",
             views: "3.1K",
             likes: 456,
             featured: true,
-            tags: ["Hipertensi", "Tekanan Darah", "Jantung", "Lansia"]
+            tags: ["Hipertensi", "Tekanan Darah", "Jantung", "Lansia"],
+            content: `<p>Hipertensi atau tekanan darah tinggi adalah kondisi umum pada lansia. Deteksi dini dan penanganan tepat sangat penting.</p>
+            <h2>Pencegahan Hipertensi</h2>
+            <ul><li>Kurangi konsumsi garam (<5 gram/hari)</li><li>Olahraga teratur 30 menit/hari</li><li>Jaga berat badan ideal</li><li>Kelola stres dengan baik</li><li>Rutin cek tekanan darah</li></ul>`
         },
         {
             id: 3,
@@ -160,12 +167,15 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/obat.jpg",
             author: "apt. Maria Santoso, M.Farm",
-            date: "28 Feb 2026",
+            date: "28 Februari 2026",
             readTime: "5 menit",
             views: "1.8K",
             likes: 234,
             featured: false,
-            tags: ["Obat", "Farmasi", "Keamanan", "Lansia"]
+            tags: ["Obat", "Farmasi", "Keamanan", "Lansia"],
+            content: `<p>Konsumsi obat yang tepat sangat penting untuk keselamatan pasien. Berikut panduan minum obat yang aman.</p>
+            <h2>Tips Minum Obat Aman</h2>
+            <ul><li>Minum obat tepat waktu sesuai resep</li><li>Jangan menghentikan obat tanpa konsultasi</li><li>Baca aturan pakai dengan teliti</li><li>Hindari menggandakan dosis</li><li>Konsultasi jika muncul efek samping</li></ul>`
         },
         {
             id: 4,
@@ -175,27 +185,33 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/olahraga.jpg",
             author: "dr. Budi Santoso, Sp.KFR",
-            date: "27 Feb 2026",
+            date: "27 Februari 2026",
             readTime: "7 menit",
             views: "2.2K",
             likes: 389,
             featured: true,
-            tags: ["Olahraga", "Fisioterapi", "Kebugaran", "Lansia"]
+            tags: ["Olahraga", "Fisioterapi", "Kebugaran", "Lansia"],
+            content: `<p>Aktivitas fisik teratur membantu lansia tetap bugar dan mandiri. Berikut rekomendasi olahraga ringan.</p>
+            <h2>Jenis Olahraga yang Dianjurkan</h2>
+            <ul><li>Jalan kaki 30 menit/hari</li><li>Senam lansia</li><li>Yoga atau tai chi</li><li>Latihan peregangan</li><li>Bersepeda statis</li></ul>`
         },
         {
             id: 5,
-            title: "Mengatasi Depresi pada Anak",
-            excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami untuk diusia Dini.",
+            title: "Mengatasi Depresi pada Lansia",
+            excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami lansia.",
             category: "mental",
             subCategory: "umum",
             image: "/images/edukasi/depresi.jpg",
             author: "dr. Rina Putri, Sp.KJ",
-            date: "26 Feb 2026",
+            date: "26 Februari 2026",
             readTime: "9 menit",
             views: "1.9K",
             likes: 267,
             featured: false,
-            tags: ["Mental", "Depresi", "Konseling", "Anak Anak"]
+            tags: ["Mental", "Depresi", "Konseling", "Lansia"],
+            content: `<p>Depresi pada lansia sering tidak terdeteksi. Kenali gejalanya dan segera tangani.</p>
+            <h2>Tanda Depresi pada Lansia</h2>
+            <ul><li>Kehilangan minat pada aktivitas</li><li>Gangguan tidur</li><li>Perubahan nafsu makan</li><li>Mudah lelah</li><li>Pikiran negatif berlebihan</li></ul>`
         },
         {
             id: 6,
@@ -205,27 +221,33 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/diabetes.jpg",
             author: "dr. Andi Firmansyah, Sp.PD",
-            date: "25 Feb 2026",
+            date: "25 Februari 2026",
             readTime: "10 menit",
             views: "2.8K",
             likes: 412,
             featured: true,
-            tags: ["Diabetes", "Gula Darah", "Metabolik", "Lansia"]
+            tags: ["Diabetes", "Gula Darah", "Metabolik", "Lansia"],
+            content: `<p>Diabetes pada lansia dapat dikelola dengan baik. Berikut panduan lengkapnya.</p>
+            <h2>Manajemen Diabetes</h2>
+            <ul><li>Kontrol gula darah rutin</li><li>Pola makan teratur</li><li>Olahraga teratur</li><li>Minum obat tepat waktu</li><li>Cegah komplikasi dengan kontrol rutin</li></ul>`
         },
         {
             id: 7,
-            title: "Suplemen untuk Kesehatan Untuk Remaja",
-            excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia Remaja.",
+            title: "Suplemen untuk Kesehatan Lansia",
+            excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia lanjut.",
             category: "nutrisi",
             subCategory: "umum",
             image: "/images/edukasi/suplemen.jpg",
             author: "apt. Dewi Lestari, M.Farm",
-            date: "24 Feb 2026",
+            date: "24 Februari 2026",
             readTime: "6 menit",
             views: "1.5K",
             likes: 198,
             featured: false,
-            tags: ["Suplemen", "Vitamin", "Mineral", "Remaja-Dewasa"]
+            tags: ["Suplemen", "Vitamin", "Mineral", "Lansia"],
+            content: `<p>Suplemen dapat membantu memenuhi kebutuhan gizi lansia. Konsultasikan dengan dokter sebelum mengonsumsinya.</p>
+            <h2>Suplemen yang Sering Dibutuhkan</h2>
+            <ul><li>Vitamin D dan kalsium untuk tulang</li><li>Vitamin B12 untuk energi</li><li>Omega-3 untuk jantung</li><li>Zinc untuk imunitas</li><li>Probiotik untuk pencernaan</li></ul>`
         },
         {
             id: 8,
@@ -235,30 +257,34 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/osteoporosis.jpg",
             author: "dr. Sari Indah, Sp.OT",
-            date: "23 Feb 2026",
+            date: "23 Februari 2026",
             readTime: "7 menit",
             views: "2.0K",
             likes: 278,
             featured: true,
-            tags: ["Tulang", "Osteoporosis", "Kalsium", "Lansia"]
+            tags: ["Tulang", "Osteoporosis", "Kalsium", "Lansia"],
+            content: `<p>Osteoporosis dapat dicegah dengan gaya hidup sehat. Berikut langkah-langkahnya.</p>
+            <h2>Pencegahan Osteoporosis</h2>
+            <ul><li>Konsumsi kalsium 1.200 mg/hari</li><li>Vitamin D dari sinar matahari pagi</li><li>Olahraga beban teratur</li><li>Hindari merokok dan alkohol</li><li>Cek kepadatan tulang rutin</li></ul>`
         },
         {
             id: 9,
-            title: "Cara Perawatan Untuk Lansia dengan Demensia",
+            title: "Perawatan Lansia dengan Demensia",
             excerpt: "Panduan bagi keluarga dalam merawat lansia dengan gangguan daya ingat.",
             category: "mental",
             subCategory: "umum",
             image: "/images/edukasi/demensia.jpg",
             author: "dr. Maya Angelina, Sp.S",
-            date: "22 Feb 2026",
+            date: "22 Februari 2026",
             readTime: "12 menit",
             views: "3.5K",
             likes: 523,
             featured: true,
-            tags: ["Demensia", "Alzheimer", "Perawatan", "Lansia"]
+            tags: ["Demensia", "Alzheimer", "Perawatan", "Lansia"],
+            content: `<p>Merawat lansia dengan demensia membutuhkan kesabaran dan pengetahuan. Berikut panduan untuk keluarga.</p>
+            <h2>Tips Merawat Lansia dengan Demensia</h2>
+            <ul><li>Ciptakan rutinitas harian</li><li>Bicara dengan lembut dan jelas</li><li>Lingkungan yang aman</li><li>Libatkan dalam aktivitas sederhana</li><li>Jangan membantah, alihkan perhatian</li></ul>`
         },
-
-        // PASCA OPERASI
         {
             id: 10,
             title: "Panduan Perawatan Luka Pasca Operasi",
@@ -267,12 +293,16 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/pasca-operasi/luka.jpg",
             author: "dr. Budi Santoso, Sp.B",
-            date: "5 Mar 2026",
+            date: "5 Maret 2026",
             readTime: "10 menit",
             views: "4.2K",
             likes: 567,
             featured: true,
-            tags: ["Luka", "Infeksi", "Perawatan", "Pasca Operasi"]
+            tags: ["Luka", "Infeksi", "Perawatan", "Pasca Operasi"],
+            content: `<p>Perawatan luka yang tepat sangat penting untuk mencegah infeksi. Berikut panduan lengkapnya.</p>
+            <h2>Langkah Perawatan Luka</h2>
+            <ul><li>Cuci tangan sebelum merawat luka</li><li>Bersihkan luka dengan NaCl</li><li>Keringkan dengan tepuk lembut</li><li>Tutup dengan kasa steril</li><li>Ganti balutan rutin</li></ul>
+            <div class="bg-red-50 p-4 rounded-lg my-4"><p class="text-red-700"><strong>Tanda Infeksi:</strong> Kemerahan meluas, bengkak, nanah, demam >38°C</p></div>`
         },
         {
             id: 11,
@@ -282,12 +312,16 @@ export default function EdukasiPage() {
             subCategory: "jantung",
             image: "/images/edukasi/pasca-operasi/jantung.jpg",
             author: "dr. Ahmad Hasan, Sp.BTKV",
-            date: "4 Mar 2026",
+            date: "4 Maret 2026",
             readTime: "15 menit",
             views: "3.8K",
             likes: 489,
             featured: true,
-            tags: ["Jantung", "Kardiovaskular", "Rehabilitasi", "Pasca Operasi"]
+            tags: ["Jantung", "Kardiovaskular", "Rehabilitasi", "Pasca Operasi"],
+            content: `<p>Pemulihan pasca operasi jantung membutuhkan perhatian khusus. Ikuti panduan ini untuk hasil optimal.</p>
+            <h2>Fase Pemulihan</h2>
+            <ul><li>Fase I (0-2 hari): Istirahat total, monitoring ketat</li><li>Fase II (2-7 hari): Mobilisasi bertahap, perawatan luka</li><li>Fase III (2-6 minggu): Jalan kaki bertahap, rehabilitasi jantung</li><li>Fase IV (>6 minggu): Kembali beraktivitas normal</li></ul>
+            <div class="bg-green-50 p-4 rounded-lg my-4"><p class="text-green-700"><strong>Tips:</strong> Ikuti program rehabilitasi jantung untuk pemulihan optimal</p></div>`
         },
         {
             id: 14,
@@ -297,12 +331,15 @@ export default function EdukasiPage() {
             subCategory: "mata",
             image: "/images/edukasi/pasca-operasi/katarak.jpg",
             author: "dr. Rina Putri, Sp.M",
-            date: "1 Mar 2026",
+            date: "1 Maret 2026",
             readTime: "7 menit",
             views: "3.2K",
             likes: 412,
             featured: true,
-            tags: ["Mata", "Katarak", "Penglihatan", "Pasca Operasi"]
+            tags: ["Mata", "Katarak", "Penglihatan", "Pasca Operasi"],
+            content: `<p>Operasi katarak adalah prosedur yang aman. Perawatan pasca operasi yang tepat sangat penting.</p>
+            <h2>Perawatan Pasca Operasi Katarak</h2>
+            <ul><li>Jangan mengucek mata</li><li>Pakai pelindung mata saat tidur</li><li>Tetes mata sesuai jadwal</li><li>Jangan menunduk/membungkuk</li><li>Hindari membaca berlebihan</li></ul>`
         },
         {
             id: 16,
@@ -312,12 +349,15 @@ export default function EdukasiPage() {
             subCategory: "umum",
             image: "/images/edukasi/pasca-operasi/infeksi.jpg",
             author: "dr. Andi Firmansyah, Sp.PD",
-            date: "26 Feb 2026",
+            date: "26 Februari 2026",
             readTime: "8 menit",
             views: "3.7K",
             likes: 498,
             featured: true,
-            tags: ["Infeksi", "Kebersihan", "Luka", "Pasca Operasi"]
+            tags: ["Infeksi", "Kebersihan", "Luka", "Pasca Operasi"],
+            content: `<p>Infeksi pasca operasi dapat dicegah dengan langkah-langkah sederhana. Berikut panduannya.</p>
+            <h2>Cegah Infeksi Pasca Operasi</h2>
+            <ul><li>Jaga kebersihan luka</li><li>Cuci tangan sebelum menyentuh luka</li><li>Ganti balutan rutin</li><li>Konsumsi makanan bergizi</li><li>Minum antibiotik sesuai resep</li></ul>`
         },
         {
             id: 17,
@@ -327,12 +367,15 @@ export default function EdukasiPage() {
             subCategory: "gigi",
             image: "/images/edukasi/pasca-operasi/gigi.jpg",
             author: "drg. Maria Santoso",
-            date: "24 Feb 2026",
+            date: "24 Februari 2026",
             readTime: "5 menit",
             views: "2.3K",
             likes: 287,
             featured: false,
-            tags: ["Gigi", "Mulut", "Pencabutan", "Pasca Operasi"]
+            tags: ["Gigi", "Mulut", "Pencabutan", "Pasca Operasi"],
+            content: `<p>Perawatan pasca operasi gigi yang tepat membantu penyembuhan lebih cepat.</p>
+            <h2>Tips Perawatan Pasca Operasi Gigi</h2>
+            <ul><li>Kompres dingin untuk mengurangi bengkak</li><li>Hindari makanan keras</li><li>Jangan berkumur 24 jam pertama</li><li>Minum obat sesuai resep</li><li>Istirahat cukup</li></ul>`
         }
     ];
 
@@ -340,7 +383,8 @@ export default function EdukasiPage() {
     const filteredArticles = articles.filter(article => {
         const matchesCategory = selectedCategory === "semua" || article.category === selectedCategory;
         const matchesSubCategory = selectedSubCategory === "semua" || article.subCategory === selectedSubCategory;
-        const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        const matchesSearch = searchTerm === "" ||
+            article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
             article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -387,8 +431,8 @@ export default function EdukasiPage() {
                             </div>
                         </div>
                     ))}
-                    <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-                    <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
+                    <div className="absolute top-20 right-20 w-96 h-96 bg-[#233E2E]/10 rounded-full blur-2xl animate-pulse-slow"></div>
+                    <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#3E624C]/10 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
                 </div>
 
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
@@ -427,7 +471,7 @@ export default function EdukasiPage() {
                                 placeholder="Cari artikel, video, atau panduan..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur border border-white/50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all shadow-lg text-slate-900"
+                                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur border border-white/50 focus:border-[#233E2E] focus:ring-2 focus:ring-[#233E2E]/20 outline-none transition-all shadow-lg text-slate-900"
                             />
                         </div>
 
@@ -476,7 +520,7 @@ export default function EdukasiPage() {
                                     }}
                                     className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${selectedCategory === category.id
                                         ? `bg-gradient-to-r ${category.color} text-white shadow-lg scale-105`
-                                        : 'bg-white text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 border border-slate-200'
+                                        : 'bg-white text-slate-600 hover:bg-[#233E2E]/10 hover:text-[#233E2E] border border-slate-200'
                                         }`}
                                 >
                                     {category.icon}
@@ -501,8 +545,8 @@ export default function EdukasiPage() {
                                     key={subCat.id}
                                     onClick={() => setSelectedSubCategory(subCat.id)}
                                     className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${selectedSubCategory === subCat.id
-                                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
-                                        : 'bg-white text-slate-600 hover:bg-blue-50 border border-slate-200'
+                                        ? 'bg-gradient-to-r from-[#233E2E] to-[#3E624C] text-white shadow-lg'
+                                        : 'bg-white text-slate-600 hover:bg-[#233E2E]/10 border border-slate-200'
                                         }`}
                                 >
                                     {subCat.name}
@@ -518,7 +562,7 @@ export default function EdukasiPage() {
                 <div className={`max-w-7xl mx-auto ${fadeInUpClass(0)}`}>
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-bold">
+                            <h2 className="text-2xl font-bold text-slate-800">
                                 {selectedCategory === "pasca-operasi"
                                     ? "Artikel Pilihan Pasca Operasi"
                                     : "Artikel Pilihan"}
@@ -526,7 +570,7 @@ export default function EdukasiPage() {
                             <p className="text-slate-500">Rekomendasi artikel terbaik untuk Anda</p>
                         </div>
                         <Link href={`/edukasi/artikel${selectedCategory !== "semua" ? `?kategori=${selectedCategory}` : ''}`}
-                            className="text-emerald-600 hover:text-emerald-700 flex items-center gap-1">
+                            className="text-[#233E2E] hover:text-[#3E624C] flex items-center gap-1 font-medium">
                             Lihat Semua <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
@@ -534,21 +578,21 @@ export default function EdukasiPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredFeaturedArticles.slice(0, 3).map((article, index) => (
                             <Link href={`/edukasi/artikel/${article.id}`} key={article.id}>
-                                <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                                <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
                                     <div className="relative h-48 overflow-hidden">
                                         <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                                             style={{ backgroundImage: `url(${article.image})` }}>
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                         </div>
                                         <div className="absolute top-4 right-4 z-20">
-                                            <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-semibold text-emerald-600">
+                                            <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-semibold text-[#233E2E]">
                                                 {article.category === "pasca-operasi" ? "Pasca Operasi" : "Featured"}
                                             </span>
                                         </div>
                                     </div>
                                     <div className="p-6">
                                         <div className="flex items-center gap-2 mb-3">
-                                            <span className="text-xs font-medium px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full">
+                                            <span className="text-xs font-medium px-2 py-1 bg-[#233E2E]/10 text-[#233E2E] rounded-full">
                                                 {categories.find(c => c.id === article.category)?.name || article.category}
                                             </span>
                                             <span className="text-xs text-slate-400 flex items-center gap-1">
@@ -556,17 +600,17 @@ export default function EdukasiPage() {
                                                 {article.readTime}
                                             </span>
                                         </div>
-                                        <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 transition-colors">
+                                        <h3 className="font-bold text-lg mb-2 group-hover:text-[#233E2E] transition-colors line-clamp-2">
                                             {article.title}
                                         </h3>
-                                        <p className="text-slate-500 text-sm mb-4">{article.excerpt}</p>
+                                        <p className="text-slate-500 text-sm mb-4 line-clamp-2">{article.excerpt}</p>
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white text-xs font-bold">
+                                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#233E2E] to-[#3E624C] flex items-center justify-center text-white text-xs font-bold">
                                                     {article.author.charAt(0)}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium">{article.author}</p>
+                                                    <p className="text-sm font-medium">{article.author.split(',')[0]}</p>
                                                     <p className="text-xs text-slate-400">{article.date}</p>
                                                 </div>
                                             </div>
@@ -594,14 +638,14 @@ export default function EdukasiPage() {
                         {/* Left Column - Articles */}
                         <div className="lg:col-span-2">
                             <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-2xl font-bold">
+                                <h2 className="text-2xl font-bold text-slate-800">
                                     {selectedCategory === "pasca-operasi"
                                         ? "Artikel Pasca Operasi"
                                         : "Semua Artikel"}
                                 </h2>
                                 <div className="flex items-center gap-2">
                                     <Filter className="w-4 h-4 text-slate-400" />
-                                    <select className="text-sm border rounded-lg px-3 py-2">
+                                    <select className="text-sm border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#233E2E]">
                                         <option>Terbaru</option>
                                         <option>Terpopuler</option>
                                         <option>Terlama</option>
@@ -619,20 +663,20 @@ export default function EdukasiPage() {
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="flex items-center gap-2 mb-2">
-                                                        <span className="text-xs font-medium px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full">
+                                                        <span className="text-xs font-medium px-2 py-1 bg-[#233E2E]/10 text-[#233E2E] rounded-full">
                                                             {categories.find(c => c.id === article.category)?.name || article.category}
                                                         </span>
                                                         {article.tags.slice(0, 2).map((tag, i) => (
                                                             <span key={i} className="text-xs text-slate-400">#{tag}</span>
                                                         ))}
                                                     </div>
-                                                    <h3 className="font-bold text-lg mb-2 group-hover:text-emerald-600 transition-colors">
+                                                    <h3 className="font-bold text-lg mb-2 group-hover:text-[#233E2E] transition-colors line-clamp-1">
                                                         {article.title}
                                                     </h3>
-                                                    <p className="text-slate-500 text-sm mb-3">{article.excerpt}</p>
+                                                    <p className="text-slate-500 text-sm mb-3 line-clamp-2">{article.excerpt}</p>
                                                     <div className="flex items-center gap-4 text-xs text-slate-400">
                                                         <span className="flex items-center gap-1">
-                                                            <User className="w-3 h-3" /> {article.author}
+                                                            <User className="w-3 h-3" /> {article.author.split(',')[0]}
                                                         </span>
                                                         <span className="flex items-center gap-1">
                                                             <Clock className="w-3 h-3" /> {article.date}
@@ -652,7 +696,7 @@ export default function EdukasiPage() {
                                 <div className="text-center mt-8">
                                     <button
                                         onClick={() => setVisibleArticles(prev => prev + 6)}
-                                        className="bg-white border-2 border-emerald-600 text-emerald-600 px-8 py-3 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-500"
+                                        className="bg-white border-2 border-[#233E2E] text-[#233E2E] px-8 py-3 rounded-xl font-semibold hover:bg-[#233E2E]/10 transition-all duration-500"
                                     >
                                         Muat Lebih Banyak ({filteredArticles.length - visibleArticles} tersisa)
                                     </button>
@@ -660,17 +704,17 @@ export default function EdukasiPage() {
                             )}
                         </div>
 
-                        {/* Right Column - Sidebar (MODIFIKASI: Informasi Pasca Operasi) */}
+                        {/* Right Column - Sidebar Informasi Pasca Operasi */}
                         <div className="space-y-8">
                             {/* Info Pasca Operasi - Card Utama */}
-                            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg border border-blue-100">
+                            <div className="bg-gradient-to-br from-[#233E2E]/10 to-[#3E624C]/10 rounded-2xl p-6 shadow-lg border border-[#233E2E]/20">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                                        <Bandage className="w-6 h-6 text-blue-600" />
+                                    <div className="w-12 h-12 bg-[#233E2E]/20 rounded-xl flex items-center justify-center">
+                                        <Bandage className="w-6 h-6 text-[#233E2E]" />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg text-slate-800">Perawatan Pasca Operasi</h3>
-                                        <p className="text-xs text-blue-600">Panduan Lengkap Pemulihan</p>
+                                        <p className="text-xs text-[#3E624C]">Panduan Lengkap Pemulihan</p>
                                     </div>
                                 </div>
 
@@ -679,7 +723,7 @@ export default function EdukasiPage() {
                                         src="/images/edukasi/pasca-operasi/hero-pasca-ops.jpg"
                                         alt="Perawatan Pasca Operasi"
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                        onError={(e) => e.target.src = "https://placehold.co/600x400/3b82f6/white?text=Pasca+Operasi"}
+                                        onError={(e) => e.target.src = "https://placehold.co/600x400/233E2E/white?text=Pasca+Operasi"}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
@@ -694,23 +738,23 @@ export default function EdukasiPage() {
 
                                 <div className="grid grid-cols-3 gap-2 mb-4">
                                     <div className="text-center p-2 bg-white/60 rounded-lg">
-                                        <p className="text-lg font-bold text-blue-600">95%</p>
-                                        <p className="text-[10px] text-slate-500">Tingkat Keberhasilan</p>
+                                        <p className="text-lg font-bold text-[#233E2E]">95%</p>
+                                        <p className="text-[10px] text-slate-500">Keberhasilan</p>
                                     </div>
                                     <div className="text-center p-2 bg-white/60 rounded-lg">
-                                        <p className="text-lg font-bold text-blue-600">500+</p>
-                                        <p className="text-[10px] text-slate-500">Pasien Terbantu</p>
+                                        <p className="text-lg font-bold text-[#233E2E]">500+</p>
+                                        <p className="text-[10px] text-slate-500">Pasien</p>
                                     </div>
                                     <div className="text-center p-2 bg-white/60 rounded-lg">
-                                        <p className="text-lg font-bold text-blue-600">15+</p>
-                                        <p className="text-[10px] text-slate-500">Dokter Spesialis</p>
+                                        <p className="text-lg font-bold text-[#233E2E]">15+</p>
+                                        <p className="text-[10px] text-slate-500">Spesialis</p>
                                     </div>
                                 </div>
 
                                 <Link href="/edukasi?kategori=pasca-operasi">
-                                    <button className="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                                    <button className="w-full bg-gradient-to-r from-[#233E2E] to-[#3E624C] text-white py-2 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
                                         <BookOpen className="w-4 h-4" />
-                                        Lihat Semua Artikel Pasca Operasi
+                                        Lihat Semua Artikel
                                     </button>
                                 </Link>
                             </div>
@@ -718,19 +762,19 @@ export default function EdukasiPage() {
                             {/* Tips Pemulihan Cepat */}
                             <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
-                                        <Zap className="w-5 h-5 text-emerald-600" />
+                                    <div className="w-10 h-10 bg-[#233E2E]/10 rounded-xl flex items-center justify-center">
+                                        <Zap className="w-5 h-5 text-[#233E2E]" />
                                     </div>
                                     <h3 className="font-bold text-lg">Tips Pemulihan Cepat</h3>
                                 </div>
 
                                 <div className="space-y-3">
                                     {[
-                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Istirahat cukup 8 jam/hari untuk regenerasi sel" },
-                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Konsumsi protein tinggi (ikan, telur, tahu, tempe)" },
-                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Minum air putih 8 gelas/hari cegah dehidrasi" },
-                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Jaga kebersihan luka operasi dengan benar" },
-                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Ikuti jadwal kontrol dan fisioterapi" }
+                                        { icon: <CheckCircle className="w-4 h-4 text-[#233E2E]" />, text: "Istirahat cukup 8 jam/hari untuk regenerasi sel" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-[#233E2E]" />, text: "Konsumsi protein tinggi (ikan, telur, tahu, tempe)" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-[#233E2E]" />, text: "Minum air putih 8 gelas/hari cegah dehidrasi" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-[#233E2E]" />, text: "Jaga kebersihan luka operasi dengan benar" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-[#233E2E]" />, text: "Ikuti jadwal kontrol dan fisioterapi" }
                                     ].map((tip, i) => (
                                         <div key={i} className="flex items-start gap-2 text-sm text-slate-600">
                                             {tip.icon}
@@ -743,61 +787,35 @@ export default function EdukasiPage() {
                             {/* Jenis Operasi yang Ditangani */}
                             <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-                                        <Hospital className="w-5 h-5 text-purple-600" />
+                                    <div className="w-10 h-10 bg-[#233E2E]/10 rounded-xl flex items-center justify-center">
+                                        <Hospital className="w-5 h-5 text-[#233E2E]" />
                                     </div>
-                                    <h3 className="font-bold text-lg">Jenis Operasi yang Ditangani</h3>
+                                    <h3 className="font-bold text-lg">Jenis Operasi</h3>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3">
                                     {[
-                                        { name: "Operasi Jantung", icon: <HeartPulse className="w-4 h-4" />, color: "bg-red-50 text-red-600" },
-                                        { name: "Operasi Tulang", icon: <Bone className="w-4 h-4" />, color: "bg-amber-50 text-amber-600" },
-                                        { name: "Operasi Mata", icon: <EyeIcon className="w-4 h-4" />, color: "bg-blue-50 text-blue-600" },
-                                        { name: "Operasi Perut", icon: <Activity className="w-4 h-4" />, color: "bg-emerald-50 text-emerald-600" },
-                                        { name: "Operasi Gigi", icon: <Smile className="w-4 h-4" />, color: "bg-cyan-50 text-cyan-600" },
-                                        { name: "Operasi Saraf", icon: <Brain className="w-4 h-4" />, color: "bg-purple-50 text-purple-600" }
+                                        { name: "Operasi Jantung", icon: <HeartPulse className="w-4 h-4" /> },
+                                        { name: "Operasi Tulang", icon: <Bone className="w-4 h-4" /> },
+                                        { name: "Operasi Mata", icon: <EyeIcon className="w-4 h-4" /> },
+                                        { name: "Operasi Perut", icon: <Activity className="w-4 h-4" /> },
+                                        { name: "Operasi Gigi", icon: <Smile className="w-4 h-4" /> },
+                                        { name: "Operasi Saraf", icon: <Brain className="w-4 h-4" /> }
                                     ].map((surgery, i) => (
                                         <Link
                                             key={i}
                                             href={`/edukasi?kategori=pasca-operasi&topik=${surgery.name.toLowerCase().replace(/ /g, '-')}`}
-                                            className={`flex items-center gap-2 p-2 rounded-xl ${surgery.color} hover:scale-105 transition-transform`}
+                                            className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-[#233E2E]/10 transition-colors"
                                         >
                                             {surgery.icon}
-                                            <span className="text-xs font-medium">{surgery.name}</span>
+                                            <span className="text-xs font-medium text-slate-700">{surgery.name}</span>
                                         </Link>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* Infografis Tahapan Pemulihan */}
-                            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 text-white">
-                                <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                                    <TrendingUp className="w-5 h-5" />
-                                    Tahapan Pemulihan
-                                </h3>
-                                <div className="space-y-3">
-                                    {[
-                                        { day: "1-3 Hari", title: "Fase Awal", desc: "Istirahat total, manajemen nyeri" },
-                                        { day: "4-14 Hari", title: "Fase Perawatan", desc: "Perawatan luka, mobilisasi ringan" },
-                                        { day: "2-6 Minggu", title: "Fase Rehabilitasi", desc: "Fisioterapi, aktivitas bertahap" },
-                                        { day: ">6 Minggu", title: "Pemulihan Penuh", desc: "Kembali beraktivitas normal" }
-                                    ].map((phase, i) => (
-                                        <div key={i} className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
-                                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
-                                                {phase.day}
-                                            </div>
-                                            <div>
-                                                <p className="font-semibold text-sm">{phase.title}</p>
-                                                <p className="text-xs text-white/80">{phase.desc}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
                             {/* Konsultasi Gratis */}
-                            <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl p-6 text-white">
+                            <div className="bg-gradient-to-r from-[#233E2E] to-[#3E624C] rounded-2xl p-6 text-white">
                                 <div className="flex items-center gap-2 mb-3">
                                     <MessageCircle className="w-6 h-6" />
                                     <h3 className="font-bold text-lg">Konsultasi Gratis</h3>
@@ -806,39 +824,11 @@ export default function EdukasiPage() {
                                     Konsultasikan kondisi pasca operasi Anda dengan dokter spesialis kami secara gratis.
                                 </p>
                                 <Link href="/konsultasi">
-                                    <button className="w-full bg-white text-emerald-600 py-2 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                    <button className="w-full bg-white text-[#233E2E] py-2 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
                                         <Stethoscope className="w-4 h-4" />
                                         Konsultasi Sekarang
                                     </button>
                                 </Link>
-                            </div>
-
-                            {/* Testimoni Pasien */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
-                                        <Star className="w-5 h-5 text-yellow-600" />
-                                    </div>
-                                    <h3 className="font-bold text-lg">Kata Mereka</h3>
-                                </div>
-
-                                <div className="space-y-4">
-                                    {[
-                                        { name: "Ibu Siti", text: "Panduan perawatan luka sangat membantu proses pemulihan saya.", rating: 5 },
-                                        { name: "Bapak Ahmad", text: "Rehabilitasi pasca operasi jantung berjalan lancar.", rating: 5 },
-                                        { name: "Ibu Maria", text: "Tim medis sangat perhatian dan profesional.", rating: 5 }
-                                    ].map((testimoni, i) => (
-                                        <div key={i} className="border-b border-slate-100 last:border-0 pb-3 last:pb-0">
-                                            <div className="flex items-center gap-1 mb-1">
-                                                {[...Array(testimoni.rating)].map((_, j) => (
-                                                    <Star key={j} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                                                ))}
-                                            </div>
-                                            <p className="text-sm text-slate-600 italic">"{testimoni.text}"</p>
-                                            <p className="text-xs text-slate-400 mt-1">- {testimoni.name}</p>
-                                        </div>
-                                    ))}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -846,7 +836,7 @@ export default function EdukasiPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-emerald-600 to-teal-600 text-white">
+            <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-4">Butuh Konsultasi Kesehatan?</h2>
                     <p className="text-lg mb-8 text-white/90">
@@ -854,7 +844,7 @@ export default function EdukasiPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/konsultasi">
-                            <button className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold hover:shadow-2xl hover:scale-105 transition-all duration-500">
+                            <button className="bg-white text-[#233E2E] px-8 py-4 rounded-xl font-bold hover:shadow-2xl hover:scale-105 transition-all duration-500">
                                 Konsultasi Sekarang
                             </button>
                         </Link>
@@ -882,7 +872,7 @@ export default function EdukasiPage() {
                                 </div>
                                 <div className="flex flex-col leading-tight">
                                     <span className="text-2xl font-black tracking-tighter text-white">
-                                        Kawan<span className="text-emerald-500">Pulih</span>
+                                        Kawan<span className="text-[#3E624C]">Pulih</span>
                                     </span>
                                 </div>
                             </div>
@@ -1001,6 +991,18 @@ export default function EdukasiPage() {
                 }
                 .animation-delay-2000 {
                     animation-delay: 2s;
+                }
+                .line-clamp-1 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                .line-clamp-2 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
                 }
             `}</style>
         </main>
