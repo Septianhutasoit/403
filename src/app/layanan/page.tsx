@@ -88,38 +88,38 @@ export default function LayananPage() {
     const services = [
         // KONSULTASI
         {
-            id: 1,
-            title: "Konsultasi Video dengan Dokter",
-            description: "Bertemu dokter spesialis melalui video call dari rumah. Praktis, aman, dan nyaman.",
-            longDescription: "Layanan konsultasi video memungkinkan Anda bertemu dengan dokter spesialis tanpa harus keluar rumah. Cukup dengan smartphone atau laptop, Anda bisa berkonsultasi tentang keluhan kesehatan, mendapatkan resep online, dan rencana perawatan lanjutan.",
-            icon: <Video className="w-8 h-8" />,
-            image: "/images/layanan/konsultasi-video.jpg",
+            id: 9,
+            title: "Perawatan Pasca Operasi Mata (Katarak)",
+            description: "Panduan lengkap perawatan mata setelah operasi katarak untuk pemulihan optimal.",
+            icon: <Eye className="w-8 h-8" />,
+            image: "/images/layanan/mata.jpg",
             color: "from-[#233E2E] to-[#3E624C]",
             bgColor: "bg-[#233E2E]/10",
-            category: "konsultasi",
+            category: "pasca-operasi",
             features: [
-                "Lebih dari 50 dokter spesialis",
-                "Jadwal fleksibel 24/7",
-                "Resep elektronik langsung",
-                "Rekam medis terintegrasi"
+                "Panduan tetes mata sesuai jadwal",
+                "Tips menghindari infeksi",
+                "Aturan aktivitas pasca operasi",
+                "Jadwal kontrol rutin",
+                "Panduan penggunaan pelindung mata"
             ],
-            stats: { dokter: "50+", pasien: "10K+", rating: "4.9" },
-            price: "Rp 150K - 500K",
-            duration: "30-60 menit",
+            stats: { pasien: "500+", sukses: "98%", pemulihan: "1-2 minggu" },
+            price: "Rp 250K - 500K/paket",
+            duration: "2-4 minggu",
             benefits: [
-                "Tidak perlu antri",
-                "Konsultasi dari rumah",
-                "Privasi terjamin",
-                "Dokter berpengalaman"
+                "Pemulihan penglihatan optimal",
+                "Cegah komplikasi infeksi",
+                "Kembali beraktivitas cepat",
+                "Hasil operasi maksimal"
             ],
-            suitable: "Pasien dengan kondisi ringan hingga sedang, kontrol rutin, atau konsultasi awal"
+            suitable: "Pasien pasca operasi katarak, glaukoma, atau operasi refraktif mata"
         },
         {
             id: 2,
             title: "Konsultasi Chat dengan Dokter",
             description: "Tanya jawab dengan dokter melalui chat kapan saja. Cocok untuk pertanyaan ringan.",
             icon: <MessageCircle className="w-8 h-8" />,
-            image: "/images/layanan/konsultasi-chat.jpg",
+            image: "/images/informasi/demensia.jpg",
             color: "from-[#3E624C] to-[#434C47]",
             bgColor: "bg-[#3E624C]/10",
             category: "konsultasi",
@@ -147,7 +147,7 @@ export default function LayananPage() {
             title: "Perawat Lansia di Rumah",
             description: "Perawat profesional yang siap merawat lansia di rumah dengan penuh kasih sayang.",
             icon: <HeartHandshake className="w-8 h-8" />,
-            image: "/images/layanan/perawat-lansia.jpg",
+            image: "/images/layanan/nyeri.jpg",
             color: "from-[#434C47] to-[#233E2E]",
             bgColor: "bg-[#434C47]/10",
             category: "perawat",
@@ -173,7 +173,7 @@ export default function LayananPage() {
             title: "Perawat Pasca Operasi",
             description: "Perawatan intensif di rumah untuk pasien yang baru menjalani operasi.",
             icon: <Bandage className="w-8 h-8" />,
-            image: "/images/layanan/perawat-pascaops.jpg",
+            image: "/images/layanan/luka-operasi.jpg",
             color: "from-[#3C6243] to-[#DBAA28]",
             bgColor: "bg-[#3C6243]/10",
             category: "perawat",
@@ -195,67 +195,67 @@ export default function LayananPage() {
             suitable: "Pasien baru pulang operasi, perawatan luka, atau rehabilitasi awal"
         },
 
-        // EDUKASI
         {
             id: 5,
-            title: "Kelas Online Kesehatan",
-            description: "Belajar tentang kesehatan lansia, perawatan pasca operasi, dan nutrisi dari para ahli.",
-            icon: <BookOpen className="w-8 h-8" />,
-            image: "/images/layanan/kelas-online.jpg",
-            color: "from-[#233E2E] to-[#3E624C]",
-            bgColor: "bg-[#233E2E]/10",
-            category: "edukasi",
+            title: "Manajemen Nyeri Pasca Operasi",
+            description: "Cara mengatasi rasa sakit pasca operasi dengan aman dan efektif tanpa ketergantungan obat.",
+            icon: <AlertCircle className="w-8 h-8" />,
+            image: "/images/informasi/osteoporosis.jpg",
+            color: "from-[#434C47] to-[#233E2E]",
+            bgColor: "bg-[#434C47]/10",
+            category: "pasca-operasi",
             features: [
-                "Materi video berkualitas",
-                "Sertifikat kelulusan",
-                "Diskusi dengan ahli",
-                "Akses seumur hidup"
+                "Teknik non-farmakologi (kompres, relaksasi)",
+                "Panduan penggunaan obat aman",
+                "Skala nyeri dan kapan harus konsultasi",
+                "Terapi fisik untuk mengurangi nyeri",
+                "Posisi tidur nyaman pasca operasi"
             ],
-            stats: { kelas: "20+", peserta: "2K+", rating: "4.8" },
-            price: "Rp 100K - 500K",
-            duration: "2-8 jam",
+            stats: { pasien: "600+", efektif: "92%", metode: "10+" },
+            price: "Rp 100K - 250K/konsultasi",
+            duration: "Sesuai kebutuhan",
             benefits: [
-                "Belajar dari rumah",
-                "Materi terstruktur",
-                "Sertifikat resmi",
-                "Akses selamanya"
+                "Nyeri terkontrol optimal",
+                "Mobilitas lebih cepat",
+                "Kualitas tidur meningkat",
+                "Pemulihan lebih nyaman"
             ],
-            suitable: "Caregiver, keluarga pasien, atau tenaga kesehatan yang ingin meningkatkan kompetensi"
+            suitable: "Pasien dengan nyeri sedang-berat pasca operasi"
         },
         {
             id: 6,
-            title: "Artikel & Panduan Kesehatan",
-            description: "Puluhan artikel dan panduan PDF tentang kesehatan lansia yang bisa diunduh gratis.",
-            icon: <FileText className="w-8 h-8" />,
-            image: "/images/layanan/artikel.jpg",
-            color: "from-[#3E624C] to-[#434C47]",
-            bgColor: "bg-[#3E624C]/10",
-            category: "edukasi",
+            title: "Nutrisi Pemulihan Pasca Operasi",
+            description: "Panduan makanan bergizi untuk mempercepat penyembuhan luka dan mengembalikan energi.",
+            icon: <Apple className="w-8 h-8" />,
+            image: "/images/layanan/nutrisi.jpg",
+            color: "from-[#3C6243] to-[#DBAA28]",
+            bgColor: "bg-[#3C6243]/10",
+            category: "pasca-operasi",
             features: [
-                "100+ artikel",
-                "Panduan PDF gratis",
-                "Update mingguan",
-                "Ditinjau dokter"
+                "Menu khusus pasca operasi",
+                "Suplemen yang dibutuhkan",
+                "Aturan makan bertahap",
+                "Pantangan makanan",
+                "Resep sehat untuk pemulihan"
             ],
-            stats: { artikel: "120+", pdf: "15+", pembaca: "15K+" },
-            price: "Gratis",
-            duration: "Sepanjang waktu",
+            stats: { pasien: "400+", rekomendasi: "50+", resep: "30+" },
+            price: "Rp 150K - 350K/konsultasi",
+            duration: "1-3 bulan",
             benefits: [
-                "Gratis selamanya",
-                "Bisa diunduh",
-                "Info terpercaya",
-                "Update rutin"
+                "Penyembuhan luka lebih cepat",
+                "Kembali berat badan ideal",
+                "Energi pulih optimal",
+                "Cegah malnutrisi"
             ],
-            suitable: "Siapa saja yang ingin menambah wawasan kesehatan lansia"
+            suitable: "Pasien pasca operasi dengan kebutuhan nutrisi khusus"
         },
-
         // PASCA OPERASI
         {
             id: 7,
             title: "Program Pemulihan Jantung",
             description: "Program rehabilitasi jantung yang aman dan efektif untuk pasien pasca operasi jantung.",
             icon: <HeartPulse className="w-8 h-8" />,
-            image: "/images/layanan/rehab-jantung.jpg",
+            image: "/images/layanan/jantung.jpg",
             color: "from-[#434C47] to-[#233E2E]",
             bgColor: "bg-[#434C47]/10",
             category: "pasca-operasi",
@@ -281,7 +281,7 @@ export default function LayananPage() {
             title: "Rehabilitasi Ortopedi",
             description: "Latihan fisioterapi untuk memulihkan mobilitas setelah operasi tulang dan sendi.",
             icon: <Bone className="w-8 h-8" />,
-            image: "/images/layanan/rehab-ortopedi.jpg",
+            image: "/images/layanan/tulang.jpg",
             color: "from-[#3C6243] to-[#DBAA28]",
             bgColor: "bg-[#3C6243]/10",
             category: "pasca-operasi",
