@@ -60,7 +60,7 @@ export default function DaftarPage() {
         { id: "mata", name: "Spesialis Mata" }
     ];
 
-    const cityOptions = ["Jakarta", "Surabaya", "Bandung", "Medan", "Yogyakarta", "Semarang", "Makassar", "Palembang", "Lainnya"];
+    const cityOptions = ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Siantar", "Lainnya"];
     const timeOptions = ["08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "19:00 - 20:00"];
 
     const validateStep = (step) => {
