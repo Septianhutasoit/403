@@ -37,29 +37,29 @@ export default function EdukasiPage() {
     const [isVisible, setIsVisible] = useState({});
     const sectionRefs = useRef([]);
 
-    // Data untuk background slider (akan diganti dengan gambar Anda)
+    // Data untuk background slider
     const heroSlides = [
         {
             id: 1,
-            image: "/images/hero/hero-edukasi-1.jpg", // Ganti dengan file gambar Anda
+            image: "/images/hero/hero-edukasi-1.jpg",
             title: "Edukasi Kesehatan untuk Semua",
             subtitle: "Pelajari cara hidup sehat dan pemulihan pasca operasi"
         },
         {
             id: 2,
-            image: "/images/hero/hero-edukasi-2.jpg", // Ganti dengan file gambar Anda
+            image: "/images/hero/hero-edukasi-2.jpg",
             title: "Panduan Perawatan Pasca Operasi",
             subtitle: "Informasi lengkap untuk pemulihan yang cepat dan aman"
         },
         {
             id: 3,
-            image: "/images/hero/hero-edukasi-3.jpg", // Ganti dengan file gambar Anda
+            image: "/images/hero/hero-edukasi-3.jpg",
             title: "Konsultasi dengan Ahli Kesehatan",
             subtitle: "Dapatkan jawaban dari dokter spesialis terpercaya"
         },
         {
             id: 4,
-            image: "/images/hero/hero-edukasi-4.jpg", // Ganti dengan file gambar Anda
+            image: "/images/hero/hero-edukasi-4.jpg",
             title: "Komunitas Peduli Kesehatan",
             subtitle: "Bergabung dengan ribuan orang yang peduli kesehatan"
         }
@@ -119,7 +119,7 @@ export default function EdukasiPage() {
         { id: "umum", name: "Operasi Umum" }
     ];
 
-    // Data artikel edukasi dengan path gambar yang siap diisi
+    // Data artikel edukasi
     const articles = [
         // KESEHATAN UMUM
         {
@@ -128,7 +128,7 @@ export default function EdukasiPage() {
             excerpt: "Makanan sehat dan pola gizi seimbang untuk menjaga vitalitas di usia lanjut.",
             category: "nutrisi",
             subCategory: "umum",
-            image: "/images/edukasi/nutrisi.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/nutrisi.jpg",
             author: "dr. Sarah Wijaya, Sp.GK",
             date: "2 Mar 2026",
             readTime: "8 menit",
@@ -143,7 +143,7 @@ export default function EdukasiPage() {
             excerpt: "Penyebab, gejala, dan cara mengelola tekanan darah tinggi di usia dini.",
             category: "penyakit",
             subCategory: "umum",
-            image: "/images/edukasi/hipertensi.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/hipertensi.jpg",
             author: "dr. Ahmad Hasan, Sp.PD",
             date: "1 Mar 2026",
             readTime: "6 menit",
@@ -158,7 +158,7 @@ export default function EdukasiPage() {
             excerpt: "Cara tepat mengonsumsi obat-obatan untuk menghindari efek samping berbahaya.",
             category: "obat",
             subCategory: "umum",
-            image: "/images/edukasi/obat.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/obat.jpg",
             author: "apt. Maria Santoso, M.Farm",
             date: "28 Feb 2026",
             readTime: "5 menit",
@@ -173,7 +173,7 @@ export default function EdukasiPage() {
             excerpt: "Gerakan sederhana yang aman dilakukan untuk menjaga kebugaran tubuh.",
             category: "aktivitas",
             subCategory: "umum",
-            image: "/images/edukasi/olahraga.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/olahraga.jpg",
             author: "dr. Budi Santoso, Sp.KFR",
             date: "27 Feb 2026",
             readTime: "7 menit",
@@ -188,7 +188,7 @@ export default function EdukasiPage() {
             excerpt: "Cara mengenali dan menangani gangguan mental yang sering dialami untuk diusia Dini.",
             category: "mental",
             subCategory: "umum",
-            image: "/images/edukasi/depresi.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/depresi.jpg",
             author: "dr. Rina Putri, Sp.KJ",
             date: "26 Feb 2026",
             readTime: "9 menit",
@@ -203,7 +203,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan lengkap mengelola diabetes agar tetap produktif dan sehat.",
             category: "penyakit",
             subCategory: "umum",
-            image: "/images/edukasi/diabetes.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/diabetes.jpg",
             author: "dr. Andi Firmansyah, Sp.PD",
             date: "25 Feb 2026",
             readTime: "10 menit",
@@ -218,7 +218,7 @@ export default function EdukasiPage() {
             excerpt: "Vitamin dan mineral penting untuk menjaga kesehatan di usia Remaja.",
             category: "nutrisi",
             subCategory: "umum",
-            image: "/images/edukasi/suplemen.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/suplemen.jpg",
             author: "apt. Dewi Lestari, M.Farm",
             date: "24 Feb 2026",
             readTime: "6 menit",
@@ -233,7 +233,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah menjaga kepadatan tulang di usia lanjut.",
             category: "aktivitas",
             subCategory: "umum",
-            image: "/images/edukasi/osteoporosis.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/osteoporosis.jpg",
             author: "dr. Sari Indah, Sp.OT",
             date: "23 Feb 2026",
             readTime: "7 menit",
@@ -248,7 +248,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan bagi keluarga dalam merawat lansia dengan gangguan daya ingat.",
             category: "mental",
             subCategory: "umum",
-            image: "/images/edukasi/demensia.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/demensia.jpg",
             author: "dr. Maya Angelina, Sp.S",
             date: "22 Feb 2026",
             readTime: "12 menit",
@@ -265,7 +265,7 @@ export default function EdukasiPage() {
             excerpt: "Cara merawat luka operasi agar cepat kering dan mencegah infeksi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/luka.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/pasca-operasi/luka.jpg",
             author: "dr. Budi Santoso, Sp.B",
             date: "5 Mar 2026",
             readTime: "10 menit",
@@ -280,7 +280,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah penting untuk pemulihan optimal setelah operasi jantung.",
             category: "pasca-operasi",
             subCategory: "jantung",
-            image: "/images/edukasi/pasca-operasi/jantung.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/pasca-operasi/jantung.jpg",
             author: "dr. Ahmad Hasan, Sp.BTKV",
             date: "4 Mar 2026",
             readTime: "15 menit",
@@ -295,7 +295,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan lengkap merawat mata setelah operasi katarak agar cepat sembuh.",
             category: "pasca-operasi",
             subCategory: "mata",
-            image: "/images/edukasi/pasca-operasi/katarak.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/pasca-operasi/katarak.jpg",
             author: "dr. Rina Putri, Sp.M",
             date: "1 Mar 2026",
             readTime: "7 menit",
@@ -310,7 +310,7 @@ export default function EdukasiPage() {
             excerpt: "Langkah-langkah penting untuk mencegah infeksi pada luka operasi.",
             category: "pasca-operasi",
             subCategory: "umum",
-            image: "/images/edukasi/pasca-operasi/infeksi.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/pasca-operasi/infeksi.jpg",
             author: "dr. Andi Firmansyah, Sp.PD",
             date: "26 Feb 2026",
             readTime: "8 menit",
@@ -325,7 +325,7 @@ export default function EdukasiPage() {
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
             category: "pasca-operasi",
             subCategory: "gigi",
-            image: "/images/edukasi/pasca-operasi/gigi.jpg", // Ganti dengan file gambar Anda
+            image: "/images/edukasi/pasca-operasi/gigi.jpg",
             author: "drg. Maria Santoso",
             date: "24 Feb 2026",
             readTime: "5 menit",
@@ -333,65 +333,6 @@ export default function EdukasiPage() {
             likes: 287,
             featured: false,
             tags: ["Gigi", "Mulut", "Pencabutan", "Pasca Operasi"]
-        }
-    ];
-
-    // Data video edukasi
-    const videos = [
-        {
-            id: 1,
-            title: "Senam Sehat untuk Lansia",
-            duration: "15:30",
-            views: "12K",
-            category: "umum",
-            thumbnail: "/images/edukasi/video/video1.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 2,
-            title: "Cara Merawat Luka Operasi",
-            duration: "8:45",
-            views: "8.5K",
-            category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video/video2.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 3,
-            title: "Latihan Pasca Operasi Jantung",
-            duration: "12:20",
-            views: "6.2K",
-            category: "pasca-operasi",
-            thumbnail: "/images/edukasi/video/video3.jpg" // Ganti dengan file gambar Anda
-        }
-    ];
-
-    // Data panduan PDF
-    const guides = [
-        {
-            id: 1,
-            title: "Panduan Perawatan Lansia di Rumah",
-            pages: 45,
-            downloads: "5.2K",
-            size: "2.4 MB",
-            category: "umum",
-            cover: "/images/edukasi/guides/guide1.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 2,
-            title: "Panduan Pemulihan Pasca Operasi",
-            pages: 52,
-            downloads: "4.8K",
-            size: "3.1 MB",
-            category: "pasca-operasi",
-            cover: "/images/edukasi/guides/guide2.jpg" // Ganti dengan file gambar Anda
-        },
-        {
-            id: 3,
-            title: "Buku Saku Perawatan Luka Operasi",
-            pages: 28,
-            downloads: "3.9K",
-            size: "1.8 MB",
-            category: "pasca-operasi",
-            cover: "/images/edukasi/guides/guide3.jpg" // Ganti dengan file gambar Anda
         }
     ];
 
@@ -416,7 +357,6 @@ export default function EdukasiPage() {
 
     const displayedArticles = filteredArticles.slice(0, visibleArticles);
 
-    // Hitung total artikel per kategori
     const getCategoryCount = (categoryId) => {
         return articles.filter(a => a.category === categoryId).length;
     };
@@ -427,7 +367,6 @@ export default function EdukasiPage() {
 
             {/* Hero Section dengan Background Slider */}
             <section className="relative h-[600px] sm:h-[650px] lg:h-[700px] flex items-center overflow-hidden">
-                {/* Background Slider */}
                 <div className="absolute inset-0">
                     {heroSlides.map((slide, index) => (
                         <div
@@ -435,15 +374,11 @@ export default function EdukasiPage() {
                             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                                 }`}
                         >
-                            {/* Background Image */}
                             <div className="absolute inset-0 bg-cover bg-center"
                                 style={{ backgroundImage: `url(${slide.image})` }}>
-                                {/* Overlay Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             </div>
-
-                            {/* Pattern Overlay */}
                             <div className="absolute inset-0 opacity-20"
                                 style={{
                                     backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
@@ -452,13 +387,10 @@ export default function EdukasiPage() {
                             </div>
                         </div>
                     ))}
-
-                    {/* Floating Elements */}
                     <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
                     <div className="absolute bottom-20 left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
                 </div>
 
-                {/* Slide Indicators */}
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
                     {heroSlides.map((_, index) => (
                         <button
@@ -472,7 +404,6 @@ export default function EdukasiPage() {
                     ))}
                 </div>
 
-                {/* Hero Content */}
                 <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     <div className="max-w-3xl text-white">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
@@ -489,7 +420,6 @@ export default function EdukasiPage() {
                             {heroSlides[currentSlide].subtitle}
                         </p>
 
-                        {/* Search Bar */}
                         <div className="max-w-2xl relative animate-slide-up delay-300">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                             <input
@@ -501,18 +431,17 @@ export default function EdukasiPage() {
                             />
                         </div>
 
-                        {/* Stats */}
                         <div className="flex flex-wrap gap-8 mt-12 animate-slide-up delay-500">
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-white">{articles.length}+</div>
                                 <div className="text-sm text-white/70">Artikel</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-white">{videos.length}+</div>
+                                <div className="text-3xl font-bold text-white">3+</div>
                                 <div className="text-sm text-white/70">Video Edukasi</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-white">{guides.length}+</div>
+                                <div className="text-3xl font-bold text-white">3+</div>
                                 <div className="text-sm text-white/70">Panduan PDF</div>
                             </div>
                             <div className="text-center">
@@ -523,7 +452,6 @@ export default function EdukasiPage() {
                     </div>
                 </div>
 
-                {/* Scroll Indicator */}
                 <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
                     <div className="flex flex-col items-center gap-2">
                         <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
@@ -608,7 +536,6 @@ export default function EdukasiPage() {
                             <Link href={`/edukasi/artikel/${article.id}`} key={article.id}>
                                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                                     <div className="relative h-48 overflow-hidden">
-                                        {/* Gambar Artikel */}
                                         <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                                             style={{ backgroundImage: `url(${article.image})` }}>
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -733,208 +660,187 @@ export default function EdukasiPage() {
                             )}
                         </div>
 
-                        {/* Right Column - Sidebar */}
+                        {/* Right Column - Sidebar (MODIFIKASI: Informasi Pasca Operasi) */}
                         <div className="space-y-8">
-                            {/* Video Section */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-bold flex items-center gap-2">
-                                        <Video className="w-5 h-5 text-emerald-600" />
-                                        Video Terbaru
-                                    </h3>
-                                    <Link href="/edukasi/video" className="text-sm text-emerald-600 hover:text-emerald-700">
-                                        Lihat Semua
-                                    </Link>
+                            {/* Info Pasca Operasi - Card Utama */}
+                            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg border border-blue-100">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                        <Bandage className="w-6 h-6 text-blue-600" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg text-slate-800">Perawatan Pasca Operasi</h3>
+                                        <p className="text-xs text-blue-600">Panduan Lengkap Pemulihan</p>
+                                    </div>
                                 </div>
-                                <div className="space-y-4">
-                                    {videos
-                                        .filter(v => selectedCategory === "semua" || v.category === selectedCategory)
-                                        .slice(0, 3)
-                                        .map((video) => (
-                                            <Link href={`/edukasi/video/${video.id}`} key={video.id}>
-                                                <div className="group flex gap-3">
-                                                    <div className="relative w-24 h-16 rounded-lg bg-cover bg-center flex-shrink-0 overflow-hidden"
-                                                        style={{ backgroundImage: `url(${video.thumbnail})` }}>
-                                                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                            <Play className="w-6 h-6 text-white" />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="font-medium text-sm mb-1 group-hover:text-emerald-600 transition-colors">
-                                                            {video.title}
-                                                        </h4>
-                                                        <div className="flex items-center gap-2 text-xs text-slate-400">
-                                                            <span>{video.duration}</span>
-                                                            <span>•</span>
-                                                            <span>{video.views} views</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        ))}
+
+                                <div className="relative h-40 rounded-xl overflow-hidden mb-4">
+                                    <img
+                                        src="/images/edukasi/pasca-operasi/hero-pasca-ops.jpg"
+                                        alt="Perawatan Pasca Operasi"
+                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                        onError={(e) => e.target.src = "https://placehold.co/600x400/3b82f6/white?text=Pasca+Operasi"}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                    <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
+                                        Pemulihan Optimal Pasca Operasi
+                                    </div>
                                 </div>
+
+                                <p className="text-sm text-slate-600 mb-4">
+                                    Pemulihan pasca operasi adalah proses penting untuk memastikan hasil operasi optimal dan mencegah komplikasi.
+                                    Kami menyediakan panduan lengkap untuk membantu Anda melalui setiap tahap pemulihan.
+                                </p>
+
+                                <div className="grid grid-cols-3 gap-2 mb-4">
+                                    <div className="text-center p-2 bg-white/60 rounded-lg">
+                                        <p className="text-lg font-bold text-blue-600">95%</p>
+                                        <p className="text-[10px] text-slate-500">Tingkat Keberhasilan</p>
+                                    </div>
+                                    <div className="text-center p-2 bg-white/60 rounded-lg">
+                                        <p className="text-lg font-bold text-blue-600">500+</p>
+                                        <p className="text-[10px] text-slate-500">Pasien Terbantu</p>
+                                    </div>
+                                    <div className="text-center p-2 bg-white/60 rounded-lg">
+                                        <p className="text-lg font-bold text-blue-600">15+</p>
+                                        <p className="text-[10px] text-slate-500">Dokter Spesialis</p>
+                                    </div>
+                                </div>
+
+                                <Link href="/edukasi?kategori=pasca-operasi">
+                                    <button className="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                                        <BookOpen className="w-4 h-4" />
+                                        Lihat Semua Artikel Pasca Operasi
+                                    </button>
+                                </Link>
                             </div>
 
-                            {/* PDF Guides */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-bold flex items-center gap-2">
-                                        <BookOpen className="w-5 h-5 text-emerald-600" />
-                                        Panduan PDF
-                                    </h3>
-                                    <Link href="/edukasi/panduan" className="text-sm text-emerald-600 hover:text-emerald-700">
-                                        Lihat Semua
-                                    </Link>
+                            {/* Tips Pemulihan Cepat */}
+                            <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+                                        <Zap className="w-5 h-5 text-emerald-600" />
+                                    </div>
+                                    <h3 className="font-bold text-lg">Tips Pemulihan Cepat</h3>
                                 </div>
-                                <div className="space-y-4">
-                                    {guides
-                                        .filter(g => selectedCategory === "semua" || g.category === selectedCategory)
-                                        .slice(0, 3)
-                                        .map((guide) => (
-                                            <div key={guide.id} className="flex items-center justify-between group">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-12 h-12 rounded-lg bg-cover bg-center"
-                                                        style={{ backgroundImage: `url(${guide.cover})` }}>
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="font-medium text-sm mb-1">{guide.title}</h4>
-                                                        <div className="flex items-center gap-2 text-xs text-slate-400">
-                                                            <span>{guide.pages} halaman</span>
-                                                            <span>•</span>
-                                                            <span>{guide.size}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button className="p-2 hover:bg-emerald-50 rounded-lg transition-colors">
-                                                    <Download className="w-4 h-4 text-emerald-600" />
-                                                </button>
-                                            </div>
-                                        ))}
-                                </div>
-                            </div>
 
-                            {/* Popular Tags */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
-                                <h3 className="font-bold mb-4 flex items-center gap-2">
-                                    <TrendingUp className="w-5 h-5 text-emerald-600" />
-                                    Topik Populer
-                                </h3>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="space-y-3">
                                     {[
-                                        "Hipertensi", "Diabetes", "Jantung",
-                                        "Pasca Operasi", "Perawatan Luka", "Rehabilitasi",
-                                        "Nutrisi", "Olahraga", "Demensia",
-                                        "Osteoporosis", "Vitamin", "Obat"
-                                    ].map((tag, i) => (
-                                        <Link href={`/edukasi/tag/${tag.toLowerCase().replace(/ /g, '-')}`} key={i}>
-                                            <span className="px-3 py-1.5 bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-600 rounded-full text-xs transition-colors">
-                                                #{tag.toLowerCase().replace(/ /g, '')}
-                                            </span>
+                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Istirahat cukup 8 jam/hari untuk regenerasi sel" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Konsumsi protein tinggi (ikan, telur, tahu, tempe)" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Minum air putih 8 gelas/hari cegah dehidrasi" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Jaga kebersihan luka operasi dengan benar" },
+                                        { icon: <CheckCircle className="w-4 h-4 text-emerald-600" />, text: "Ikuti jadwal kontrol dan fisioterapi" }
+                                    ].map((tip, i) => (
+                                        <div key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                                            {tip.icon}
+                                            <span>{tip.text}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Jenis Operasi yang Ditangani */}
+                            <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+                                        <Hospital className="w-5 h-5 text-purple-600" />
+                                    </div>
+                                    <h3 className="font-bold text-lg">Jenis Operasi yang Ditangani</h3>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        { name: "Operasi Jantung", icon: <HeartPulse className="w-4 h-4" />, color: "bg-red-50 text-red-600" },
+                                        { name: "Operasi Tulang", icon: <Bone className="w-4 h-4" />, color: "bg-amber-50 text-amber-600" },
+                                        { name: "Operasi Mata", icon: <EyeIcon className="w-4 h-4" />, color: "bg-blue-50 text-blue-600" },
+                                        { name: "Operasi Perut", icon: <Activity className="w-4 h-4" />, color: "bg-emerald-50 text-emerald-600" },
+                                        { name: "Operasi Gigi", icon: <Smile className="w-4 h-4" />, color: "bg-cyan-50 text-cyan-600" },
+                                        { name: "Operasi Saraf", icon: <Brain className="w-4 h-4" />, color: "bg-purple-50 text-purple-600" }
+                                    ].map((surgery, i) => (
+                                        <Link
+                                            key={i}
+                                            href={`/edukasi?kategori=pasca-operasi&topik=${surgery.name.toLowerCase().replace(/ /g, '-')}`}
+                                            className={`flex items-center gap-2 p-2 rounded-xl ${surgery.color} hover:scale-105 transition-transform`}
+                                        >
+                                            {surgery.icon}
+                                            <span className="text-xs font-medium">{surgery.name}</span>
                                         </Link>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* Quick Tips */}
+                            {/* Infografis Tahapan Pemulihan */}
+                            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 text-white">
+                                <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                                    <TrendingUp className="w-5 h-5" />
+                                    Tahapan Pemulihan
+                                </h3>
+                                <div className="space-y-3">
+                                    {[
+                                        { day: "1-3 Hari", title: "Fase Awal", desc: "Istirahat total, manajemen nyeri" },
+                                        { day: "4-14 Hari", title: "Fase Perawatan", desc: "Perawatan luka, mobilisasi ringan" },
+                                        { day: "2-6 Minggu", title: "Fase Rehabilitasi", desc: "Fisioterapi, aktivitas bertahap" },
+                                        { day: ">6 Minggu", title: "Pemulihan Penuh", desc: "Kembali beraktivitas normal" }
+                                    ].map((phase, i) => (
+                                        <div key={i} className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
+                                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
+                                                {phase.day}
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold text-sm">{phase.title}</p>
+                                                <p className="text-xs text-white/80">{phase.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Konsultasi Gratis */}
                             <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl p-6 text-white">
-                                <h3 className="font-bold text-lg mb-2">Tips Cepat Pemulihan</h3>
-                                <ul className="space-y-2 text-sm text-white/90 mb-4">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                        <span>Istirahat cukup minimal 8 jam/hari</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                        <span>Konsumsi protein tinggi untuk pemulihan</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                        <span>Minum air putih minimal 8 gelas/hari</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                        <span>Konsultasi rutin dengan dokter</span>
-                                    </li>
-                                </ul>
-                                <Link href="/edukasi/tips-pemulihan">
-                                    <button className="w-full bg-white text-emerald-600 px-4 py-2 rounded-xl font-semibold hover:shadow-lg transition-all">
-                                        Lihat Tips Lengkap
+                                <div className="flex items-center gap-2 mb-3">
+                                    <MessageCircle className="w-6 h-6" />
+                                    <h3 className="font-bold text-lg">Konsultasi Gratis</h3>
+                                </div>
+                                <p className="text-sm text-white/90 mb-4">
+                                    Konsultasikan kondisi pasca operasi Anda dengan dokter spesialis kami secara gratis.
+                                </p>
+                                <Link href="/konsultasi">
+                                    <button className="w-full bg-white text-emerald-600 py-2 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                        <Stethoscope className="w-4 h-4" />
+                                        Konsultasi Sekarang
                                     </button>
                                 </Link>
                             </div>
 
-                            {/* Newsletter */}
-                            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 text-white">
-                                <h3 className="font-bold text-lg mb-2">Dapatkan Update Terbaru</h3>
-                                <p className="text-sm text-white/90 mb-4">
-                                    Berlangganan newsletter untuk mendapatkan artikel kesehatan dan tips pemulihan terbaru.
-                                </p>
-                                <input
-                                    type="email"
-                                    placeholder="Email Anda"
-                                    className="w-full px-4 py-3 rounded-xl mb-3 text-slate-900"
-                                />
-                                <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
-                                    Berlangganan
-                                </button>
+                            {/* Testimoni Pasien */}
+                            <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
+                                        <Star className="w-5 h-5 text-yellow-600" />
+                                    </div>
+                                    <h3 className="font-bold text-lg">Kata Mereka</h3>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {[
+                                        { name: "Ibu Siti", text: "Panduan perawatan luka sangat membantu proses pemulihan saya.", rating: 5 },
+                                        { name: "Bapak Ahmad", text: "Rehabilitasi pasca operasi jantung berjalan lancar.", rating: 5 },
+                                        { name: "Ibu Maria", text: "Tim medis sangat perhatian dan profesional.", rating: 5 }
+                                    ].map((testimoni, i) => (
+                                        <div key={i} className="border-b border-slate-100 last:border-0 pb-3 last:pb-0">
+                                            <div className="flex items-center gap-1 mb-1">
+                                                {[...Array(testimoni.rating)].map((_, j) => (
+                                                    <Star key={j} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                                ))}
+                                            </div>
+                                            <p className="text-sm text-slate-600 italic">"{testimoni.text}"</p>
+                                            <p className="text-xs text-slate-400 mt-1">- {testimoni.name}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Health Topics Grid */}
-            <section className="py-12 px-4 sm:px-6 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold">Jelajahi Topik Kesehatan</h2>
-                        <p className="text-slate-500">Pilih topik yang ingin Anda pelajari lebih lanjut</p>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                        {[
-                            { icon: <HeartPulse className="w-6 h-6" />, name: "Jantung", count: 12, category: "penyakit", image: "/images/edukasi/topik/jantung.jpg" },
-                            { icon: <Brain className="w-6 h-6" />, name: "Saraf", count: 8, category: "penyakit", image: "/images/edukasi/topik/saraf.jpg" },
-                            { icon: <Bone className="w-6 h-6" />, name: "Tulang", count: 10, category: "penyakit", image: "/images/edukasi/topik/tulang.jpg" },
-                            { icon: <EyeIcon className="w-6 h-6" />, name: "Mata", count: 6, category: "penyakit", image: "/images/edukasi/topik/mata.jpg" },
-                            { icon: <Ear className="w-6 h-6" />, name: "Telinga", count: 5, category: "penyakit", image: "/images/edukasi/topik/telinga.jpg" },
-                            { icon: <Wind className="w-6 h-6" />, name: "Paru-paru", count: 9, category: "penyakit", image: "/images/edukasi/topik/paru.jpg" },
-                            { icon: <Bandage className="w-6 h-6" />, name: "Perawatan Luka", count: 15, category: "pasca-operasi", image: "/images/edukasi/topik/luka.jpg" },
-                            { icon: <Hospital className="w-6 h-6" />, name: "Pasca Operasi", count: 20, category: "pasca-operasi", image: "/images/edukasi/topik/operasi.jpg" },
-                            { icon: <Droplets className="w-6 h-6" />, name: "Ginjal", count: 7, category: "penyakit", image: "/images/edukasi/topik/ginjal.jpg" },
-                            { icon: <Thermometer className="w-6 h-6" />, name: "Demam", count: 4, category: "umum", image: "/images/edukasi/topik/demam.jpg" },
-                            { icon: <Apple className="w-6 h-6" />, name: "Nutrisi", count: 18, category: "nutrisi", image: "/images/edukasi/topik/nutrisi.jpg" },
-                            { icon: <Pill className="w-6 h-6" />, name: "Obat", count: 14, category: "obat", image: "/images/edukasi/topik/obat.jpg" },
-                            { icon: <Activity className="w-6 h-6" />, name: "Olahraga", count: 11, category: "aktivitas", image: "/images/edukasi/topik/olahraga.jpg" },
-                            { icon: <Smile className="w-6 h-6" />, name: "Mental", count: 9, category: "mental", image: "/images/edukasi/topik/mental.jpg" },
-                            { icon: <HeartHandshake className="w-6 h-6" />, name: "Dukungan", count: 7, category: "umum", image: "/images/edukasi/topik/dukungan.jpg" },
-                            { icon: <Moon className="w-6 h-6" />, name: "Istirahat", count: 6, category: "umum", image: "/images/edukasi/topik/istirahat.jpg" },
-                            { icon: <Leaf className="w-6 h-6" />, name: "Herbal", count: 5, category: "umum", image: "/images/edukasi/topik/herbal.jpg" },
-                            { icon: <Footprints className="w-6 h-6" />, name: "Jalan Kaki", count: 8, category: "aktivitas", image: "/images/edukasi/topik/jalan.jpg" }
-                        ].map((topic, i) => (
-                            <Link
-                                href={`/edukasi?kategori=${topic.category}&topik=${topic.name.toLowerCase()}`}
-                                key={i}
-                                onClick={() => {
-                                    setSelectedCategory(topic.category);
-                                    setSearchTerm(topic.name);
-                                }}
-                            >
-                                <div className="relative h-32 rounded-xl overflow-hidden group cursor-pointer">
-                                    <div className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
-                                        style={{ backgroundImage: `url(${topic.image})` }}>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                                    </div>
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                                        <div className="text-emerald-300 mb-1 group-hover:scale-110 transition-transform">
-                                            {topic.icon}
-                                        </div>
-                                        <p className="font-medium text-sm">{topic.name}</p>
-                                        <p className="text-xs text-white/70">{topic.count} artikel</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
                     </div>
                 </div>
             </section>
@@ -962,98 +868,92 @@ export default function EdukasiPage() {
             </section>
 
             {/* Footer */}
-                  <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
-                    <div className="max-w-7xl mx-auto">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+            <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
                         <div>
-                          {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
-                          <div className="flex items-center gap-4 mb-8">
-                            {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
-                            <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
-                              <img
-                                src="/logo2.png"
-                                alt="GiveCare Logo"
-                                className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                              />
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
+                                    <img
+                                        src="/logo2.png"
+                                        alt="KawanPulih Logo"
+                                        className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                    />
+                                </div>
+                                <div className="flex flex-col leading-tight">
+                                    <span className="text-2xl font-black tracking-tighter text-white">
+                                        Kawan<span className="text-emerald-500">Pulih</span>
+                                    </span>
+                                </div>
                             </div>
-            
-                            {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
-                            <div className="flex flex-col leading-tight">
-                              <span className="text-2xl font-black tracking-tighter text-white">
-                                Kawan<span className="text-emerald-500">Pulih</span>
-                              </span>
-                            </div>
-                          </div>
-                          {/* --- BATAS PERUBAHAN --- */}
-            
-                          <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                            Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
-                          </p>
+                            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
+                            </p>
                         </div>
-            
+
                         {[
-                          {
-                            title: "Produk",
-                            links: [
-                              { name: "Fitur", href: "/layanan" },
-                              { name: "Harga", href: "/harga" },
-                              { name: "FAQ", href: "/faq" },
-                              { name: "Blog", href: "/edukasi" }
-                            ]
-                          },
-                          {
-                            title: "Perusahaan",
-                            links: [
-                              { name: "Tentang", href: "/tentang" },
-                              { name: "Karir", href: "/karir" },
-                              { name: "Kontak", href: "/kontak" },
-                              { name: "Mitra", href: "/mitra" }
-                            ]
-                          },
-                          {
-                            title: "Dukungan",
-                            links: [
-                              { name: "Pusat Bantuan", href: "/bantuan" },
-                              { name: "Privasi", href: "/privasi" },
-                              { name: "Syarat & Ketentuan", href: "/syarat" },
-                              { name: "Keamanan", href: "/keamanan" }
-                            ]
-                          }
+                            {
+                                title: "Produk",
+                                links: [
+                                    { name: "Fitur", href: "/layanan" },
+                                    { name: "Harga", href: "/harga" },
+                                    { name: "FAQ", href: "/faq" },
+                                    { name: "Blog", href: "/edukasi" }
+                                ]
+                            },
+                            {
+                                title: "Perusahaan",
+                                links: [
+                                    { name: "Tentang", href: "/tentang" },
+                                    { name: "Karir", href: "/karir" },
+                                    { name: "Kontak", href: "/kontak" },
+                                    { name: "Mitra", href: "/mitra" }
+                                ]
+                            },
+                            {
+                                title: "Dukungan",
+                                links: [
+                                    { name: "Pusat Bantuan", href: "/bantuan" },
+                                    { name: "Privasi", href: "/privasi" },
+                                    { name: "Syarat & Ketentuan", href: "/syarat" },
+                                    { name: "Keamanan", href: "/keamanan" }
+                                ]
+                            }
                         ].map((section, i) => (
-                          <div key={i}>
-                            <h4 className="font-bold mb-4">{section.title}</h4>
-                            <ul className="space-y-2">
-                              {section.links.map((link, j) => (
-                                <li key={j}>
-                                  <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                                    {link.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                            <div key={i}>
+                                <h4 className="font-bold mb-4">{section.title}</h4>
+                                <ul className="space-y-2">
+                                    {section.links.map((link, j) => (
+                                        <li key={j}>
+                                            <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                                                {link.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         ))}
-                      </div>
-            
-                      <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    </div>
+
+                    <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-slate-400 text-sm text-center sm:text-left">
-                          © 2026 KawanPulih. Semua Hak Dilindungi.
+                            © 2026 KawanPulih. Semua Hak Dilindungi.
                         </p>
                         <div className="flex items-center gap-4">
-                          {[
-                            { name: "Twitter", href: "https://twitter.com" },
-                            { name: "Facebook", href: "https://facebook.com" },
-                            { name: "Instagram", href: "https://instagram.com" },
-                            { name: "LinkedIn", href: "https://linkedin.com" }
-                          ].map((social, i) => (
-                            <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                              {social.name}
-                            </a>
-                          ))}
+                            {[
+                                { name: "Twitter", href: "https://twitter.com" },
+                                { name: "Facebook", href: "https://facebook.com" },
+                                { name: "Instagram", href: "https://instagram.com" },
+                                { name: "LinkedIn", href: "https://linkedin.com" }
+                            ].map((social, i) => (
+                                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                                    {social.name}
+                                </a>
+                            ))}
                         </div>
-                      </div>
                     </div>
-                  </footer>
+                </div>
+            </footer>
 
             <FloatingChat />
 
