@@ -97,13 +97,15 @@ export default function Navbar() {
                         </div>
 
                         {/* CTA Button Ramping */}
-                        <button className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2 group shadow-lg ${isScrolled
+                        <Link href="/daftar">
+                            <button className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-2 group shadow-lg ${isScrolled
                                 ? "bg-slate-900 text-white hover:bg-emerald-600"
                                 : "bg-emerald-500 text-white hover:bg-white hover:text-emerald-600"
-                            }`}>
-                            Daftar
-                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
+                                }`}>
+                                Daftar
+                                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </Link>
                     </div>
 
                     {/* --- MOBILE TOGGLE --- */}
@@ -137,9 +139,11 @@ export default function Navbar() {
                                     {item.name}
                                 </Link>
                             ))}
-                            <button className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold">
-                                Daftar Sekarang
-                            </button>
+                            <Link href="/daftar" onClick={() => setIsMobileMenuOpen(false)}>
+                                <button className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold">
+                                    Daftar Sekarang
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
                 )}
