@@ -927,7 +927,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-slate-500 text-lg">
-              Berbagai fitur dan layanan untuk mendukung kesehatan lansia dan pemulihan pasca operasi
+              Berbagai fitur dan layanan untuk mendukung kesehatan Umum Mulai dari Anak-Anak Remaja Hingga Lansia dan pemulihan pasca operasi
             </p>
           </div>
 

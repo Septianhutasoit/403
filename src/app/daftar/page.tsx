@@ -528,7 +528,7 @@ Mohon bantuan untuk konfirmasi jadwal konsultasi. Terima kasih.
 
                                         {formData.serviceType === "konsultasi" && (
                                             <div>
-                                                <label className="block text-sm font-medium text-slate-700 mb-2">Spesialisasi Dokter *</label>
+                                                <label className="block text-sm font-medium text-slate-700 mb-2">Spesialisasi Dokter/Perawat *</label>
                                                 <div className="flex flex-wrap gap-2">
                                                     {doctorSpecialties.map((specialty) => (
                                                         <label
