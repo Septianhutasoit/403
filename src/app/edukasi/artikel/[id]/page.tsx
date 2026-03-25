@@ -52,28 +52,24 @@ const articlesData = {
         <div class="bg-green-50 p-4 rounded-xl">
           <div class="flex items-center gap-2 mb-2">
             <Activity class="w-5 h-5 text-green-600" />
-            <h3 class="font-semibold text-green-800">Penurunan Massa Otot</h3>
           </div>
           <p class="text-sm text-green-700">Membutuhkan protein lebih tinggi untuk mencegah sarkopenia dan menjaga kekuatan tubuh.</p>
         </div>
         <div class="bg-blue-50 p-4 rounded-xl">
           <div class="flex items-center gap-2 mb-2">
             <Timer class="w-5 h-5 text-blue-600" />
-            <h3 class="font-semibold text-blue-800">Metabolisme Melambat</h3>
           </div>
           <p class="text-sm text-blue-700">Kebutuhan kalori berkurang namun kebutuhan nutrisi tetap tinggi.</p>
         </div>
         <div class="bg-amber-50 p-4 rounded-xl">
           <div class="flex items-center gap-2 mb-2">
             <Droplets class="w-5 h-5 text-amber-600" />
-            <h3 class="font-semibold text-amber-800">Penurunan Fungsi Pencernaan</h3>
           </div>
           <p class="text-sm text-amber-700">Penyerapan nutrisi menjadi kurang optimal, terutama vitamin B12 dan zat besi.</p>
         </div>
         <div class="bg-purple-50 p-4 rounded-xl">
           <div class="flex items-center gap-2 mb-2">
             <HeartPulse class="w-5 h-5 text-purple-600" />
-            <h3 class="font-semibold text-purple-800">Risiko Penyakit Kronis</h3>
           </div>
           <p class="text-sm text-purple-700">Nutrisi berperan penting dalam pencegahan dan pengelolaan penyakit.</p>
         </div>
@@ -396,16 +392,43 @@ const articlesData = {
       
       <h2>🏃‍♂️ Manfaat Olahraga untuk Lansia</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-        <div class="bg-green-50 p-4 rounded-xl"><div class="flex items-center gap-2 mb-2"><HeartPulse class="w-5 h-5 text-green-600" /><h3 class="font-semibold text-green-800">Kesehatan Jantung</h3></div><p class="text-sm text-green-700">Meningkatkan sirkulasi darah, menurunkan tekanan darah, mengurangi risiko penyakit jantung hingga 35%.</p></div>
-        <div class="bg-blue-50 p-4 rounded-xl"><div class="flex items-center gap-2 mb-2"><Brain class="w-5 h-5 text-blue-600" /><h3 class="font-semibold text-blue-800">Fungsi Otak</h3></div><p class="text-sm text-blue-700">Meningkatkan aliran darah ke otak, memperlambat penurunan kognitif, mengurangi risiko demensia hingga 30%.</p></div>
-        <div class="bg-amber-50 p-4 rounded-xl"><div class="flex items-center gap-2 mb-2"><Bone class="w-5 h-5 text-amber-600" /><h3 class="font-semibold text-amber-800">Kesehatan Tulang</h3></div><p class="text-sm text-amber-700">Meningkatkan kepadatan tulang, mencegah osteoporosis, mengurangi risiko patah tulang akibat jatuh.</p></div>
-        <div class="bg-purple-50 p-4 rounded-xl"><div class="flex items-center gap-2 mb-2"><Smile class="w-5 h-5 text-purple-600" /><h3 class="font-semibold text-purple-800">Kesehatan Mental</h3></div><p class="text-sm text-purple-700">Mengurangi stres, kecemasan, depresi, meningkatkan kualitas tidur dan kepercayaan diri.</p></div>
-      </div>
+  <div class="bg-green-50 p-4 rounded-xl">
+    <div class="flex items-center gap-2 mb-2">
+      <HeartPulse class="w-5 h-5 text-green-600" />
+    </div>
+    <p class="text-sm text-green-700">Meningkatkan sirkulasi darah, menurunkan tekanan darah, mengurangi risiko penyakit jantung hingga 35%.</p>
+  </div>
+  <div class="bg-blue-50 p-4 rounded-xl">
+    <div class="flex items-center gap-2 mb-2">
+      <Brain class="w-5 h-5 text-blue-600" />
+    </div>
+    <p class="text-sm text-blue-700">Meningkatkan aliran darah ke otak, memperlambat penurunan kognitif, mengurangi risiko demensia hingga 30%.</p>
+  </div>
+  <div class="bg-amber-50 p-4 rounded-xl">
+    <div class="flex items-center gap-2 mb-2">
+      <Bone class="w-5 h-5 text-amber-600" />
+    </div>
+    <p class="text-sm text-amber-700">Meningkatkan kepadatan tulang, mencegah osteoporosis, mengurangi risiko patah tulang akibat jatuh.</p>
+  </div>
+  <div class="bg-purple-50 p-4 rounded-xl">
+    <div class="flex items-center gap-2 mb-2">
+      <Smile class="w-5 h-5 text-purple-600" />
+    </div>
+    <p class="text-sm text-purple-700">Mengurangi stres, kecemasan, depresi, meningkatkan kualitas tidur dan kepercayaan diri.</p>
+  </div>
+</div>
       
       <h2>🚶‍♂️ 5 Jenis Olahraga Ringan yang Dianjurkan</h2>
       
-      <div class="bg-white border border-slate-200 rounded-xl p-5 my-4"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center"><Footprints class="w-5 h-5 text-emerald-600" /></div><h3 class="text-lg font-bold">1. Jalan Kaki (30 menit/hari)</h3></div><p>Jalan kaki adalah olahraga paling aman untuk lansia. Mulailah dengan 10-15 menit, tingkatkan secara bertahap. Gunakan sepatu yang nyaman dan permukaan yang rata.</p></div>
-      
+      <div class="bg-white border border-slate-200 rounded-xl p-5 my-4">
+  <div class="flex items-center gap-3 mb-3">
+    <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+      <Footprints class="w-5 h-5 text-emerald-600" />
+    </div>
+    <h3 class="text-lg font-bold">1. Jalan Kaki (30 menit/hari)</h3>
+  </div>
+  <p>Jalan kaki adalah olahraga paling aman untuk lansia. Mulailah dengan 10-15 menit, tingkatkan secara bertahap. Gunakan sepatu yang nyaman dan permukaan yang rata.</p>
+  </div>
       <div class="bg-white border border-slate-200 rounded-xl p-5 my-4"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><Activity class="w-5 h-5 text-blue-600" /></div><h3 class="text-lg font-bold">2. Senam Lansia (20-30 menit, 2-3x/minggu)</h3></div><p>Gerakan senam yang dirancang khusus untuk lansia dapat meningkatkan kelenturan dan kekuatan otot. Ikuti kelas senam lansia di Posyandu atau komunitas.</p></div>
       
       <div class="bg-white border border-slate-200 rounded-xl p-5 my-4"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"><Sparkles class="w-5 h-5 text-purple-600" /></div><h3 class="text-lg font-bold">3. Yoga atau Tai Chi (15-20 menit, 3-4x/minggu)</h3></div><p>Latihan yang menggabungkan gerakan lembut dengan pernapasan dapat meningkatkan keseimbangan, fleksibilitas, dan mengurangi stres.</p></div>

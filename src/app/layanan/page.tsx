@@ -88,7 +88,7 @@ export default function LayananPage() {
     const services = [
         // KONSULTASI
         {
-            id: 9,
+            id: 1,
             title: "Perawatan Pasca Operasi Mata (Katarak)",
             description: "Panduan lengkap perawatan mata setelah operasi katarak untuk pemulihan optimal.",
             icon: <Eye className="w-8 h-8" />,
@@ -301,6 +301,34 @@ export default function LayananPage() {
                 "Cegah kekakuan"
             ],
             suitable: "Pasien pasca operasi tulang, sendi, atau cedera ortopedi"
+        },
+        {
+            id: 9,
+            title: "Perawatan Luka Kronis",
+            description: "Perawatan khusus untuk luka kronis seperti luka diabetes, luka tekan (decubitus), dan luka pasca operasi yang sulit sembuh.",
+            icon: <Bandage className="w-8 h-8" />,
+            image: "/images/layanan/kronis.jpg",
+            color: "from-[#434C47] to-[#233E2E]",
+            bgColor: "bg-[#434C47]/10",
+            category: "perawat",
+            features: [
+                "Perawatan luka modern (moist wound healing)",
+                "Pembersihan luka dengan metode steril",
+                "Penggunaan balutan khusus (hidrokoloid, foam, alginat)",
+                "Evaluasi dan dokumentasi perkembangan luka",
+                "Edukasi perawatan mandiri untuk keluarga"
+            ],
+            stats: { pasien: "400+", sembuh: "85%", perawat: "12+" },
+            price: "Rp 200K - 400K/kunjungan",
+            duration: "2-8 minggu (tergantung kondisi luka)",
+            benefits: [
+                "Luka cepat kering dan menutup",
+                "Cegah infeksi dan komplikasi",
+                "Risiko amputasi menurun",
+                "Kualitas hidup meningkat",
+                "Perawatan oleh perawat luka bersertifikat"
+            ],
+            suitable: "Pasien dengan luka diabetes, luka tekan (bed sores), luka pasca operasi yang sulit sembuh, luka akibat vaskular"
         }
     ];
 
@@ -567,11 +595,6 @@ export default function LayananPage() {
                                                 <span className="text-slate-400">{key}</span>
                                             </div>
                                         ))}
-                                    </div>
-
-                                    <div className="flex items-center text-[#233E2E] font-medium group-hover:gap-2 transition-all">
-                                        <span>Lihat Detail</span>
-                                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </motion.div>
