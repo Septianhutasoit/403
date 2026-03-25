@@ -26,6 +26,39 @@ export default function LayananPage() {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
     const sectionRefs = useRef([]);
+    // Tambahkan state untuk modal detail pembelajaran
+const [selectedLearning, setSelectedLearning] = useState(null);
+const [isLearningModalOpen, setIsLearningModalOpen] = useState(false);
+const learningModalTimeoutRef = useRef(null);
+
+// Fungsi untuk membuka modal pembelajaran
+const openLearningModal = (learning) => {
+    if (learningModalTimeoutRef.current) {
+        clearTimeout(learningModalTimeoutRef.current);
+    }
+    setIsLearningModalOpen(true);
+    setSelectedLearning(learning);
+    document.body.style.overflow = 'hidden';
+};
+
+// Fungsi untuk menutup modal pembelajaran
+const closeLearningModal = () => {
+    setIsLearningModalOpen(false);
+    document.body.style.overflow = '';
+    learningModalTimeoutRef.current = setTimeout(() => {
+        setSelectedLearning(null);
+    }, 200);
+};
+
+// Cleanup
+useEffect(() => {
+    return () => {
+        if (learningModalTimeoutRef.current) {
+            clearTimeout(learningModalTimeoutRef.current);
+        }
+        document.body.style.overflow = '';
+    };
+}, []);
 
     // Scroll to top button visibility
     useEffect(() => {
@@ -364,14 +397,6 @@ export default function LayananPage() {
         },
         {
             id: 4,
-            title: "Pembayaran",
-            description: "Lakukan pembayaran dengan berbagai metode",
-            icon: <CreditCard className="w-6 h-6" />,
-            color: "from-[#3C6243] to-[#DBAA28]",
-            details: "Transfer bank, kartu kredit, e-wallet, atau virtual account"
-        },
-        {
-            id: 5,
             title: "Mulai Layanan",
             description: "Nikmati layanan kesehatan profesional",
             icon: <CheckCircle className="w-6 h-6" />,
