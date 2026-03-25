@@ -132,8 +132,6 @@ export default function EdukasiPage() {
             author: "dr. Sarah Wijaya, Sp.GK",
             date: "2 Maret 2026",
             readTime: "8 menit",
-            views: "2.5K",
-            likes: 342,
             featured: true,
             tags: ["Gizi", "Makanan Sehat", "Suplemen", "Lansia"],
             content: `<p>Kesehatan lansia sangat dipengaruhi oleh asupan nutrisi yang tepat. Seiring bertambahnya usia, tubuh mengalami perubahan yang mempengaruhi kebutuhan gizi. Berikut panduan lengkap nutrisi untuk lansia.</p>
@@ -151,8 +149,6 @@ export default function EdukasiPage() {
             author: "dr. Ahmad Hasan, Sp.PD",
             date: "1 Maret 2026",
             readTime: "6 menit",
-            views: "3.1K",
-            likes: 456,
             featured: true,
             tags: ["Hipertensi", "Tekanan Darah", "Jantung", "Lansia"],
             content: `<p>Hipertensi atau tekanan darah tinggi adalah kondisi umum pada lansia. Deteksi dini dan penanganan tepat sangat penting.</p>
@@ -187,8 +183,6 @@ export default function EdukasiPage() {
             author: "dr. Budi Santoso, Sp.KFR",
             date: "27 Februari 2026",
             readTime: "7 menit",
-            views: "2.2K",
-            likes: 389,
             featured: true,
             tags: ["Olahraga", "Fisioterapi", "Kebugaran", "Lansia"],
             content: `<p>Aktivitas fisik teratur membantu lansia tetap bugar dan mandiri. Berikut rekomendasi olahraga ringan.</p>
@@ -609,14 +603,6 @@ export default function EdukasiPage() {
                                                     <p className="text-sm font-medium">{article.author.split(',')[0]}</p>
                                                     <p className="text-xs text-slate-400">{article.date}</p>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-slate-400">
-                                                <span className="text-xs flex items-center gap-1">
-                                                    <Eye className="w-3 h-3" /> {article.views}
-                                                </span>
-                                                <span className="text-xs flex items-center gap-1">
-                                                    <ThumbsUp className="w-3 h-3" /> {article.likes}
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
