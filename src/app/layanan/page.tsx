@@ -29,6 +29,44 @@ export default function LayananPage() {
     const [isLearningModalOpen, setIsLearningModalOpen] = useState(false);
     const sectionRefs = useRef([]);
     const learningModalTimeoutRef = useRef(null);
+    // Tambahkan state untuk currentSlide
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Tambahkan data heroSlides
+    const heroSlides = [
+        {
+            id: 1,
+            image: "/images/hero/hero-edukasi-1.jpg",
+            title: "Layanan Kesehatan Lengkap untuk Lansia",
+            subtitle: "Dari konsultasi dokter hingga perawatan homecare, semua kebutuhan kesehatan lansia tersedia dalam satu platform"
+        },
+        {
+            id: 2,
+            image: "/images/hero/hero-edukasi-2.jpg",
+            title: "Perawatan Pasca Operasi Profesional",
+            subtitle: "Tim perawat berpengalaman siap membantu pemulihan Anda di rumah"
+        },
+        {
+            id: 3,
+            image: "/images/hero/hero-edukasi-3.jpg",
+            title: "Konsultasi dengan Dokter Spesialis",
+            subtitle: "Dapatkan jawaban dari tenaga medis profesional kapan saja"
+        },
+        {
+            id: 4,
+            image: "/images/hero/hero-edukasi-4.jpg",
+            title: "Komunitas Peduli Kesehatan Lansia",
+            subtitle: "Bergabung dengan ribuan keluarga yang peduli kesehatan lansia"
+        }
+    ];
+
+    // Tambahkan auto-slide useEffect (setelah useEffect lainnya)
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroSlides.length]);
 
     // Scroll to top button visibility
     useEffect(() => {
@@ -459,46 +497,76 @@ export default function LayananPage() {
         <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white py-20 px-4 sm:px-6 overflow-hidden">
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute top-0 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-                    <div className="absolute inset-0 opacity-10" style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                        backgroundSize: '40px 40px'
-                    }}></div>
+            {/* Hero Section dengan Background Slider - Sama seperti halaman Edukasi */}
+            <section className="relative h-[600px] sm:h-[650px] lg:h-[700px] flex items-center overflow-hidden">
+                <div className="absolute inset-0">
+                    {heroSlides.map((slide, index) => (
+                        <div
+                            key={slide.id}
+                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                                }`}
+                        >
+                            <div
+                                className="absolute inset-0 bg-cover bg-center"
+                                style={{ backgroundImage: `url(${slide.image})` }}
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            </div>
+                            <div
+                                className="absolute inset-0 opacity-20"
+                                style={{
+                                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                                    backgroundSize: '40px 40px'
+                                }}
+                            />
+                        </div>
+                    ))}
+                    <div className="absolute top-20 right-20 w-96 h-96 bg-[#233E2E]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                    <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#3E624C]/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
                 </div>
 
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-center max-w-4xl mx-auto"
-                    >
-                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                {/* Slide Indicators */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+                    {heroSlides.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentSlide(index)}
+                            className={`transition-all duration-500 ${index === currentSlide
+                                ? 'w-10 h-2 bg-white'
+                                : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                                } rounded-full`}
+                        />
+                    ))}
+                </div>
+
+                {/* Hero Content */}
+                <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                    <div className="max-w-3xl text-white">
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
                             <Sparkles className="w-4 h-4" />
                             LAYANAN KESEHATAN LENGKAP
+                            <Sparkles className="w-4 h-4" />
                         </div>
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                            Solusi Kesehatan untuk{' '}
-                            <span className="text-[#DBAA28]">Lansia dan Keluarga</span>
+
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up delay-100">
+                            {heroSlides[currentSlide].title}
                         </h1>
-                        <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-                            Dari konsultasi dokter hingga perawatan homecare, semua kebutuhan kesehatan lansia tersedia dalam satu platform
+
+                        <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up delay-200">
+                            {heroSlides[currentSlide].subtitle}
                         </p>
 
-                        <div className="max-w-2xl mx-auto relative mb-12">
+                        <div className="max-w-2xl relative animate-slide-up delay-300">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                             <input
                                 type="text"
                                 placeholder="Cari layanan yang Anda butuhkan..."
-                                className="w-full pl-12 pr-4 py-4 rounded-full bg-white/95 backdrop-blur border border-white/50 focus:border-[#DBAA28] focus:ring-2 focus:ring-[#DBAA28]/20 outline-none transition-all shadow-lg text-slate-900"
+                                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur border border-white/50 focus:border-[#DBAA28] focus:ring-2 focus:ring-[#DBAA28]/20 outline-none transition-all shadow-lg text-slate-900"
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div className="flex flex-wrap gap-8 mt-12 animate-slide-up delay-500">
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-white">50+</div>
                                 <div className="text-sm text-white/70">Dokter Spesialis</div>
@@ -516,7 +584,16 @@ export default function LayananPage() {
                                 <div className="text-sm text-white/70">Pasien Puas</div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
+                </div>
+
+                <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
+                        <div className="w-0.5 h-12 bg-white/30 relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1154,16 +1231,51 @@ export default function LayananPage() {
             <FloatingChat />
 
             <style jsx>{`
-                @keyframes blob {
-                    0% { transform: translate(0px, 0px) scale(1); }
-                    33% { transform: translate(30px, -50px) scale(1.1); }
-                    66% { transform: translate(-20px, 20px) scale(0.9); }
-                    100% { transform: translate(0px, 0px) scale(1); }
-                }
-                .animate-blob {
-                    animation: blob 7s infinite;
-                }
-            `}</style>
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+    .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+    }
+    @keyframes slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-slide-up {
+        animation: slide-up 0.8s ease-out forwards;
+    }
+    .animation-delay-100 {
+        animation-delay: 0.1s;
+    }
+    .animation-delay-200 {
+        animation-delay: 0.2s;
+    }
+    .animation-delay-300 {
+        animation-delay: 0.3s;
+    }
+    .animation-delay-500 {
+        animation-delay: 0.5s;
+    }
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+`}</style>
         </main>
     );
 }

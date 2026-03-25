@@ -10,7 +10,7 @@ import {
   Twitter, Instagram, Linkedin, Youtube, Heart, ChevronRight,
   Sparkles, ArrowRight, CheckCircle, Building, Globe, Calendar,
   Users, Award, Shield, Home, Briefcase, Coffee, Smile, Star,
-  ChevronDown, Hospital, Stethoscope, HeartPulse, Bandage
+  ChevronDown, Hospital, Stethoscope, HeartPulse, Bandage, Search
 } from "lucide-react";
 
 export default function KontakPage() {
@@ -27,7 +27,44 @@ export default function KontakPage() {
   const [activeMap, setActiveMap] = useState("jakarta");
   const [isVisible, setIsVisible] = useState({});
   const [selectedService, setSelectedService] = useState("umum");
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRefs = useRef([]);
+
+  // Data untuk background slider
+  const heroSlides = [
+    {
+      id: 1,
+      image: "/images/hero/hero-edukasi-1.jpg",
+      title: "Edukasi Kesehatan untuk Semua",
+      subtitle: "Pelajari cara hidup sehat dan pemulihan pasca operasi"
+    },
+    {
+      id: 2,
+      image: "/images/hero/hero-edukasi-2.jpg",
+      title: "Panduan Perawatan Pasca Operasi",
+      subtitle: "Informasi lengkap untuk pemulihan yang cepat dan aman"
+    },
+    {
+      id: 3,
+      image: "/images/hero/hero-edukasi-3.jpg",
+      title: "Konsultasi dengan Ahli Kesehatan",
+      subtitle: "Dapatkan jawaban dari dokter spesialis terpercaya"
+    },
+    {
+      id: 4,
+      image: "/images/hero/hero-edukasi-4.jpg",
+      title: "Komunitas Peduli Kesehatan",
+      subtitle: "Bergabung dengan ribuan orang yang peduli kesehatan"
+    }
+  ];
+
+  // Auto slide setiap 5 detik
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
 
   // Intersection Observer
   useEffect(() => {
@@ -66,7 +103,7 @@ export default function KontakPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -78,7 +115,7 @@ export default function KontakPage() {
         serviceType: "umum",
         message: ""
       });
-      
+
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
@@ -162,47 +199,73 @@ export default function KontakPage() {
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white py-20 px-4 sm:px-6 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute inset-0 opacity-10" style={{
+     {/* Hero Section dengan Background Slider - Rata Kiri */}
+<section className="relative h-[600px] sm:h-[650px] lg:h-[700px] flex items-center overflow-hidden">
+  <div className="absolute inset-0">
+    {heroSlides.map((slide, index) => (
+      <div
+        key={slide.id}
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${slide.image})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        </div>
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
             backgroundSize: '40px 40px'
-          }}></div>
-        </div>
+          }}
+        />
+      </div>
+    ))}
+    <div className="absolute top-20 right-20 w-96 h-96 bg-[#233E2E]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div className="absolute bottom-20 left-20 w-80 h-80 bg-[#3E624C]/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
+  </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+  {/* Slide Indicators */}
+  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+    {heroSlides.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentSlide(index)}
+        className={`transition-all duration-500 ${index === currentSlide ? 'w-10 h-2 bg-white' : 'w-2 h-2 bg-white/50 hover:bg-white/80'} rounded-full`}
+      />
+    ))}
+  </div>
+
+        {/* Hero Content - Rata Kiri */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+          <div className="max-w-2xl text-white">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-slide-up">
               <MessageCircle className="w-4 h-4" />
               HUBUNGI KAMI
+              <Sparkles className="w-4 h-4" />
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up delay-100 leading-tight text-white">
               Kami Siap Membantu{' '}
-              <span className="text-[#DBAA28]">Kesehatan Anda</span>
+              <span className="text-white">Kesehatan Anda</span>
             </h1>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+
+            <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-xl animate-slide-up delay-200">
               Ada pertanyaan tentang layanan kesehatan umum atau pasca operasi? Tim customer service kami siap membantu Anda 24/7.
             </p>
 
             {/* Service Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <div className="flex flex-wrap gap-3 mb-6 animate-slide-up delay-300">
               {serviceOptions.map((service) => (
                 <button
                   key={service.id}
                   onClick={() => setSelectedService(service.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                    selectedService === service.id
-                      ? "bg-[#DBAA28] text-[#233E2E] shadow-lg"
-                      : "bg-white/20 text-white hover:bg-white/30"
-                  }`}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedService === service.id
+                      ? "bg-[#1e3a2f] text-white shadow-lg"
+                      : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                    }`}
                 >
                   {service.icon}
                   {service.name}
@@ -210,12 +273,21 @@ export default function KontakPage() {
               ))}
             </div>
 
-            <p className="text-sm text-white/80">
+            <p className="text-sm text-white/80 animate-slide-up delay-400">
               {serviceOptions.find(s => s.id === selectedService)?.desc}
             </p>
-          </motion.div>
+          </div>
         </div>
-      </section>
+
+        <div className="absolute bottom-8 right-8 z-20 hidden lg:block">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-white/60 text-xs uppercase tracking-wider">Scroll</span>
+            <div className="w-0.5 h-12 bg-white/30 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce"></div>
+            </div>
+          </div>
+        </div>
+</section>
 
       {/* Contact Cards - 4 Kolom */}
       <section className="py-12 px-4 sm:px-6 -mt-8 relative z-30">
@@ -235,7 +307,6 @@ export default function KontakPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 text-center group"
               >
-                {/* Icon Container dengan Animasi Putar */}
                 <motion.div
                   className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center`}
                   whileHover={{
@@ -405,17 +476,16 @@ export default function KontakPage() {
                     <button
                       key={loc.id}
                       onClick={() => setActiveMap(loc.id)}
-                      className={`px-4 py-3 text-sm font-medium transition-all duration-300 ${
-                        activeMap === loc.id
+                      className={`px-4 py-3 text-sm font-medium transition-all duration-300 ${activeMap === loc.id
                           ? "bg-[#233E2E] text-white"
                           : "text-slate-600 hover:bg-slate-50"
-                      }`}
+                        }`}
                     >
                       {loc.name}
                     </button>
                   ))}
                 </div>
-                
+
                 <div className="p-4">
                   <div className="h-64 rounded-xl overflow-hidden mb-4">
                     <iframe
@@ -429,7 +499,7 @@ export default function KontakPage() {
                       className="w-full h-full"
                     ></iframe>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-[#233E2E] mt-0.5" />
@@ -532,7 +602,6 @@ export default function KontakPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 text-center group"
               >
-                {/* Icon Container dengan Animasi Putar */}
                 <motion.div
                   className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center`}
                   whileHover={{
@@ -612,7 +681,7 @@ export default function KontakPage() {
         </div>
       </section>
 
-            {/* Office Gallery Section */}
+      {/* Office Gallery Section */}
       <section className="py-16 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -639,23 +708,23 @@ export default function KontakPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { 
-                title: "Ruang Tunggu Nyaman", 
+              {
+                title: "Ruang Tunggu Nyaman",
                 image: "/images/kontak/gallery-1.jpg",
                 desc: "Area tunggu yang nyaman dengan fasilitas lengkap"
               },
-              { 
-                title: "Ruang Konsultasi", 
+              {
+                title: "Ruang Konsultasi",
                 image: "/images/kontak/gallery-2.jpg",
                 desc: "Ruang konsultasi privat dengan dokter spesialis"
               },
-              { 
-                title: "Tim Medis Profesional", 
+              {
+                title: "Tim Medis Profesional",
                 image: "/images/kontak/gallery-3.jpg",
                 desc: "Tenaga medis berpengalaman dan ramah"
               },
-              { 
-                title: "Fasilitas Lengkap", 
+              {
+                title: "Fasilitas Lengkap",
                 image: "/images/kontak/gallery-4.jpg",
                 desc: "Peralatan medis modern dan lengkap"
               }
@@ -692,16 +761,6 @@ export default function KontakPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Tombol Lihat Lebih Banyak */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-10"
-          >
-          </motion.div>
         </div>
       </section>
 
@@ -733,91 +792,86 @@ export default function KontakPage() {
           </div>
         </div>
       </section>
-     {/* Footer */}
-                      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
-                        <div className="max-w-7xl mx-auto">
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
-                            <div>
-                              {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
-                              <div className="flex items-center gap-4 mb-8">
-                                {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
-                                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
-                                  <img
-                                    src="/logo2.png"
-                                    alt="GiveCare Logo"
-                                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                  />
-                                </div>
-                
-                                {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
-                                <div className="flex flex-col leading-tight">
-                                  <span className="text-2xl font-black tracking-tighter text-white">
-                                    Kawan<span className="text-emerald-500">Pulih</span>
-                                  </span>
-                                </div>
-                              </div>
-                              {/* --- BATAS PERUBAHAN --- */}
-                
-                              <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
-                              </p>
-                            </div>
-                
-                            {[
-                              {
-                                title: "Produk",
-                                links: [
-                                  { name: "Fitur", href: "/layanan" },
-                                  { name: "Harga", href: "/harga" },
-                                  { name: "FAQ", href: "/faq" },
-                                  { name: "Blog", href: "/edukasi" }
-                                ]
-                              },
-                              { title: "Perusahaan", links: [{ name: "Beranda", href: "/" }, { name: "Edukasi", href: "/edukasi" }, { name: "Dokter", href: "/dokter" }, { name: "Layanan", href: "/layanan" }, { name: "Kontak", href: "/kontak" }] },
-                              {
-                                title: "Dukungan",
-                                links: [
-                                  { name: "Pusat Bantuan", href: "/bantuan" },
-                                  { name: "Privasi", href: "/privasi" },
-                                  { name: "Syarat & Ketentuan", href: "/syarat" },
-                                  { name: "Keamanan", href: "/keamanan" }
-                                ]
-                              }
-                            ].map((section, i) => (
-                              <div key={i}>
-                                <h4 className="font-bold mb-4">{section.title}</h4>
-                                <ul className="space-y-2">
-                                  {section.links.map((link, j) => (
-                                    <li key={j}>
-                                      <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                                        {link.name}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-                
-                          <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                            <p className="text-slate-400 text-sm text-center sm:text-left">
-                              © 2026 KawanPulih. Semua Hak Dilindungi.
-                            </p>
-                            <div className="flex items-center gap-4">
-                              {[
-                                { name: "Twitter", href: "https://twitter.com" },
-                                { name: "Facebook", href: "https://facebook.com" },
-                                { name: "Instagram", href: "https://instagram.com" },
-                                { name: "LinkedIn", href: "https://linkedin.com" }
-                              ].map((social, i) => (
-                                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                                  {social.name}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </footer>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+            <div>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
+                  <img
+                    src="/logo2.png"
+                    alt="GiveCare Logo"
+                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-2xl font-black tracking-tighter text-white">
+                    Kawan<span className="text-emerald-500">Pulih</span>
+                  </span>
+                </div>
+              </div>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
+              </p>
+            </div>
+
+            {[
+              {
+                title: "Produk",
+                links: [
+                  { name: "Fitur", href: "/layanan" },
+                  { name: "Harga", href: "/harga" },
+                  { name: "FAQ", href: "/faq" },
+                  { name: "Blog", href: "/edukasi" }
+                ]
+              },
+              { title: "Perusahaan", links: [{ name: "Beranda", href: "/" }, { name: "Edukasi", href: "/edukasi" }, { name: "Dokter", href: "/dokter" }, { name: "Layanan", href: "/layanan" }, { name: "Kontak", href: "/kontak" }] },
+              {
+                title: "Dukungan",
+                links: [
+                  { name: "Pusat Bantuan", href: "/bantuan" },
+                  { name: "Privasi", href: "/privasi" },
+                  { name: "Syarat & Ketentuan", href: "/syarat" },
+                  { name: "Keamanan", href: "/keamanan" }
+                ]
+              }
+            ].map((section, i) => (
+              <div key={i}>
+                <h4 className="font-bold mb-4">{section.title}</h4>
+                <ul className="space-y-2">
+                  {section.links.map((link, j) => (
+                    <li key={j}>
+                      <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-slate-400 text-sm text-center sm:text-left">
+              © 2026 KawanPulih. Semua Hak Dilindungi.
+            </p>
+            <div className="flex items-center gap-4">
+              {[
+                { name: "Twitter", href: "https://twitter.com" },
+                { name: "Facebook", href: "https://facebook.com" },
+                { name: "Instagram", href: "https://instagram.com" },
+                { name: "LinkedIn", href: "https://linkedin.com" }
+              ].map((social, i) => (
+                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
+                  {social.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
 
       <FloatingChat />
 
@@ -831,8 +885,42 @@ export default function KontakPage() {
         .animate-blob {
           animation: blob 7s infinite;
         }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.8s ease-out forwards;
+        }
+        .animation-delay-100 {
+          animation-delay: 0.1s;
+        }
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+        .animation-delay-300 {
+          animation-delay: 0.3s;
+        }
+        .animation-delay-500 {
+          animation-delay: 0.5s;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
       `}</style>
     </main>
   );
 }
-
