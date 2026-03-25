@@ -874,15 +874,7 @@ export default function EdukasiPage() {
                                     { name: "Blog", href: "/edukasi" }
                                 ]
                             },
-                            {
-                                title: "Perusahaan",
-                                links: [
-                                    { name: "Tentang", href: "/tentang" },
-                                    { name: "Karir", href: "/karir" },
-                                    { name: "Kontak", href: "/kontak" },
-                                    { name: "Mitra", href: "/mitra" }
-                                ]
-                            },
+                            { title: "Perusahaan", links: [{ name: "Beranda", href: "/" }, { name: "Edukasi", href: "/edukasi" }, { name: "Dokter", href: "/dokter" }, { name: "Layanan", href: "/layanan" }, { name: "Kontak", href: "/kontak" }] },
                             {
                                 title: "Dukungan",
                                 links: [
