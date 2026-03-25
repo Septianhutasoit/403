@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import FloatingChat from "@/components/FloatingChat";
 import {
@@ -16,49 +16,19 @@ import {
     Scissors, UserRound, GraduationCap, MapPin, Building,
     CreditCard, FileText, Download, Play, CircleCheck,
     ChevronLeft, ChevronUp, Mail, Phone as PhoneIcon,
-    Search, ArrowRightCircle, CheckCircle2, CircleDot, Loader2
+    Search, ArrowRightCircle, Info, X
 } from "lucide-react";
 
 export default function LayananPage() {
     const [activeTab, setActiveTab] = useState("semua");
     const [selectedService, setSelectedService] = useState(null);
+    const [selectedLearning, setSelectedLearning] = useState(null);
     const [isVisible, setIsVisible] = useState({});
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const [isLearningModalOpen, setIsLearningModalOpen] = useState(false);
     const sectionRefs = useRef([]);
-    // Tambahkan state untuk modal detail pembelajaran
-const [selectedLearning, setSelectedLearning] = useState(null);
-const [isLearningModalOpen, setIsLearningModalOpen] = useState(false);
-const learningModalTimeoutRef = useRef(null);
-
-// Fungsi untuk membuka modal pembelajaran
-const openLearningModal = (learning) => {
-    if (learningModalTimeoutRef.current) {
-        clearTimeout(learningModalTimeoutRef.current);
-    }
-    setIsLearningModalOpen(true);
-    setSelectedLearning(learning);
-    document.body.style.overflow = 'hidden';
-};
-
-// Fungsi untuk menutup modal pembelajaran
-const closeLearningModal = () => {
-    setIsLearningModalOpen(false);
-    document.body.style.overflow = '';
-    learningModalTimeoutRef.current = setTimeout(() => {
-        setSelectedLearning(null);
-    }, 200);
-};
-
-// Cleanup
-useEffect(() => {
-    return () => {
-        if (learningModalTimeoutRef.current) {
-            clearTimeout(learningModalTimeoutRef.current);
-        }
-        document.body.style.overflow = '';
-    };
-}, []);
+    const learningModalTimeoutRef = useRef(null);
 
     // Scroll to top button visibility
     useEffect(() => {
@@ -93,6 +63,16 @@ useEffect(() => {
         return () => observer.disconnect();
     }, []);
 
+    // Cleanup timeout
+    useEffect(() => {
+        return () => {
+            if (learningModalTimeoutRef.current) {
+                clearTimeout(learningModalTimeoutRef.current);
+            }
+            document.body.style.overflow = '';
+        };
+    }, []);
+
     const fadeInUpClass = (index) =>
         `transition-all duration-1000 transform ${isVisible[index] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`;
 
@@ -100,26 +80,44 @@ useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    // Fungsi untuk membuka modal pembelajaran
+    const openLearningModal = (learning) => {
+        if (learningModalTimeoutRef.current) {
+            clearTimeout(learningModalTimeoutRef.current);
+        }
+        setIsLearningModalOpen(true);
+        setSelectedLearning(learning);
+        document.body.style.overflow = 'hidden';
+    };
+
+    // Fungsi untuk menutup modal pembelajaran
+    const closeLearningModal = () => {
+        setIsLearningModalOpen(false);
+        document.body.style.overflow = '';
+        learningModalTimeoutRef.current = setTimeout(() => {
+            setSelectedLearning(null);
+        }, 200);
+    };
+
     // Auto-slide untuk steps
     useEffect(() => {
         const timer = setInterval(() => {
-            setActiveStep((prev) => (prev + 1) % 5);
+            setActiveStep((prev) => (prev + 1) % 4);
         }, 3000);
         return () => clearInterval(timer);
     }, []);
 
     // Kategori layanan
     const categories = [
-        { id: "semua", name: "Semua Layanan", icon: <Sparkles className="w-4 h-4" />, count: 8 },
-        { id: "konsultasi", name: "Konsultasi", icon: <Video className="w-4 h-4" />, count: 2 },
-        { id: "perawat", name: "Perawat Homecare", icon: <UserRound className="w-4 h-4" />, count: 2 },
-        { id: "edukasi", name: "Edukasi", icon: <BookOpen className="w-4 h-4" />, count: 2 },
-        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" />, count: 2 },
+        { id: "semua", name: "Semua Layanan", icon: <Sparkles className="w-4 h-4" />, count: 9 },
+        { id: "konsultasi", name: "Konsultasi", icon: <Video className="w-4 h-4" />, count: 1 },
+        { id: "perawat", name: "Perawat Homecare", icon: <UserRound className="w-4 h-4" />, count: 3 },
+        { id: "edukasi", name: "Edukasi", icon: <BookOpen className="w-4 h-4" />, count: 4 },
+        { id: "pasca-operasi", name: "Pasca Operasi", icon: <Bandage className="w-4 h-4" />, count: 5 },
     ];
 
-    // Data layanan lengkap dengan penjelasan lebih detail
+    // Data layanan lengkap
     const services = [
-        // KONSULTASI
         {
             id: 1,
             title: "Perawatan Pasca Operasi Mata (Katarak)",
@@ -173,8 +171,6 @@ useEffect(() => {
             ],
             suitable: "Pertanyaan ringan, konsultasi cepat, atau second opinion"
         },
-
-        // PERAWAT HOMECARE
         {
             id: 3,
             title: "Perawat Lansia di Rumah",
@@ -227,7 +223,6 @@ useEffect(() => {
             ],
             suitable: "Pasien baru pulang operasi, perawatan luka, atau rehabilitasi awal"
         },
-
         {
             id: 5,
             title: "Manajemen Nyeri Pasca Operasi",
@@ -282,7 +277,6 @@ useEffect(() => {
             ],
             suitable: "Pasien pasca operasi dengan kebutuhan nutrisi khusus"
         },
-        // PASCA OPERASI
         {
             id: 7,
             title: "Program Pemulihan Jantung",
@@ -353,7 +347,7 @@ useEffect(() => {
             ],
             stats: { pasien: "400+", sembuh: "85%", perawat: "12+" },
             price: "Rp 200K - 400K/kunjungan",
-            duration: "2-8 minggu (tergantung kondisi luka)",
+            duration: "2-8 minggu",
             benefits: [
                 "Luka cepat kering dan menutup",
                 "Cegah infeksi dan komplikasi",
@@ -361,7 +355,7 @@ useEffect(() => {
                 "Kualitas hidup meningkat",
                 "Perawatan oleh perawat luka bersertifikat"
             ],
-            suitable: "Pasien dengan luka diabetes, luka tekan (bed sores), luka pasca operasi yang sulit sembuh, luka akibat vaskular"
+            suitable: "Pasien dengan luka diabetes, luka tekan (bed sores), luka pasca operasi yang sulit sembuh"
         }
     ];
 
@@ -369,7 +363,7 @@ useEffect(() => {
         ? services
         : services.filter(s => s.category === activeTab);
 
-    // Data alur pendaftaran dengan desain lebih baik
+    // Data alur pendaftaran
     const registrationSteps = [
         {
             id: 1,
@@ -405,7 +399,7 @@ useEffect(() => {
         }
     ];
 
-    // Data tahapan pembelajaran
+    // Data tahapan pembelajaran dengan link YouTube
     const learningSteps = [
         {
             id: 1,
@@ -413,21 +407,25 @@ useEffect(() => {
             description: "Pelajari fundamental merawat lansia dengan benar",
             icon: <Heart className="w-8 h-8" />,
             topics: ["Komunikasi dengan lansia", "Kebutuhan dasar", "Pencegahan jatuh"],
-            duration: "4 jam",
+            duration: "40 menit",
             level: "Pemula",
-            module: "6 modul",
-            certificate: "Ya"
+            module: "2 modul",
+            certificate: "Ya",
+            youtubeUrl: "https://www.youtube.com/watch?v=HLGzMgQrlWs",
+            youtubeChannel: "https://www.youtube.com/@KawanPulih"
         },
         {
             id: 2,
-            title: "Perawatan Pasca Operasi",
+            title: "Perawatan Pasca Operasi Pada Mata",
             description: "Teknik merawat pasien yang baru operasi",
             icon: <Bandage className="w-8 h-8" />,
             topics: ["Perawatan luka", "Manajemen nyeri", "Mobilisasi dini"],
-            duration: "6 jam",
+            duration: "17 menit",
             level: "Menengah",
-            module: "8 modul",
-            certificate: "Ya"
+            module: "1 modul",
+            certificate: "Ya",
+            youtubeUrl: "https://www.youtube.com/watch?v=pgCrh5R98do&t=19s",
+            youtubeChannel: "https://www.youtube.com/@KawanPulih"
         },
         {
             id: 3,
@@ -435,10 +433,12 @@ useEffect(() => {
             description: "Panduan gizi seimbang untuk kesehatan optimal",
             icon: <Apple className="w-8 h-8" />,
             topics: ["Kebutuhan gizi", "Menu sehat", "Suplemen"],
-            duration: "3 jam",
+            duration: "23 menit",
             level: "Pemula",
-            module: "5 modul",
-            certificate: "Ya"
+            module: "2 modul",
+            certificate: "Ya",
+            youtubeUrl: "https://www.youtube.com/watch?v=-iicSBj_3tw",
+            youtubeChannel: "https://www.youtube.com/@KawanPulih"
         },
         {
             id: 4,
@@ -446,10 +446,12 @@ useEffect(() => {
             description: "Penanganan diabetes, hipertensi, dan lainnya",
             icon: <Activity className="w-8 h-8" />,
             topics: ["Monitoring gula darah", "Kontrol tekanan darah", "Manajemen obat"],
-            duration: "8 jam",
+            duration: "15 menit",
             level: "Lanjutan",
-            module: "10 modul",
-            certificate: "Ya"
+            module: "3 modul",
+            certificate: "Ya",
+            youtubeUrl: "https://www.youtube.com/watch?v=S0hMMS9lZCo",
+            youtubeChannel: "https://www.youtube.com/@KawanPulih"
         }
     ];
 
@@ -487,7 +489,6 @@ useEffect(() => {
                             Dari konsultasi dokter hingga perawatan homecare, semua kebutuhan kesehatan lansia tersedia dalam satu platform
                         </p>
 
-                        {/* Search Bar */}
                         <div className="max-w-2xl mx-auto relative mb-12">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                             <input
@@ -497,7 +498,6 @@ useEffect(() => {
                             />
                         </div>
 
-                        {/* Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div className="text-center">
                                 <div className="text-3xl font-bold text-white">50+</div>
@@ -520,7 +520,7 @@ useEffect(() => {
                 </div>
             </section>
 
-            {/* Category Tabs dengan Count */}
+            {/* Category Tabs */}
             <section className="py-8 px-4 sm:px-6 -mt-8 relative z-30">
                 <div className="max-w-7xl mx-auto">
                     <motion.div
@@ -552,7 +552,7 @@ useEffect(() => {
                 </div>
             </section>
 
-            {/* Services Grid dengan Penjelasan Lebih Detail */}
+            {/* Services Grid */}
             <section ref={el => sectionRefs.current[0] = el} data-index="0" className="py-12 px-4 sm:px-6">
                 <div className={`max-w-7xl mx-auto ${fadeInUpClass(0)}`}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -574,9 +574,7 @@ useEffect(() => {
                                         <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-70`}></div>
                                     </div>
                                     <div className={`absolute top-4 left-4 bg-gradient-to-br ${service.color} p-3 rounded-xl shadow-lg z-10`}>
-                                        <div className="text-white">
-                                            {service.icon}
-                                        </div>
+                                        <div className="text-white">{service.icon}</div>
                                     </div>
                                     <div className="absolute bottom-4 left-4 right-4 text-white">
                                         <h3 className="text-xl font-bold mb-1 drop-shadow-lg">{service.title}</h3>
@@ -590,8 +588,6 @@ useEffect(() => {
                                         </span>
                                         <span className="text-xs text-slate-500">{service.duration}</span>
                                     </div>
-
-                                    {/* Features */}
                                     <div className="space-y-2 mb-4">
                                         {service.features.slice(0, 2).map((feature, i) => (
                                             <div key={i} className="flex items-start gap-2 text-xs text-slate-600">
@@ -600,19 +596,13 @@ useEffect(() => {
                                             </div>
                                         ))}
                                         {service.features.length > 2 && (
-                                            <div className="text-xs text-slate-400">
-                                                +{service.features.length - 2} fitur lainnya
-                                            </div>
+                                            <div className="text-xs text-slate-400">+{service.features.length - 2} fitur lainnya</div>
                                         )}
                                     </div>
-
-                                    {/* Price */}
                                     <div className="flex items-center justify-between mb-3">
                                         <span className="text-sm font-bold text-[#233E2E]">{service.price}</span>
                                         <span className="text-xs text-slate-500">{service.duration}</span>
                                     </div>
-
-                                    {/* Stats */}
                                     <div className="flex items-center gap-3 mb-3 text-xs text-slate-500">
                                         {Object.entries(service.stats).map(([key, value], i) => (
                                             <div key={i} className="flex items-center gap-1">
@@ -628,7 +618,7 @@ useEffect(() => {
                 </div>
             </section>
 
-            {/* Alur Pendaftaran dengan Desain Panah Modern */}
+            {/* Alur Pendaftaran */}
             <section ref={el => sectionRefs.current[1] = el} data-index="1" className="py-20 px-4 sm:px-6 bg-white">
                 <div className={`max-w-7xl mx-auto ${fadeInUpClass(1)}`}>
                     <div className="text-center max-w-3xl mx-auto mb-16">
@@ -647,19 +637,14 @@ useEffect(() => {
                                 Sederhana & Cepat
                             </span>
                         </h2>
-                        <p className="text-slate-500 text-lg">
-                            Hanya 5 langkah mudah untuk mulai menikmati layanan kesehatan profesional
-                        </p>
+                        <p className="text-slate-500 text-lg">Hanya 4 langkah mudah untuk mulai menikmati layanan kesehatan profesional</p>
                     </div>
 
-                    {/* Flow Steps dengan Panah */}
                     <div className="relative">
-                        {/* Desktop Flow dengan Panah */}
                         <div className="hidden lg:flex items-center justify-between">
                             {registrationSteps.map((step, index) => (
                                 <div key={step.id} className="relative flex-1">
                                     <div className="flex flex-col items-center">
-                                        {/* Step Number dengan Animasi */}
                                         <motion.div
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
@@ -676,22 +661,10 @@ useEffect(() => {
                                                 />
                                             )}
                                         </motion.div>
-
-                                        {/* Title */}
                                         <h3 className="text-lg font-bold text-center mb-2">{step.title}</h3>
-
-                                        {/* Description */}
-                                        <p className="text-sm text-slate-500 text-center max-w-[200px] mb-2">
-                                            {step.description}
-                                        </p>
-
-                                        {/* Details */}
-                                        <p className="text-xs text-slate-400 text-center max-w-[200px]">
-                                            {step.details}
-                                        </p>
+                                        <p className="text-sm text-slate-500 text-center max-w-[200px] mb-2">{step.description}</p>
+                                        <p className="text-xs text-slate-400 text-center max-w-[200px]">{step.details}</p>
                                     </div>
-
-                                    {/* Panah (kecuali untuk step terakhir) */}
                                     {index < registrationSteps.length - 1 && (
                                         <motion.div
                                             initial={{ opacity: 0, x: -20 }}
@@ -706,7 +679,6 @@ useEffect(() => {
                             ))}
                         </div>
 
-                        {/* Mobile Flow (Grid) */}
                         <div className="lg:hidden grid grid-cols-1 gap-6">
                             {registrationSteps.map((step, index) => (
                                 <motion.div
@@ -736,18 +708,16 @@ useEffect(() => {
                             ))}
                         </div>
 
-                        {/* Progress Line (Desktop) */}
                         <div className="hidden lg:block absolute top-8 left-0 w-full h-0.5 bg-slate-200 -z-10">
                             <motion.div
                                 className="h-full bg-gradient-to-r from-[#233E2E] to-[#3E624C]"
                                 initial={{ width: "0%" }}
-                                animate={{ width: `${(activeStep + 1) * 20}%` }}
+                                animate={{ width: `${(activeStep + 1) * 25}%` }}
                                 transition={{ duration: 0.5 }}
                             />
                         </div>
                     </div>
 
-                    {/* CTA Button */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -768,7 +738,7 @@ useEffect(() => {
                 </div>
             </section>
 
-            {/* Tahapan Pembelajaran dengan Desain Modern */}
+            {/* Tahapan Pembelajaran */}
             <section ref={el => sectionRefs.current[2] = el} data-index="2" className="py-20 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white">
                 <div className={`max-w-7xl mx-auto ${fadeInUpClass(2)}`}>
                     <div className="text-center max-w-3xl mx-auto mb-16">
@@ -787,9 +757,7 @@ useEffect(() => {
                                 Perawatan Lansia
                             </span>
                         </h2>
-                        <p className="text-slate-500 text-lg">
-                            Ikuti kelas online kami dan menjadi caregiver profesional
-                        </p>
+                        <p className="text-slate-500 text-lg">Ikuti kelas online kami dan menjadi caregiver profesional</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -800,10 +768,10 @@ useEffect(() => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: index * 0.1 }}
                                 whileHover={{ y: -5 }}
-                                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100"
+                                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 cursor-pointer"
+                                onClick={() => openLearningModal(step)}
                             >
                                 <div className="flex flex-col md:flex-row">
-                                    {/* Left Side - Icon & Level */}
                                     <div className={`md:w-1/3 p-6 bg-gradient-to-br from-[#233E2E] to-[#3E624C] text-white flex flex-col items-center justify-center`}>
                                         <motion.div
                                             whileHover={{ rotate: 360, scale: 1.1 }}
@@ -812,9 +780,7 @@ useEffect(() => {
                                         >
                                             {step.icon}
                                         </motion.div>
-                                        <span className="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full mb-2">
-                                            {step.level}
-                                        </span>
+                                        <span className="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full mb-2">{step.level}</span>
                                         <div className="flex items-center gap-2 text-xs">
                                             <Clock className="w-3 h-3" />
                                             <span>{step.duration}</span>
@@ -824,15 +790,9 @@ useEffect(() => {
                                             <span>{step.module}</span>
                                         </div>
                                     </div>
-
-                                    {/* Right Side - Content */}
                                     <div className="md:w-2/3 p-6">
-                                        <h3 className="text-xl font-bold mb-2 group-hover:text-[#233E2E] transition-colors">
-                                            {step.title}
-                                        </h3>
+                                        <h3 className="text-xl font-bold mb-2 group-hover:text-[#233E2E] transition-colors">{step.title}</h3>
                                         <p className="text-sm text-slate-500 mb-4">{step.description}</p>
-
-                                        {/* Topics */}
                                         <div className="space-y-2 mb-4">
                                             {step.topics.map((topic, i) => (
                                                 <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
@@ -841,47 +801,200 @@ useEffect(() => {
                                                 </div>
                                             ))}
                                         </div>
-
-                                        {/* Certificate Badge */}
                                         {step.certificate === "Ya" && (
                                             <div className="flex items-center gap-1 mb-3">
                                                 <Award className="w-4 h-4 text-[#DBAA28]" />
                                                 <span className="text-xs text-[#DBAA28] font-semibold">Sertifikat Resmi</span>
                                             </div>
                                         )}
-
-                                        {/* Action */}
-                                        <Link href={`/edukasi/kelas/${step.id}`}>
-                                            <motion.button
-                                                whileHover={{ x: 5 }}
-                                                className="text-[#233E2E] font-medium flex items-center gap-1 group-hover:gap-2 transition-all"
-                                            >
-                                                Lihat Detail Kelas
-                                                <ChevronRight className="w-4 h-4" />
-                                            </motion.button>
-                                        </Link>
+                                        <button className="text-[#233E2E] font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                                            Lihat Detail Kelas
+                                            <ChevronRight className="w-4 h-4" />
+                                        </button>
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
                     </div>
-
-                    <div className="text-center mt-10">
-                        <Link href="/edukasi">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-white border-2 border-[#233E2E] text-[#233E2E] px-8 py-3 rounded-xl font-semibold hover:bg-[#233E2E]/5 transition-all duration-500 inline-flex items-center gap-2 group"
-                            >
-                                Lihat Semua Program
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </motion.button>
-                        </Link>
-                    </div>
                 </div>
             </section>
 
-            {/* FAQ Section dengan Animasi */}
+            {/* Modal Detail Pembelajaran */}
+            <AnimatePresence>
+                {isLearningModalOpen && selectedLearning && (
+                    <div className="fixed inset-0 z-50 overflow-y-auto">
+                        <div className="flex items-center justify-center min-h-screen px-4 py-8">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+                                onClick={closeLearningModal}
+                            />
+
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                                className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden"
+                            >
+                                <div className={`relative h-48 bg-gradient-to-br from-[#233E2E] to-[#3E624C]`}>
+                                    <div className="absolute inset-0 bg-black/20"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                                {selectedLearning.icon}
+                                            </div>
+                                            <div>
+                                                <span className="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">
+                                                    {selectedLearning.level}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <h2 className="text-2xl sm:text-3xl font-bold">{selectedLearning.title}</h2>
+                                        <p className="text-white/80 mt-1">{selectedLearning.description}</p>
+                                    </div>
+                                    <button
+                                        onClick={closeLearningModal}
+                                        className="absolute top-4 right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-black/40 hover:bg-black/60 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                                    >
+                                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                                    </button>
+                                </div>
+
+                                <div className="overflow-y-auto p-6 max-h-[calc(85vh-12rem)]">
+                                    <div className="grid grid-cols-3 gap-3 mb-6">
+                                        <div className="text-center p-3 bg-slate-50 rounded-xl">
+                                            <Clock className="w-5 h-5 text-[#233E2E] mx-auto mb-1" />
+                                            <div className="text-xs text-slate-500">Durasi</div>
+                                            <div className="text-sm font-semibold">{selectedLearning.duration}</div>
+                                        </div>
+                                        <div className="text-center p-3 bg-slate-50 rounded-xl">
+                                            <BookOpen className="w-5 h-5 text-[#233E2E] mx-auto mb-1" />
+                                            <div className="text-xs text-slate-500">Modul</div>
+                                            <div className="text-sm font-semibold">{selectedLearning.module}</div>
+                                        </div>
+                                        <div className="text-center p-3 bg-slate-50 rounded-xl">
+                                            <Award className="w-5 h-5 text-[#233E2E] mx-auto mb-1" />
+                                            <div className="text-xs text-slate-500">Sertifikat</div>
+                                            <div className="text-sm font-semibold text-green-600">{selectedLearning.certificate}</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Video Preview */}
+                                    <div className="mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-3 text-base border-l-4 border-[#233E2E] pl-3">
+                                            Preview Materi
+                                        </h3>
+                                        <div className="relative rounded-xl overflow-hidden shadow-lg bg-slate-100 aspect-video">
+                                            {selectedLearning.youtubeUrl && (
+                                                <iframe
+                                                    className="w-full h-full"
+                                                    src={selectedLearning.youtubeUrl.includes('youtu.be')
+                                                        ? selectedLearning.youtubeUrl.replace('youtu.be/', 'www.youtube.com/embed/')
+                                                        : selectedLearning.youtubeUrl.includes('watch?v=')
+                                                            ? selectedLearning.youtubeUrl.replace('watch?v=', 'embed/')
+                                                            : selectedLearning.youtubeUrl}
+                                                    title={selectedLearning.title}
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                />
+                                            )}
+                                        </div>
+                                        <p className="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                                            <Play className="w-3 h-3" />
+                                            Klik play untuk melihat preview materi
+                                        </p>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-3 text-base border-l-4 border-[#233E2E] pl-3">
+                                            Materi yang Dipelajari
+                                        </h3>
+                                        <div className="space-y-3">
+                                            {selectedLearning.topics.map((topic, i) => (
+                                                <div key={i} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
+                                                    <div className="w-6 h-6 rounded-full bg-[#233E2E]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                        <CheckCircle className="w-3 h-3 text-[#233E2E]" />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-medium text-slate-800">{topic}</h4>
+                                                        <p className="text-xs text-slate-500 mt-1">
+                                                            {topic === "Komunikasi dengan lansia" && "Pelajari cara berkomunikasi efektif, sabar, dan empati dengan lansia"}
+                                                            {topic === "Kebutuhan dasar" && "Pahami kebutuhan fisik, psikologis, sosial, dan spiritual lansia"}
+                                                            {topic === "Pencegahan jatuh" && "Tips mencegah risiko jatuh dengan modifikasi lingkungan dan latihan keseimbangan"}
+                                                            {topic === "Perawatan luka" && "Teknik membersihkan, mengganti balutan, dan mengenali tanda infeksi"}
+                                                            {topic === "Manajemen nyeri" && "Cara mengatasi nyeri dengan metode non-farmakologi dan farmakologi"}
+                                                            {topic === "Mobilisasi dini" && "Panduan membantu lansia bergerak dengan aman pasca operasi"}
+                                                            {topic === "Kebutuhan gizi" && "Memahami kebutuhan nutrisi lansia untuk pemulihan optimal"}
+                                                            {topic === "Menu sehat" && "Resep dan panduan menu bergizi untuk lansia"}
+                                                            {topic === "Suplemen" && "Panduan memilih dan menggunakan suplemen yang tepat"}
+                                                            {topic === "Monitoring gula darah" && "Cara menggunakan alat cek gula darah dan interpretasi hasil"}
+                                                            {topic === "Kontrol tekanan darah" && "Panduan memantau tekanan darah di rumah"}
+                                                            {topic === "Manajemen obat" && "Tips minum obat yang benar dan menghindari interaksi obat"}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <h3 className="font-semibold text-slate-900 mb-3 text-base border-l-4 border-[#233E2E] pl-3">
+                                            Manfaat Mengikuti Kelas
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            {[
+                                                "Pemahaman mendalam tentang perawatan lansia",
+                                                "Teknik perawatan yang terstandarisasi",
+                                                "Sertifikat resmi dari tenaga profesional",
+                                                "Akses materi pembelajaran selamanya",
+                                                "Konsultasi dengan instruktur",
+                                                "Grup diskusi dengan sesama peserta"
+                                            ].map((benefit, i) => (
+                                                <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                                                    <CheckCircle className="w-4 h-4 text-[#233E2E]" />
+                                                    <span>{benefit}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-6 pt-4 border-t border-slate-100">
+                                        <a
+                                            href={selectedLearning.youtubeUrl || selectedLearning.youtubeChannel}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block w-full"
+                                        >
+                                            <button className="w-full py-3 px-4 bg-gradient-to-r from-[#233E2E] to-[#3E624C] text-white rounded-xl text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group">
+                                                <Play className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                                <span>Mulai Belajar Sekarang di YouTube</span>
+                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                    <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                                        <div className="flex items-start gap-2">
+                                            <Info className="w-4 h-4 text-blue-500 mt-0.5" />
+                                            <p className="text-xs text-blue-600">
+                                                Materi pembelajaran tersedia dalam bentuk video di YouTube.
+                                                Klik tombol di atas untuk mulai belajar!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                )}
+            </AnimatePresence>
+
+            {/* FAQ Section */}
             <section className="py-20 px-4 sm:px-6 bg-white">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
@@ -891,22 +1004,10 @@ useEffect(() => {
 
                     <div className="space-y-4">
                         {[
-                            {
-                                q: "Bagaimana cara mendaftar layanan konsultasi?",
-                                a: "Anda bisa mendaftar melalui website atau aplikasi kami. Pilih layanan yang diinginkan, isi formulir, pilih jadwal, lakukan pembayaran, dan mulai konsultasi."
-                            },
-                            {
-                                q: "Apakah layanan homecare tersedia 24 jam?",
-                                a: "Ya, layanan perawat homecare tersedia 24 jam. Anda bisa memilih jadwal kunjungan sesuai kebutuhan, termasuk untuk layanan darurat."
-                            },
-                            {
-                                q: "Bagaimana cara pembayaran?",
-                                a: "Kami menerima berbagai metode pembayaran: transfer bank, kartu kredit, e-wallet (GoPay, OVO, Dana), dan virtual account."
-                            },
-                            {
-                                q: "Apakah ada garansi jika tidak puas dengan layanan?",
-                                a: "Kami memberikan garansi kepuasan 100%. Jika Anda tidak puas dengan layanan, kami akan memberikan refund atau penggantian jadwal tanpa biaya tambahan."
-                            }
+                            { q: "Bagaimana cara mendaftar layanan konsultasi?", a: "Anda bisa mendaftar melalui website atau aplikasi kami. Pilih layanan yang diinginkan, isi formulir, pilih jadwal, lakukan pembayaran, dan mulai konsultasi." },
+                            { q: "Apakah layanan homecare tersedia 24 jam?", a: "Ya, layanan perawat homecare tersedia 24 jam. Anda bisa memilih jadwal kunjungan sesuai kebutuhan, termasuk untuk layanan darurat." },
+                            { q: "Bagaimana cara pembayaran?", a: "Kami menerima berbagai metode pembayaran: transfer bank, kartu kredit, e-wallet (GoPay, OVO, Dana), dan virtual account." },
+                            { q: "Apakah ada garansi jika tidak puas dengan layanan?", a: "Kami memberikan garansi kepuasan 100%. Jika Anda tidak puas dengan layanan, kami akan memberikan refund atau penggantian jadwal tanpa biaya tambahan." }
                         ].map((faq, i) => {
                             const [isOpen, setIsOpen] = useState(false);
                             return (
@@ -921,13 +1022,8 @@ useEffect(() => {
                                         onClick={() => setIsOpen(!isOpen)}
                                         className="w-full p-6 text-left flex items-center justify-between group"
                                     >
-                                        <h3 className="font-semibold text-lg group-hover:text-[#233E2E] transition-colors">
-                                            {faq.q}
-                                        </h3>
-                                        <motion.div
-                                            animate={{ rotate: isOpen ? 90 : 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
+                                        <h3 className="font-semibold text-lg group-hover:text-[#233E2E] transition-colors">{faq.q}</h3>
+                                        <motion.div animate={{ rotate: isOpen ? 90 : 0 }} transition={{ duration: 0.3 }}>
                                             <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#233E2E]" />
                                         </motion.div>
                                     </button>
@@ -963,53 +1059,26 @@ useEffect(() => {
                 </div>
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-                    >
+                    <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
                         Siap untuk Mulai?
                     </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg sm:text-xl mb-8 text-white/90 max-w-2xl mx-auto"
-                    >
+                    <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg sm:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
                         Dapatkan layanan kesehatan terbaik untuk lansia tercinta
                     </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center"
-                    >
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/daftar">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-white text-[#233E2E] px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-500 inline-flex items-center gap-2 group"
-                            >
+                            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white text-[#233E2E] px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-500 inline-flex items-center gap-2 group">
                                 <span>Daftar Sekarang</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </motion.button>
                         </Link>
                         <Link href="/kontak">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-500"
-                            >
+                            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all duration-500">
                                 Hubungi Kami
                             </motion.button>
                         </Link>
                     </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-wrap justify-center gap-6 mt-12"
-                    >
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex flex-wrap justify-center gap-6 mt-12">
                         <div className="flex items-center gap-2">
                             <PhoneIcon className="w-4 h-4" />
                             <span className="text-sm">+62 21 1234 5678</span>
@@ -1022,99 +1091,48 @@ useEffect(() => {
                 </div>
             </section>
 
-             {/* Footer */}
-                              <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
-                                <div className="max-w-7xl mx-auto">
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
-                                    <div>
-                                      {/* --- BRANDING FOOTER (VERSI RAPI & PREMIUM) --- */}
-                                      <div className="flex items-center gap-4 mb-8">
-                                        {/* 1. KOTAK LOGO: Menggunakan object-cover agar gambar memenuhi sudut */}
-                                        <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
-                                          <img
-                                            src="/logo2.png"
-                                            alt="GiveCare Logo"
-                                            className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                          />
-                                        </div>
-                        
-                                        {/* 2. TEKS BRANDING: Menggunakan font-black agar lebih kuat */}
-                                        <div className="flex flex-col leading-tight">
-                                          <span className="text-2xl font-black tracking-tighter text-white">
-                                            Kawan<span className="text-emerald-500">Pulih</span>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      {/* --- BATAS PERUBAHAN --- */}
-                        
-                                      <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                                        Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
-                                      </p>
-                                    </div>
-                        
-                                    {[
-                                      {
-                                        title: "Produk",
-                                        links: [
-                                          { name: "Fitur", href: "/layanan" },
-                                          { name: "Harga", href: "/harga" },
-                                          { name: "FAQ", href: "/faq" },
-                                          { name: "Blog", href: "/edukasi" }
-                                        ]
-                                      },
-                                      {
-                                        title: "Perusahaan",
-                                        links: [
-                                          { name: "Tentang", href: "/tentang" },
-                                          { name: "Karir", href: "/karir" },
-                                          { name: "Kontak", href: "/kontak" },
-                                          { name: "Mitra", href: "/mitra" }
-                                        ]
-                                      },
-                                      {
-                                        title: "Dukungan",
-                                        links: [
-                                          { name: "Pusat Bantuan", href: "/bantuan" },
-                                          { name: "Privasi", href: "/privasi" },
-                                          { name: "Syarat & Ketentuan", href: "/syarat" },
-                                          { name: "Keamanan", href: "/keamanan" }
-                                        ]
-                                      }
-                                    ].map((section, i) => (
-                                      <div key={i}>
-                                        <h4 className="font-bold mb-4">{section.title}</h4>
-                                        <ul className="space-y-2">
-                                          {section.links.map((link, j) => (
-                                            <li key={j}>
-                                              <Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                                                {link.name}
-                                              </Link>
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    ))}
-                                  </div>
-                        
-                                  <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <p className="text-slate-400 text-sm text-center sm:text-left">
-                                      © 2026 KawanPulih. Semua Hak Dilindungi.
-                                    </p>
-                                    <div className="flex items-center gap-4">
-                                      {[
-                                        { name: "Twitter", href: "https://twitter.com" },
-                                        { name: "Facebook", href: "https://facebook.com" },
-                                        { name: "Instagram", href: "https://instagram.com" },
-                                        { name: "LinkedIn", href: "https://linkedin.com" }
-                                      ].map((social, i) => (
-                                        <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">
-                                          {social.name}
-                                        </a>
-                                      ))}
-                                    </div>
-                                  </div>
+            {/* Footer */}
+            <footer className="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8">
+                        <div>
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="relative w-12 h-12 rounded-[20px] overflow-hidden shadow-lg border border-white/5 bg-[#233E2E] flex items-center justify-center">
+                                    <img src="/logo2.png" alt="KawanPulih Logo" className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" />
                                 </div>
-                              </footer>
+                                <div className="flex flex-col leading-tight">
+                                    <span className="text-2xl font-black tracking-tighter text-white">Kawan<span className="text-emerald-500">Pulih</span></span>
+                                </div>
+                            </div>
+                            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
+                            </p>
+                        </div>
+                        {[
+                            { title: "Produk", links: [{ name: "Fitur", href: "/layanan" }, { name: "Harga", href: "/harga" }, { name: "FAQ", href: "/faq" }, { name: "Blog", href: "/edukasi" }] },
+                            { title: "Perusahaan", links: [{ name: "Tentang", href: "/tentang" }, { name: "Karir", href: "/karir" }, { name: "Kontak", href: "/kontak" }, { name: "Mitra", href: "/mitra" }] },
+                            { title: "Dukungan", links: [{ name: "Pusat Bantuan", href: "/bantuan" }, { name: "Privasi", href: "/privasi" }, { name: "Syarat & Ketentuan", href: "/syarat" }, { name: "Keamanan", href: "/keamanan" }] }
+                        ].map((section, i) => (
+                            <div key={i}>
+                                <h4 className="font-bold mb-4">{section.title}</h4>
+                                <ul className="space-y-2">
+                                    {section.links.map((link, j) => (
+                                        <li key={j}><Link href={link.href} className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">{link.name}</Link></li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-slate-400 text-sm text-center sm:text-left">© 2026 KawanPulih. Semua Hak Dilindungi.</p>
+                        <div className="flex items-center gap-4">
+                            {["Twitter", "Facebook", "Instagram", "LinkedIn"].map((social, i) => (
+                                <a key={i} href={`https://${social.toLowerCase()}.com`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#3E624C] text-sm transition-colors">{social}</a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </footer>
 
             {/* Scroll to Top Button */}
             <AnimatePresence>
