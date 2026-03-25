@@ -318,7 +318,7 @@ export default function EdukasiPage() {
             <div class="bg-green-50 p-4 rounded-lg my-4"><p class="text-green-700"><strong>Tips:</strong> Ikuti program rehabilitasi jantung untuk pemulihan optimal</p></div>`
         },
         {
-            id: 14,
+            id: 12,
             title: "Perawatan Pasca Operasi Katarak",
             excerpt: "Panduan lengkap merawat mata setelah operasi katarak agar cepat sembuh.",
             category: "pasca-operasi",
@@ -336,7 +336,7 @@ export default function EdukasiPage() {
             <ul><li>Jangan mengucek mata</li><li>Pakai pelindung mata saat tidur</li><li>Tetes mata sesuai jadwal</li><li>Jangan menunduk/membungkuk</li><li>Hindari membaca berlebihan</li></ul>`
         },
         {
-            id: 16,
+            id: 13,
             title: "Pencegahan Infeksi Pasca Operasi",
             excerpt: "Langkah-langkah penting untuk mencegah infeksi pada luka operasi.",
             category: "pasca-operasi",
@@ -354,7 +354,7 @@ export default function EdukasiPage() {
             <ul><li>Jaga kebersihan luka</li><li>Cuci tangan sebelum menyentuh luka</li><li>Ganti balutan rutin</li><li>Konsumsi makanan bergizi</li><li>Minum antibiotik sesuai resep</li></ul>`
         },
         {
-            id: 17,
+            id: 14,
             title: "Perawatan Pasca Operasi Gigi",
             excerpt: "Panduan merawat mulut setelah pencabutan atau operasi gigi.",
             category: "pasca-operasi",
@@ -371,6 +371,7 @@ export default function EdukasiPage() {
             <h2>Tips Perawatan Pasca Operasi Gigi</h2>
             <ul><li>Kompres dingin untuk mengurangi bengkak</li><li>Hindari makanan keras</li><li>Jangan berkumur 24 jam pertama</li><li>Minum obat sesuai resep</li><li>Istirahat cukup</li></ul>`
         }
+        
     ];
 
     // Filter artikel berdasarkan kategori dan pencarian
