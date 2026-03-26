@@ -18,4 +18,6 @@ Kawan Pulih adalah platform digital yang dirancang untuk menghubungkan keluarga 
 
 Visual identitas KawanPulih menggunakan palet warna hijau bumi yang melambangkan kedamaian dan stabilitas, serta aksen kuning keemasan yang melambangkan kehangatan dan optimisme.
 
+Reminder: Kami buat fitur daftar isi formulir jika ingin di testing formulirnya dikirim ke wa otomatis  dan itu bisa diedit dibagian no wa nya jika ingin mencobanya bisa edit nomor wa yang ingin dikirim misal sebagai dokter admin, bagian daftar/tsx dan pada bagian formulirnya berdasarkan yang diisi oleh user akan terkirim ke nomor itu,karena ini adalah lomba web design frontend jadi kami tidak menggunakan backend ataupun databasenya 
+
 ## Link Website
