@@ -20,6 +20,8 @@ import {
     Ear, Lungs, Salad as SaladIcon, Citrus, Milk as MilkIcon
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 
 const articlesData = {
     // ==================== NUTRISI ====================
