@@ -11,7 +11,7 @@ Institut Teknologi Del
 ## Deskripsi Karya
 Kawan Pulih adalah platform digital yang dirancang untuk menghubungkan keluarga pasien dengan tenaga kesehatan atau caregiver profesional untuk layanan perawatan di rumah (home care).Proyek ini dilatarbelakangi oleh kekhawatiran keluarga dalam memasukkan orang asing ke dalam rumah mereka. Oleh karena itu, KawanPulih hadir dengan pendekatan bahasa yang membumi dan penuh empati, mengubah persepsi tenaga kesehatan dari sekadar "pekerja asing" menjadi "pendamping terpercaya" atau Kawan.
 
-## Tujuan dan Manfaat: 
+# Tujuan dan Manfaat: 
 - Hadirkan Kehangatan: Memberikan pendampingan yang humanis dan penuh kasih sayang dalam setiap fase pemulihan pasien.
 - Proses Pulih yang Terukur: Mendampingi perjalanan penyembuhan pasien selangkah demi selangkah menuju kemandirian.
 - Transparansi & Kepercayaan: Menyediakan profil caregiver yang terverifikasi dan transparan bagi keluarga.
