@@ -1229,7 +1229,7 @@ export default function Home() {
               </div>
 
               <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                Platform kesehatan terpercaya untuk lansia Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
+                Platform kesehatan terpercaya untuk Indonesia. Dampingi orang tua Anda dengan teknologi terkini.
               </p>
             </div>
 
