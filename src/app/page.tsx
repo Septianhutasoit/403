@@ -284,7 +284,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
-              <Link href="/konsultasi">
+              <Link href="/daftar">
                 <button className="group bg-gradient-to-r from-[#233E2E] to-[#3E624C] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-[#233E2E]/50 hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2">
                   Mulai Konsultasi Gratis
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
