@@ -1183,7 +1183,7 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/konsultasi">
+            <Link href="/daftar">
               <button className="bg-white text-[#233E2E] px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-500 flex items-center justify-center gap-2 group">
                 <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 Mulai Konsultasi Gratis
